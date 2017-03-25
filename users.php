@@ -53,6 +53,7 @@ $( function() {
  
     function addUser() {
 		var valid = true;
+		var result_id = 0;
 		allFields.removeClass( "ui-state-error" );
  
 		valid = valid && checkLength( username, "användarnamn", 2, 16 );
@@ -66,7 +67,8 @@ $( function() {
 		valid = valid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Lösenordet kan bara bestå av a-z & 0-9" );
  
 		if ( valid ) {
-			$.post("save-to-db.php", { type: 'user', username: username.val(), name: name.val(), email: email.val(), password: password.val(), company: 'Test', color: '1' });
+			$.post("save-to-db.php", { type: 'user_add', username: username.val(), name: name.val(), email: email.val(), password: password.val(), company: 'Test', color: '1' });
+			
 			
 			$( "#users tbody" ).append( "<tr>" +
 			"<td>NY</td>" +

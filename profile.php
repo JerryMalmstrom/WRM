@@ -1,12 +1,8 @@
 <script>
 $( function() {
 	var form,
-    emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-    name = $( "#name" ),
-	username = $( "#username" ),
-    email = $( "#email" ),
-    allFields = $( [] ).add( username ).add( name ).add( email ).add( company ).add( color ), tips = $( ".validateTips" );
- 
+    emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+     
     function updateTips( t ) {
 		tips
         .text( t )
@@ -39,6 +35,13 @@ $( function() {
 	
 	function updateUser() {
 		var valid = true;
+		var name = $( "#name" ),
+		username = $( "#username" ),
+		email = $( "#email" ),
+		company = $( "#company" ),
+		color = $( "#color" ),
+		allFields = $( [] ).add( username ).add( name ).add( email ).add( company ).add( color ), tips = $( ".validateTips" );
+		
 		allFields.removeClass( "ui-state-error" );
  
 		valid = valid && checkLength( name, "namn", 2, 80 );
@@ -52,16 +55,17 @@ $( function() {
 		}
 		return valid;
     }
- 
-    $( "#update-user" ).button().on( "click", function() {
+	
+	$( "#update-user" ).button().on( "click", function() {
 		updateUser();
+		
     });
+	
 });
 </script>
 
 <div class="row">
 	<div class="col-md-12">
-	  <form>	  
 	  <table id="user" class="table table-striped ui-widget ui-widget-content">
 		<thead>
 		  <tr class="ui-widget-header ">
@@ -71,6 +75,7 @@ $( function() {
 		</thead>
 		<tbody>
 		<?php
+		
 		$data = $db->select("Users", "*" , [
 			"username"=>$login_session
 		]);
@@ -79,17 +84,17 @@ $( function() {
 		foreach ($data as $d)
 		{
 			echo "<tr><td>ID</td><td>" . $d["ID"] . "</td></tr>";
-			echo "<tr><td>Användarnamn</td><td><input name='username' type='text' value='" . $d["username"] . "'></td></tr>";
-			echo "<tr><td id='name'>Namn</td><td><input name='name' type='text' value='" . $d["name"] . "'></td></tr>";
-			echo "<tr><td id='email'>Email</td><td><input name='email' type='email' value='" . $d["email"] . "'></td></tr>";
-			echo "<tr><td id='company'>Företag</td><td><input name='company' type='text' value='" . $d["company"] . "'></td></tr>";
+			echo "<tr><td>Användarnamn</td><td><input id='username' type='text' value='" . $d["username"] . "'></td></tr>";
+			echo "<tr><td>Namn</td><td><input id='name' type='text' value='" . $d["name"] . "'></td></tr>";
+			echo "<tr><td>Email</td><td><input id='email' type='text' value='" . $d["email"] . "'></td></tr>";
+			echo "<tr><td>Företag</td><td><input id='company' type='text' value='" . $d["company"] . "'></td></tr>";
 			echo "<tr><td>Roll</td><td>" . $d["role"] . "</td></tr>";
-			echo "<tr><td id='color'>Färg</td><td><input size='200' type='color' name='color' value='" . trim($d["color"]) . "'></td></tr>";
+			echo "<tr><td>Färg</td><td><input type='color' id='color' value='" . trim($d["color"]) . "'></td></tr>";
 			echo "<tr><td>Bild</td><td>" . $d["profileImage"] . "</td></tr>";
+			
 		}
 		?>
 		</tbody>
 	</table>
-	<button id="update-user">Uppdatera</button>
-	</form>
+	<button id="update-user" >Uppdatera</button>
 </div>

@@ -140,7 +140,7 @@ $( function() {
 		</tbody>
 	  </table>
 	  
-	  <div id="dialog-form" title="Skapa en användare">
+	  <div id="dialog-form" title="Skapa en kund">
 		<p class="validateTips">Fyll i allt snyggt och fint</p>
 	 
 		<form>

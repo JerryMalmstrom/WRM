@@ -43,11 +43,34 @@
 				$.post("save-to-db.php", { type: 'event', user: event.user, date: event.start.format(), customer: event.customer, hours: event.hours });
 			}
 		});
+		
+		$('[name=customer]').change(function () {
+			$('.external').text($(this).val() + " : " + $('[name=hours]').val());
+		})
+		
+		
 	});
 </script>
 
+<?php
+		
+	$data = $db->select("Customers", "*" , "");
+		
+?>
+
+
 <div id='external-events'>
-	<div class='fc-event' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>'>Borealis: 8h</div>
+	<select name="customer">
+	<?php 
+		foreach ($data as $d)
+		{
+			echo "<option value='" . $d["ID"] . "'>" . $d["name"] . "</option>";
+		}
+	?>
+	</select>
+	
+	<input type="range" name="hours" min="1" max="12">
+	<div class='fc-event external' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>'></div>
 	<p style="clear: both" />
 </div>
 

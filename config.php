@@ -3,8 +3,7 @@
 	define('DB_USERNAME', 'sa');
 	define('DB_PASSWORD', '1853satan');
 	define('DB_DATABASE', 'WRM-DB');
-	//$db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
-   
+	
 	require  'src/Medoo.php';
 	use Medoo\Medoo;
 

@@ -112,39 +112,55 @@ $( function() {
 });
 </script>
 
-<div class="row">
-	<div class="col-md-12">
-	  <table id="users" class="table table-striped ui-widget ui-widget-content">
-		<thead>
-		  <tr class="ui-widget-header ">
-			<th>ID</th>
-			<th>Användarnamn</th>
-			<th>Namn</th>
-			<th>Epost</th>
-			<th>Roll</th>
-			<th>Färg</th>
-		  </tr>
-		</thead>
-		<tbody>
-		<?php
-		$data = $db->select("Users", "*" , "");
-		foreach ($data as $d)
-		{
-			echo "<tr><td>" . $d["ID"] .
-				"</td><td>" . $d["username"] . 
-				"</td><td>" . $d["name"] .
-				"</td><td>" . $d["email"] .
-				"</td><td>" . $d["role"] .
-				"</td><td style='background-color:" . $d["color"] . "'>" . $d["color"] .
-				"</td></tr>";
-		}
-		?>
-		</tbody>
-	  </table>
-	  
-	  <div id="dialog-form" title="Skapa en användare">
+<div class="ui content">
+	<div class="ui link cards">
+	<?php
+			$data = $db->select("Users", "*" , "");
+			
+			foreach ($data as $d)
+			{
+				
+	?>
+				<div class="card">
+					<div class="image">
+						<img src="/images/avatar2/large/matthew.png">
+					</div>
+					<div class="content">
+						<div class="header"><?php echo $d["name"]; ?></div>
+						<div class="meta">
+							<a>Friends</a>
+						</div>
+						<div class="description">
+							Matthew is an interior designer living in New York.
+						</div>
+					</div>
+					<div class="extra content">
+						<span class="right floated">
+							Joined in 2013
+						</span>
+						<span>
+							<i class="user icon"></i>
+								75 Friends
+						</span>
+					</div>
+				</div>
+
+	<?php
+			/*	echo "<tr><td>" . $d["ID"] .
+					"</td><td>" . $d["username"] . 
+					"</td><td>" . $d["name"] .
+					"</td><td>" . $d["email"] .
+					"</td><td>" . $d["role"] .
+					"</td><td style='background-color:" . $d["color"] . "'>" . $d["color"] .
+					"</td></tr>";*/
+					
+			}
+	?>
+
+	</div>
+	<div id="dialog-form" title="Skapa en användare">
 		<p class="validateTips">Fyll i allt snyggt och fint</p>
-	 
+
 		<form>
 		<fieldset>
 		  <label for="name">Användarnamn</label>
@@ -155,13 +171,12 @@ $( function() {
 		  <input type="text" name="email" id="email" value="test.anvandare@whitered.se" class="text ui-widget-content ui-corner-all">
 		  <label for="password">Lösenord</label>
 		  <input type="password" name="password" id="password" value="Abc123" class="text ui-widget-content ui-corner-all">
-	 
+
 		  <!-- Allow form submission with keyboard without duplicating the dialog button -->
 		  <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
 		</fieldset>
 		</form>
-		</div>
-				
-		<button id="create-user">Skapa en användare</button>
 	</div>
+			
+	<button id="create-user">Skapa en användare</button>
 </div>

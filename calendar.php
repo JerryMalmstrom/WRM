@@ -1,15 +1,17 @@
 <script>
 	$(document).ready(function() {
 		// page is now ready, initialize the calendar...
-
+		
+		$('.ui.dropdown').dropdown();
+		
 		$('#external-events .fc-event').each(function() {
 
 			// store data so the calendar knows to render an event upon drop
 			$(this).data('event', {
 				title: $.trim($(this).text()), // use the element's text as the event title
-				hours: 8,
-				customer: 3,
-				user: 2,
+				hours: $('[name=hours]').val(),
+				customer: $(this).attr("data-cid"),
+				user: $('[name=hours]').attr("data-uid"),
 				color: "#5cb85c",
 				stick: true // maintain when user navigates (see docs on the renderEvent method)
 			});
@@ -43,12 +45,60 @@
 				$.post("save-to-db.php", { type: 'event', user: event.user, date: event.start.format(), customer: event.customer, hours: event.hours });
 			}
 		});
+		
+		$('[name=customer],[name=hours]').change(function () {
+			$('.external').text($('[name=customer]').val() + " : " + $('[name=hours]').val());
+			
+			$('#external-events .fc-event').each(function() {
+			// store data so the calendar knows to render an event upon drop
+				$(this).data('event', {
+					title: $.trim($(this).text()), // use the element's text as the event title
+					hours: $('[name=hours]').val(),
+					customer: $(this).attr("data-cid"),
+					user: $('[name=hours]').attr("data-uid"),
+					color: "#5cb85c",
+					stick: true // maintain when user navigates (see docs on the renderEvent method)
+				});
+			});
+		})
+		
+		
 	});
 </script>
 
-<div id='external-events'>
-	<div class='fc-event' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>'>Borealis: 8h</div>
-	<p style="clear: both" />
-</div>
+<?php
+	$data = $db->select("Customers", "*" , "");	
+?>
 
-<div id='calendar'></div>
+<div class="ten wide column">
+	<div class="ui segment" id='external-events'>
+		
+		<select class="ui search dropdown" name="customer">
+		<option value="">Kund</option>
+		<?php 
+			foreach ($data as $d)
+			{
+				echo "<option data-cid='" . $d['ID'] . "' value='" . $d['name'] . "'>" . $d['name'] . "</option>";
+			}
+		?>
+		</select>
+		
+		<select class="ui compact selection dropdown" name="hours">
+			<option value="">Timmar</option>
+			<option value=1>1h</option>
+			<option value=2>2h</option>
+			<option value=3>3h</option>
+			<option value=4>4h</option>
+			<option value=5>5h</option>
+			<option value=6>6h</option>
+			<option value=7>7h</option>
+			<option value=8>8h</option>
+		</select>
+		<div class='ui fc-event external' style='background-color: #123456; border-color: #123456'>-</div>
+	</div>
+
+</div>
+<div class="sixteen wide column">
+	<div id='calendar'></div>
+
+</div>

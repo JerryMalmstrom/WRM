@@ -13,6 +13,7 @@
 		$login_session = $s['username'];
 		$login_name = $s['name'];
 		$login_color = $s['color'];
+		$login_id = $s['ID'];
 	}
    
 	if(!isset($_SESSION['login_user'])){

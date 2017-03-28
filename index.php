@@ -8,21 +8,14 @@
 	<title>White Red Manager</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
 	<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans|Roboto' type='text/css'>
-	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	  
-	<link rel="stylesheet" href="theme.css" type="text/css">
-	  
-	<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>-->
-	
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
-	<script src="js/bootstrap.min.js"></script>
-	
 	<link rel='stylesheet' href='css/fullcalendar.css' />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css">
+	<link rel="stylesheet" href="theme.css" type="text/css">
+	
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.js"></script>
+	
 	<script src='lib/moment.min.js'></script>
 	<script src='js/fullcalendar.js'></script>
 	<script src='js/locale/sv.js'></script>
@@ -38,7 +31,7 @@
 	
 	
 	
-	<div class="container theme-showcase" role="main">
+	<div class="ui grid container" role="main">
 	
 		<?php
 			if($_GET) {

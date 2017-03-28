@@ -9,25 +9,28 @@
 		$username = $_POST['username'];
 		$password = $_POST['password']; 
 		  
-		//$sql = "SELECT id FROM admin WHERE username = '$myusername' and passcode = '$mypassword'";
-		$sql = $db->select("Users", "ID" , [
-			"AND"=>[
-				"username"=>$username,
-				"password"=>$password
-			]
-		]);
+		$query = "SELECT id FROM users WHERE username = '$username' and password = '$password'";
 		
-		$count = count($sql);
-		  
-		// If result matched $myusername and $mypassword, table row must be 1 row
-			
-		if($count == 1) {
+		if (!$sql = $db->query($query)) {
+		// Oh no! The query failed. 
+		echo "Sorry, the website is experiencing problems.";
+
+		// Again, do not do this on a public site, but we'll show you how
+		// to get the error information
+		echo "Error: Our query failed to execute and here is why: \n";
+		echo "Query: " . $sql . "\n";
+		echo "Errno: " . $db->errno . "\n";
+		echo "Error: " . $db->error . "\n";
+		exit;
+	}
+		
+		if($sql->num_rows == 1) {
 			session_register("username");
 			$_SESSION['login_user'] = $username;
 			 
 			header("location: index.php");
 		} else {
-			$error = "Your Login Name or Password is invalid";
+			$error = "Ditt användarnamn eller lösenord är felaktigt";
 		}
    }
 ?>

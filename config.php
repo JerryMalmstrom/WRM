@@ -1,23 +1,18 @@
 <?php
 	define('DB_SERVER', 'localhost');
-	define('DB_USERNAME', 'sa');
-	define('DB_PASSWORD', '1853satan');
+	define('DB_USERNAME', 'root');
+	define('DB_PASSWORD', '');
 	define('DB_DATABASE', 'WRM-DB');
 	
-	require  'src/Medoo.php';
-	use Medoo\Medoo;
-
-	// Initialize
-	$db = new Medoo([
-		'database_type' => 'mssql',
-		'database_name' => DB_DATABASE,
-		'server' => DB_SERVER,
-		'username' => DB_USERNAME,
-		'password' => DB_PASSWORD,
-		'charset' => 'utf8'
-	]);
 	
-	 
+	$db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+	
+	if ($db->connect_errno) {
+		echo "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
+	}
+	
+	$db->set_charset("utf8");
+		 
 	// Fix for removed Session functions 
 	function fix_session_register(){ 
 		function session_register(){ 

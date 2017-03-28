@@ -115,11 +115,15 @@ $( function() {
 <div class="ui content">
 	<div class="ui link cards">
 	<?php
-			$data = $db->select("Users", "*" , "");
+			//$data = $db->select("Users", "*" , "");
 			
-			foreach ($data as $d)
-			{
-				
+			$query = "select * from users";
+			
+			$sql = $db->query($query);
+			
+			
+			while ($d = $sql->fetch_assoc())
+			{				
 	?>
 				<div class="card">
 					<div class="image">

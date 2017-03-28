@@ -1,21 +1,16 @@
 <?php
 
-require  'src/Medoo.php';
-use Medoo\Medoo;
-
-
 try {
-	// Initialize
-	$db = new Medoo([
-		'database_type' => 'mssql',
-		'database_name' => 'WRM-DB',
-		'server' => 'localhost',
-		'username' => 'sa',
-		'password' => '1853satan',
-		'charset' => 'utf8'
-	]);
 	
-	$query = $db->select("Events",[
+	
+	$query = "SELECT e.ID,e.user,e.date,e.hours,e.customer,c.ID,c.name as cName,u.color FROM `Events` e
+JOIN customers c
+JOIN users u
+where e.customer = c.ID and e.user = u.ID";
+
+	$sql = $db->query($query);
+	
+	/*$query = $db->select("Events",[
 	"[>]Customers" => ["Events.customer" => "ID"],
 	"[>]Users" => ["Events.user" => "ID"],
 	],[
@@ -27,7 +22,7 @@ try {
 	"Customers.ID",
 	"Customers.name(cName)",
 	"Users.color"
-	],"");
+	],"");*/
   
   
 	
@@ -36,7 +31,7 @@ try {
     $events = array();
 	
     // Fetch results
-    foreach ($query As $row) {
+    while ($row = $sql->fetch_assoc()) {
         $e = array();
 		$e['title'] = $row['cName'] . ": " . $row['hours'];
         $e['id'] = $row['ID'];

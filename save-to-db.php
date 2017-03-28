@@ -1,12 +1,19 @@
 <?php
 	
+	
+	
 	switch ($_POST["type"]) {
 		case "event":
-			$db->insert("Events",[
+			
+			$db->debug()->insert("Events",[
 			"user" => $_POST["user"],
 			"date" => $_POST["date"],
 			"hours" => $_POST["hours"],
-			"customer" => $_POST["customer"]]);
+			"customer" => $_POST["customer"]
+			]);
+			
+			echo $db->last();
+			
 			break;
 		case "user_add":
 			$db->insert("Users",[
@@ -50,4 +57,7 @@
 		default:
 			break;
 	}
+	
+	
+	
 ?>

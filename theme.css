@@ -16,3 +16,7 @@ body {
 	width: 150px;
 	margin-top: 15px;
 }
+
+.fc-event {
+	padding-left: 8px;	
+}

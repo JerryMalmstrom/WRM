@@ -33,7 +33,7 @@
 	
 	<div class="ui grid container" role="main">
 	
-		<?php
+		<?php 
 			if($_GET) {
 				require($_GET['page'] . ".php");
 			}

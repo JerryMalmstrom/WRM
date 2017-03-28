@@ -1,5 +1,3 @@
-<div class="row">
-	<div class="col-md-6">
+<div class="column">
 		Hej och välkommen
-	</div>
 </div>

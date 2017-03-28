@@ -1,13 +1,7 @@
 body {
-  padding-top: 70px;
+  padding-top: 0px;
   padding-bottom: 30px;
   font-family: 'Open Sans';
-}
-
-.theme-dropdown .dropdown-menu {
-  position: static;
-  display: block;
-  margin-bottom: 20px;
 }
 
 .theme-showcase > p > .btn {
@@ -20,5 +14,5 @@ body {
 
 #external-events .fc-event {
 	width: 150px;
-	float: left;
+	margin-top: 15px;
 }

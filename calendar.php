@@ -7,9 +7,9 @@
 			// store data so the calendar knows to render an event upon drop
 			$(this).data('event', {
 				title: $.trim($(this).text()), // use the element's text as the event title
-				hours: 8,
-				customer: 3,
-				user: 2,
+				hours: $([name=hours]).val(),
+				customer: $(this).attr("data-cid"),
+				user: $([name=hours]).attr("data-uid"),
 				color: "#5cb85c",
 				stick: true // maintain when user navigates (see docs on the renderEvent method)
 			});
@@ -53,23 +53,20 @@
 </script>
 
 <?php
-		
-	$data = $db->select("Customers", "*" , "");
-		
+	$data = $db->select("Customers", "*" , "");	
 ?>
-
 
 <div id='external-events'>
 	<select name="customer">
 	<?php 
 		foreach ($data as $d)
 		{
-			echo "<option value='" . $d["ID"] . "'>" . $d["name"] . "</option>";
+			echo "<option data-cid='" . $d['ID'] . "' value='" . $d['name'] . "'>" . $d['name'] . "</option>";
 		}
 	?>
 	</select>
 	
-	<input type="range" name="hours" min="1" max="12">
+	<input type="range" data-uid=<?php echo $login_id ?> name="hours" min="1" max="12">
 	<div class='fc-event external' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>'></div>
 	<p style="clear: both" />
 </div>

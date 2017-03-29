@@ -1,46 +1,36 @@
 <div class="column">
-	<div class="ui feed">
-		<div class="event">
-			<div class="label">
-				<img src="/images/avatar/small/elliot.jpg">
-			</div>
-			<div class="content">
-				<div class="summary">
-					<a class="user">
-						Elliot Fu
-					</a> added you as a friend
-					<div class="date">
-					1 Hour Ago
+	<div class="ui container">
+	<p></p>
+  	<div class="ui feed">
+		
+		<?php
+
+			$query = "select f.ID,f.user, f.date, f.title, f.description, u.name from feed f 
+left join users u on u.ID = f.user
+order by date DESC LIMIT 10";
+			$sql = $db->query($query);
+
+			while ($row = $sql->fetch_assoc()) {
+				?>
+				<div class="event">
+					<!--<div class="label">
+						<img src="/images/avatar/small/elliot.jpg">
+					</div>-->
+					<div class="content">
+						<div class="summary">
+							<a class="user">
+								<?php echo $row['name']; ?>
+							</a> <?php echo $row['title']; ?>
+							<div class="date">
+								<?php echo $row['date']; ?>
+							</div>
+						</div>
+						<div class="meta">
+							<?php echo $row['description']; ?>
+						</div>
 					</div>
 				</div>
-				<div class="meta">
-					<a class="like">
-						<i class="like icon"></i> 4 Likes
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="event">
-			<div class="label">
-				<img src="/images/avatar/small/helen.jpg">
-			</div>
-			<div class="content">
-				<div class="summary">
-					<a>Helen Troy</a> added <a>2 new illustrations</a>
-					<div class="date">
-					 4 days ago
-					</div>
-				</div>
-				<div class="extra images">
-					<a><img src="/images/wireframe/image.png"></a>
-					<a><img src="/images/wireframe/image.png"></a>
-				</div>
-				<div class="meta">
-					<a class="like">
-					<i class="like icon"></i> 1 Like
-					</a>
-				</div>
-			</div>
-		</div>
+				<?php } ?>
+	</div>
 	</div>
 </div>

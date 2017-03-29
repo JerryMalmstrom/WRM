@@ -115,36 +115,35 @@ $( function() {
 <div class="ui content">
 	<div class="ui link cards">
 	<?php
-			//$data = $db->select("Users", "*" , "");
-			
 			$query = "select * from users";
-			
 			$sql = $db->query($query);
-			
-			
+					
 			while ($d = $sql->fetch_assoc())
 			{				
 	?>
 				<div class="card">
 					<div class="image">
-						<img src="/images/avatar2/large/matthew.png">
+						<a class="ui left corner label">
+							<i class="male icon"></i>
+						</a>
+						<img src="<?php echo "/WRM" . $d["profileImage"]; ?>">
 					</div>
 					<div class="content">
 						<div class="header"><?php echo $d["name"]; ?></div>
 						<div class="meta">
-							<a>Friends</a>
+							<?php echo $d["company"]; ?>
 						</div>
 						<div class="description">
-							Matthew is an interior designer living in New York.
+							<?php echo $d["description"]; ?>
 						</div>
 					</div>
 					<div class="extra content">
 						<span class="right floated">
-							Joined in 2013
+							<a class="ui label" style="color: #FFF;background-color: <?php echo $d["color"]; ?>;border-color: <?php echo $d["color"]; ?>;"><?php echo $d["color"]; ?></a>
 						</span>
 						<span>
 							<i class="user icon"></i>
-								75 Friends
+							<?php echo $d["role"]; ?>
 						</span>
 					</div>
 				</div>

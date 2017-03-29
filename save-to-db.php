@@ -1,18 +1,33 @@
 <?php
+
+	require('config.php');
+	require('functions.php');
 	
-	
-	
+
 	switch ($_POST["type"]) {
-		case "event":
+		case "event_add":
+							
+			$q_user = $_POST["user"];
+			$q_date = $_POST["date"];
+			$q_hours = $_POST["hours"];
+			$q_cust = $_POST["customer"];
+						
+			$query = "INSERT INTO events (user,date,hours,customer) VALUES ('$q_user','$q_date','$q_hours','$q_cust')";
+				
+			$sql = $db->query($query);
 			
-			$db->debug()->insert("Events",[
-			"user" => $_POST["user"],
-			"date" => $_POST["date"],
-			"hours" => $_POST["hours"],
-			"customer" => $_POST["customer"]
-			]);
+			feed_log($db, $q_user, "lade till ett event","Event: $q_hours på kund");
 			
-			echo $db->last();
+			break;
+		case "event_remove":
+			$q_user = $_POST["user"];
+			$q_id = $_POST["id"];
+			
+			$query = "DELETE FROM events WHERE id = $q_id";
+			
+			$sql = $db->query($query);
+			
+			feed_log($db, $q_user, "tog bort ett event","Event: $q_id");
 			
 			break;
 		case "user_add":

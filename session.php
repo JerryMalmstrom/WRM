@@ -1,5 +1,5 @@
 <?php
-	include('config.php');
+
 	session_start();
    
 	$user_check = $_SESSION['login_user'];
@@ -34,5 +34,7 @@
 	$login_name = $s['name'];
 	$login_color = $s['color'];
 	$login_id = $s['ID'];
+	$login_image = $s['profileImage'];
+	$login_image = "/WRM" . str_replace(".png", "_small.jpg", $login_image);
 	
 ?>

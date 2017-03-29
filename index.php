@@ -23,10 +23,11 @@
 	</head>
 	<body>
 	
-	<?php 
-	include('session.php');
-	require("nav.php");
-	
+	<?php
+		require('config.php');
+		require('functions.php');
+		require('session.php');
+		require('nav.php');
 	?>
 	
 	

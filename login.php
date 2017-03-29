@@ -8,7 +8,7 @@
 		// username and password sent from form 
 		  
 		$username = $_POST['username'];
-		$password = $_POST['password']; 
+		$password = md5($_POST['password']);
 		  
 		$query = "SELECT id FROM users WHERE username = '$username' and password = '$password'";
 		

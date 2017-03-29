@@ -1,106 +1,78 @@
 <script>
 $( function() {
-	var dialog, form,
-    emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-    name = $( "#name" ),
-	username = $( "#username" ),
-    email = $( "#email" ),
-    password = $( "#password" ),
-    allFields = $( [] ).add( username ).add( name ).add( email ).add( password ),
-    tips = $( ".validateTips" );
- 
-    function updateTips( t ) {
-		tips
-        .text( t )
-        .addClass( "ui-state-highlight" );
-		setTimeout(function() {
-			tips.removeClass( "ui-state-highlight", 1500 );
-		}, 500 );
-    }
- 
-    function checkLength( o, n, min, max ) {
-		if ( o.val().length > max || o.val().length < min ) {
-			o.addClass( "ui-state-error" );
-			updateTips( "Längden på " + n + " måste vara mellan " +
-			min + " och " + max + "." );
-			return false;
-		} else {
-			return true;
-		}
-    }
- 
-    function checkRegexp( o, regexp, n ) {
-		if ( !( regexp.test( o.val() ) ) ) {
-			o.addClass( "ui-state-error" );
-			updateTips( n );
-			return false;
-		} else {
-			return true;
-		}
-    }
- 
+	
     function addUser() {
-		var valid = true;
-		var result_id = 0;
-		allFields.removeClass( "ui-state-error" );
- 
-		valid = valid && checkLength( username, "användarnamn", 2, 16 );
-		valid = valid && checkLength( name, "namn", 2, 80 );
-		valid = valid && checkLength( email, "email", 6, 80 );
-		valid = valid && checkLength( password, "lösenord", 2, 16 );
- 
-		valid = valid && checkRegexp( username, /^[a-z]([0-9a-z_\s])+$/i, "Användarnamnet kan bara vara a-z" );
-		valid = valid && checkRegexp( name, /^[a-ö]([0-9a-ö_\s])+$/i, "Namnet kan bara vara A-ö & a-ö" );
-		valid = valid && checkRegexp( email, emailRegex, "eg. user@whitered.se" );
-		valid = valid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Lösenordet kan bara bestå av a-z & 0-9" );
- 
-		if ( valid ) {
-			$.post("save-to-db.php", { type: 'user_add', username: username.val(), name: name.val(), email: email.val(), password: password.val(), company: 'Test', color: '1' });
-			
-			
-			$( "#users tbody" ).append( "<tr>" +
-			"<td>NY</td>" +
-			"<td>" + username.val() + "</td>" +
-			"<td>" + name.val() + "</td>" +
-			"<td>" + email.val() + "</td>" +
-			"<td>User</td>" +
-			"<td>1</td>" +
-			"</tr>" );
-			
-			dialog.dialog( "close" );
-		}
-		return valid;
-    }
- 
-    dialog = $( "#dialog-form" ).dialog({
-		autoOpen: false,
-		height: 600,
-		width: 400,
-		modal: true,
-		buttons: {
-			"Skapa en användare": addUser,
-			Cancel: function() {
-				dialog.dialog( "close" );
+		$.post("save-to-db.php", { type: 'user_add', username: username.val(), name: name.val(), email: email.val(), password: password.val(), company: 'Test', color: '1' });
+	}
+		
+	$( "#create-user" ).button().on( "click", function() {
+		$('.ui.modal').modal('show');
+    });
+	
+	
+	$('.ui.form').form({
+    fields: {
+		username: {
+			identifier: 'username',
+			rules: [
+			{
+				type   : 'exactLength[2]',
+				prompt : 'Endast 2 bokstäver'
 			}
+			]
 		},
-		close: function() {
-			form[ 0 ].reset();
-			allFields.removeClass( "ui-state-error" );
-		}
-    });
- 
-    form = dialog.find( "form" ).on( "submit", function( event ) {
-		event.preventDefault();
-		addUser();
-    });
- 
-    $( "#create-user" ).button().on( "click", function() {
-		dialog.dialog( "open" );
-    });
+		name: {
+			identifier: 'name',
+			rules: [
+			{
+				type   : 'empty',
+				prompt : 'Fyll i ditt namn'
+			}
+			]
+		},
+		email: {
+			identifier: 'email',
+			rules: [
+			{
+				type   : 'email',
+				prompt : 'Fyll i en korrekt mailadress'
+			}
+			]
+		},
+		password: {
+        identifier: 'password',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Fyll i ett lösenord'
+          },
+          {
+            type   : 'minLength[5]',
+            prompt : 'Lösenordet måste vara minst {ruleValue} karaktärer'
+          }
+        ]
+      },
+      password2: {
+        identifier: 'password2',
+        rules: [
+          {
+            type   : 'match[password]',
+            prompt : 'Skriv in samma lösenord två gånger'
+          }
+        ]
+      }
+    }
+  })
+;
+	
 });
 </script>
 
 <div class="ui content">
+	<div class="eight wide column" style="margin-bottom: 30px;">
+		<button class="ui button" id="create-user">Skapa användare</button>
+	</div>
+	
 	<div class="ui link cards">
 	<?php
 			$query = "select * from users";
@@ -137,37 +109,84 @@ $( function() {
 				</div>
 
 	<?php
-			/*	echo "<tr><td>" . $d["ID"] .
-					"</td><td>" . $d["username"] . 
-					"</td><td>" . $d["name"] .
-					"</td><td>" . $d["email"] .
-					"</td><td>" . $d["role"] .
-					"</td><td style='background-color:" . $d["color"] . "'>" . $d["color"] .
-					"</td></tr>";*/
-					
 			}
 	?>
 
 	</div>
-	<div id="dialog-form" title="Skapa en användare">
-		<p class="validateTips">Fyll i allt snyggt och fint</p>
+</div>
 
-		<form>
-		<fieldset>
-		  <label for="name">Användarnamn</label>
-		  <input type="text" name="username" id="username" value="ta" class="text ui-widget-content ui-corner-all">
-		  <label for="name">Namn</label>
-		  <input type="text" name="name" id="name" value="Test Användare" class="text ui-widget-content ui-corner-all">
-		  <label for="email">Epost</label>
-		  <input type="text" name="email" id="email" value="test.anvandare@whitered.se" class="text ui-widget-content ui-corner-all">
-		  <label for="password">Lösenord</label>
-		  <input type="password" name="password" id="password" value="Abc123" class="text ui-widget-content ui-corner-all">
 
-		  <!-- Allow form submission with keyboard without duplicating the dialog button -->
-		  <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-		</fieldset>
-		</form>
+<div class="ui modal">
+	<i class="close icon"></i>
+    <div class="header">
+		Lägg till en användare
 	</div>
-			
-	<button id="create-user">Skapa en användare</button>
+	<div class="content">
+		<div class="ui form">
+			<div class="fields">
+				<div class="six wide required field">
+					<label>Användarnamn</label>
+					<input type="text" placeholder="Användarnamn" name="username">
+				</div>
+				<div class="six wide required field">
+					<label>Namn</label>
+					<input type="text" placeholder="Namn" name="name">
+				</div>
+				<div class="four wide required field">
+					<label>Roll</label>
+					<select class="ui fluid dropdown" name="role">
+						<option value="User">Användare</option>
+						<option value="Admin">Admin</option>
+					</select>
+				</div>
+			</div>
+			<div class="fields">
+				<div class="sixteen wide field">
+					<label>Beskrivning</label>
+					<textarea rows="2" name="description"></textarea>
+				</div>
+			</div>
+			<div class="fields">
+				<div class="six wide required field">
+					<label>Email</label>
+					<input type="email" placeholder="Email" name="email">
+				</div>
+				<div class="five wide required field">
+					<label>Lösenord</label>
+					<input type="password" placeholder="Lösenord" name="password">
+				</div>
+				<div class="five wide required field">
+					<label>Lösenord (igen)</label>
+					<input type="password" placeholder="Lösenord" name="password2">
+				</div>
+			</div>
+			<div class="fields">
+				<div class="six wide field">
+					<label>Företag</label>
+					<select class="ui fluid dropdown" name="company">
+						<option value="1">White Red</option>
+						<option value="2">Borealis</option>
+					</select>
+				</div>
+				<div class="five wide field">
+					<label>Bild</label>
+					<input type="text" placeholder="Bild" name="profileImage">
+				</div>
+				<div class="five wide field">
+					<label>Färg</label>
+					<input type="text" placeholder="Färg" name="color">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="actions">
+    <div id="cancel" class="ui red cancel inverted button">
+      <i class="remove icon"></i>
+      Avbryt
+    </div>
+    <div id="save" class="ui green save inverted button">
+      <i class="checkmark icon"></i>
+      Spara
+    </div>
+  </div>
 </div>

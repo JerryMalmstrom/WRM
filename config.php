@@ -1,7 +1,7 @@
 <?php
-	define('DB_SERVER', 'localhost');
-	define('DB_USERNAME', 'root');
-	define('DB_PASSWORD', '');
+	define('DB_SERVER', 'jmark01');
+	define('DB_USERNAME', 'wrm');
+	define('DB_PASSWORD', '1qaz2wsx');
 	define('DB_DATABASE', 'WRM-DB');
 	
 	
@@ -12,8 +12,5 @@
 	}
 	
 	$db->set_charset("utf8");
-		 
-	
-
 	
 ?>

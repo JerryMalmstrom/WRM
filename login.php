@@ -46,40 +46,98 @@
 	<title>White Red Manager - Login</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
 	<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans|Roboto' type='text/css'>
-	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="css/bootstrap-theme.min.css" type="text/css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	  
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css">
 	<link rel="stylesheet" href="theme.css" type="text/css">
-	  
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
-	<script src="js/bootstrap.min.js"></script>
+	<style type="text/css">
+    body {
+      background-color: #DADADA;
+    }
+    body > .grid {
+      height: 100%;
+    }
+    .image {
+      margin-top: -100px;
+    }
+    .column {
+      max-width: 450px;
+    }
+  </style>
 	
-	</head>
-   
-   <body>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.js"></script>
 	
-      <div align="center">
-         <div style = "width:300px;">
-            <div style = "padding:3px;"><b>Logga in</b></div>
-				
-            <div style = "margin:30px">
-               
-               <form action = "" method = "post">
-                  <label>Användarnamn  :</label><br/><input type = "text" name = "username" class = "box"/><br/><br />
-                  <label>Lösenord  :</label><br/><input type = "password" name = "password" class = "box" /><br/><br />
-                  <input type = "submit" value = " Logga in "/><br />
-               </form>
-               
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-					
-            </div>
-				
-         </div>
-			
-      </div>
+	<script>
+	$(document).ready(function() {
+	  $('.ui.form').form({
+			fields: {
+				username: {
+				identifier  : 'username',
+				rules: [
+				{
+					type   : 'empty',
+					prompt : 'Fyll i ditt användarnamn'
+				}
+			  ]
+			},
+			password: {
+			  identifier  : 'password',
+			  rules: [
+				{
+				  type   : 'empty',
+				  prompt : 'Fyll i ditt lösenord'
+				}
+			  ]
+			}
+		  }
+		})
+	  ;
+	})
+	;
+  </script>
 
-   </body>
+	</head>
+	<body>
+	
+		<div class="ui middle aligned center aligned grid">
+			<div class="column">
+				<h2 class="ui red image header">
+					<img src="images/logo.gif" class="image">
+					<div class="content">
+					Logga in
+					</div>
+				</h2>
+				<form class="ui large form" action = "" method = "post">
+					<div class="ui stacked segment">
+						<div class="field">
+							<div class="ui left icon input">
+								<i class="user icon"></i>
+								<input type="text" name="username" placeholder="Användarnamn">
+							</div>
+						</div>
+						<div class="field">
+							<div class="ui left icon input">
+								<i class="lock icon"></i>
+								<input type="password" name="password" placeholder="Lösenord">
+							</div>
+						</div>
+						<div class="ui fluid large red submit button">Login</div>
+					</div>
+					
+					<?php if ($error) {
+						echo "<div class='ui error message' style='display: inherit'>" . $error . "</div>";
+					} else {
+						echo "<div class='ui error message'></div>";
+					}
+					?>
+
+				</form>
+					   
+				<div class="ui message">
+					Har du hittat hit av misstag? <a href="http://www.google.se">Hoppa vidare</a>
+				</div>
+			</div>
+		</div>
+
+	</body>
 </html>

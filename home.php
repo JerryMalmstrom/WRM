@@ -4,6 +4,7 @@
 		<div class="ui feed">
 		
 		<?php
+			//bara ett test
 			$query = "select * from vfeed limit 0,10";
 			$sql = $db->query($query);
 

@@ -15,8 +15,9 @@ body {
 #external-events .fc-event {
 	width: 150px;
 	margin-top: 15px;
+	margin-bottom: 30px;
 }
 
 .fc-event {
-	padding-left: 8px;	
+	padding-left: 8px;
 }

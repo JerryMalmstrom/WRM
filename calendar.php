@@ -2,6 +2,8 @@
 	$(document).ready(function() {
 		// page is now ready, initialize the calendar...
 		
+		var oldEvent;
+		
 		$('.ui.dropdown').dropdown();
 		
 		$('#external-events .fc-event').each(function() {
@@ -28,8 +30,8 @@
 			eventClick: function(calEvent, jsEvent, view) {
 				$('#modalmessage').text(calEvent.date + " - " + calEvent.title);
 				$('.ui.basic.modal').modal({
-					onDeny    : function(){
-						return false;
+					onDeny : function(){
+						
 					},
 					onApprove : function() {
 						$.post("save-to-db.php", { 
@@ -68,7 +70,21 @@
 				
 				$('#calendar').fullCalendar( 'refetchEvents');
 				
-			}			
+			},
+			eventDragStart: function(event, jsEvent) {
+				oldEvent = event;
+				
+			},
+			eventDrop: function(event, delta, revertFunc) {
+				//alert(oldEvent.date + "->" + event.start.format());
+				
+				$.post("save-to-db.php", { 
+					type: 'event_move',
+					id: event.id,
+					user: <?php echo $login_id ?>,
+					date: event.start.format(),
+					});				
+			}
 		});
 		
 		$('[name=customer],[name=hours]').change(function () {
@@ -94,9 +110,8 @@
 	$sql = $db->query("select * from customers");
 ?>
 
-<div class="ten wide column">
-	<div class="ui segment" id='external-events'>
-		
+<div class="ui grid">
+	<div class="eight wide column">
 		<select class="ui search dropdown" name="customer">
 		<option value="">Kund</option>
 		<?php 
@@ -117,13 +132,10 @@
 			<option value=7>7h</option>
 			<option value=8>8h</option>
 		</select>
-		<div class='ui fc-event external' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>'>-</div>
-		
 	</div>
-</div>
-
-<div class="six wide column">
-	
+	<div class="four wide column" id='external-events'>
+		<div class='ui fc-event external' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>'>-</div>
+	</div>
 </div>
 
 <div class="sixteen wide column">

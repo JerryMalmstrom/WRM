@@ -5,11 +5,7 @@
 try {
 	
 	
-	$query = "SELECT e.ID,e.user,e.date,e.hours,e.customer,c.ID as cId,c.name as cName,u.username, u.color FROM `Events` e
-			LEFT JOIN customers c
-            ON e.customer = c.ID
-			LEFT JOIN users u
-			ON e.user = u.ID";
+	$query = "SELECT * from vevents";
 
 	$sql = $db->query($query);
 	

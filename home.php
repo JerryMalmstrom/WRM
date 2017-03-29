@@ -1,13 +1,10 @@
 <div class="column">
 	<div class="ui container">
 	<p></p>
-  	<div class="ui feed">
+		<div class="ui feed">
 		
 		<?php
-
-			$query = "select f.ID,f.user, f.date, f.title, f.description, u.name, u.profileImage from feed f 
-left join users u on u.ID = f.user
-order by date DESC LIMIT 10";
+			$query = "select * from vfeed limit 0,10";
 			$sql = $db->query($query);
 
 			while ($row = $sql->fetch_assoc()) {
@@ -31,6 +28,6 @@ order by date DESC LIMIT 10";
 					</div>
 				</div>
 				<?php } ?>
-	</div>
+		</div>
 	</div>
 </div>

@@ -5,6 +5,18 @@
 	
 
 	switch ($_POST["type"]) {
+		case "event_move":
+			$q_user = $_POST["user"];		
+			$q_id = $_POST["id"];
+			$q_date = $_POST["date"];
+									
+			$query = "UPDATE events SET date = '$q_date' WHERE id = '$q_id'";
+				
+			$sql = $db->query($query);
+			
+			feed_log($db, $q_user, "flyttade ett event","Event: $q_id till $q_date");
+			
+			break;
 		case "event_add":
 							
 			$q_user = $_POST["user"];

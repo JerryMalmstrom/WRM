@@ -26,42 +26,20 @@
 				}
 			},
 			eventClick: function(calEvent, jsEvent, view) {
-				//alert("Eventid: " + event.id);
-				
-				//id=calEvent.id;
-				
 				$('#modalmessage').text(calEvent.date + " - " + calEvent.title);
-				
 				$('.ui.basic.modal').modal({
 					onDeny    : function(){
 						return false;
 					},
 					onApprove : function() {
-						$('#calendar').fullCalendar('removeEvents', calEvent._id);
 						$.post("save-to-db.php", { 
 						type: 'event_remove',
 						user: <?php echo $login_id ?>,
-						id: calEvent.id});
+						id: calEvent.id}).done(function() {
+							$('#calendar').fullCalendar( 'refetchEvents');
+						});
 					}
 				}).modal('show');
-				
-				/*$( "#dialog" ).dialog({
-                  resizable: false,
-                  height:200,
-                  width:500,
-                  modal: false,
-                  title: 'Ta bort?',
-                  buttons: {
-					CLOSE: function() {
-						$("#dialog").dialog( "close" );
-                    },
-                    "DELETE": function() {
-						$('#calendar').fullCalendar('removeEvents', calEvent._id);
-                    }
-					}
-				});*/
-				
-				
 				
 			},
 			eventReceive: function(event) {
@@ -75,7 +53,22 @@
 						//alert( data );
 					});
 			},
-			
+			eventResize: function(event, delta, revertFunc) {
+				nrofDays = (delta/3600/24000); //1
+				
+				//alert(nrofDays);
+				//alert(event.end.format());
+				
+				
+				for (x=0;x<nrofDays;x++) {
+					//alert(event.end.subtract(1, 'days').format());
+					$.post("save-to-db.php", {type: 'event_add',user: event.user,date: event.end.subtract(1, 'days').format(),customer: event.customer,	hours: event.hours })
+					.done(function() {$('#calendar').fullCalendar( 'refetchEvents')});
+				}		
+				
+				$('#calendar').fullCalendar( 'refetchEvents');
+				
+			}			
 		});
 		
 		$('[name=customer],[name=hours]').change(function () {

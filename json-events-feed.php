@@ -26,7 +26,7 @@ try {
         $e['user'] = $row['user'];
         $e['date'] = $row['date'];
         $e['hours'] = $row['hours'];
-		$e['customer'] = $row['cName'];
+		$e['customer'] = $row['cId'];
 		$e['color'] = $row['color'];
 				        
         // Merge the event array into the return array

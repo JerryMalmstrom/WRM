@@ -134,7 +134,7 @@
 		</select>
 	</div>
 	<div class="four wide column" id='external-events'>
-		<div class='ui fc-event external' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>'>-</div>
+		<div class='ui fc-event external' data-tooltip="Dra och släpp denna i kalendern" style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>'>-</div>
 	</div>
 </div>
 

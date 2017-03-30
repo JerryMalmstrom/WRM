@@ -168,9 +168,9 @@ $( function() {
 						<option value="2">Borealis</option>
 					</select>
 				</div>
-				<div class="five wide field ui action input">
+				<div class="five wide field">
 					<label>Bild</label>
-					<input class="ui height" type="file" placeholder="Bild" name="profileImage">
+					<input type="text" placeholder="Bild" name="profileImage">
 					<button class="ui icon button">
 						<i class="file icon"></i>
 					</button>

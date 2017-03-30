@@ -174,7 +174,7 @@ $( function() {
 				</div>
 				<div class="five wide field">
 					<label>Färg</label>
-					<input type="text" placeholder="Färg" name="color">
+					<input type="color" placeholder="Färg" name="color">
 				</div>
 			</div>
 		</div>

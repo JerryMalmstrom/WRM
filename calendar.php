@@ -72,8 +72,7 @@
 				
 			},
 			eventDragStart: function(event, jsEvent) {
-				oldEvent = event;
-				
+				$('.external').attr("data-tooltip", "");		
 			},
 			eventDrop: function(event, delta, revertFunc) {
 				//alert(oldEvent.date + "->" + event.start.format());

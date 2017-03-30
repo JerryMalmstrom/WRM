@@ -7,7 +7,7 @@
 		<a class="item" href="?page=customers"><i class="blind icon"></i>Kunder</a>
 		
 		<div class="right menu">
-			<a class="item" href="?page=profile" data-tooltip="<?php echo $login_id; ?>"><img class="ui avatar image" src="<?php echo $login_image; ?>"> <?php echo $login_name; ?></a>
+			<a class="item" href="?page=profile" data-position="bottom right" data-tooltip="<?php echo $login_id; ?>"><img class="ui avatar image" src="<?php echo $login_image; ?>"> <?php echo $login_name; ?></a>
 			<a class="ui compact red basic button item" href="logout.php">Logga ut</a>
 		</div>
 	</div>

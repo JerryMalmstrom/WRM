@@ -76,13 +76,10 @@ $( function() {
 		<tbody>
 		<?php
 		
-		$data = $db->select("Users", "*" , [
-			"username"=>$login_session
-		]);
+		$sql = $db->query("SELECT * FROM users WHERE username='$login_session'");
 		
 		
-		foreach ($data as $d)
-		{
+		while ($d = $sql->fetch_assoc())	{
 			echo "<tr><td>ID</td><td>" . $d["ID"] . "</td></tr>";
 			echo "<tr><td>Användarnamn</td><td><input id='username' type='text' value='" . $d["username"] . "'></td></tr>";
 			echo "<tr><td>Namn</td><td><input id='name' type='text' value='" . $d["name"] . "'></td></tr>";
@@ -91,7 +88,6 @@ $( function() {
 			echo "<tr><td>Roll</td><td>" . $d["role"] . "</td></tr>";
 			echo "<tr><td>Färg</td><td><input type='color' id='color' value='" . trim($d["color"]) . "'></td></tr>";
 			echo "<tr><td>Bild</td><td>" . $d["profileImage"] . "</td></tr>";
-			
 		}
 		?>
 		</tbody>

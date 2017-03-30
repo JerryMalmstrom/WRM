@@ -170,7 +170,7 @@ $( function() {
 				</div>
 				<div class="five wide field">
 					<label>Bild</label>
-					<input type="text" placeholder="Bild" name="profileImage">
+					<input type="file" placeholder="Bild" name="profileImage">
 				</div>
 				<div class="five wide field">
 					<label>Färg</label>

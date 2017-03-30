@@ -168,7 +168,7 @@ $( function() {
 						<option value="2">Borealis</option>
 					</select>
 				</div>
-				<div class="five wide ui action input field">
+				<div class="five wide action field">
 					<label>Bild</label>
 					<input type="text" placeholder="Bild" name="profileImage">
 					<button class="ui icon button">

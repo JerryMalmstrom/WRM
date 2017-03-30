@@ -68,7 +68,7 @@ $( function() {
 
 <div class="ui content">
 	<div class="eight wide column" style="margin-bottom: 30px;">
-		<button class="ui button" id="create-user">Skapa kund</button>
+		<button class="ui button" id="create-customer">Skapa kund</button>
 	</div>
 	<div class="ui container">
 		<table id="customers" class="ui single line table">

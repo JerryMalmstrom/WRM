@@ -170,7 +170,7 @@ $( function() {
 				</div>
 				<div class="five wide field ui action input">
 					<label>Bild</label>
-					<input type="file" placeholder="Bild" name="profileImage">
+					<input class="ui height" type="file" placeholder="Bild" name="profileImage">
 					<button class="ui icon button">
 						<i class="file icon"></i>
 					</button>

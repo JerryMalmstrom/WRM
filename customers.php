@@ -1,4 +1,4 @@
-<script>
+ï»¿<script>
 $( function() {
 	
 	//$.post("save-to-db.php", { type: 'customer_add', username: username.val(), name: name.val(), email: email.val(), password: password.val(), company: 'Test', color: '1' });
@@ -15,7 +15,7 @@ $( function() {
 			rules: [
 			{
 				type   : 'exactLength[2]',
-				prompt : 'Endast 2 bokstäver'
+				prompt : 'Endast 2 bokstÃ¤ver'
 			}
 			]
 		},
@@ -42,11 +42,11 @@ $( function() {
         rules: [
           {
             type   : 'empty',
-            prompt : 'Fyll i ett lösenord'
+            prompt : 'Fyll i ett lÃ¶senord'
           },
           {
             type   : 'minLength[5]',
-            prompt : 'Lösenordet måste vara minst {ruleValue} karaktärer'
+            prompt : 'LÃ¶senordet mÃ¥ste vara minst {ruleValue} karaktÃ¤rer'
           }
         ]
       },
@@ -55,7 +55,7 @@ $( function() {
         rules: [
           {
             type   : 'match[password]',
-            prompt : 'Skriv in samma lösenord två gånger'
+            prompt : 'Skriv in samma lÃ¶senord tvÃ¥ gÃ¥nger'
           }
         ]
       }
@@ -105,7 +105,7 @@ $( function() {
 <div class="ui modal">
 	<i class="close icon"></i>
     <div class="header">
-		Lägg till en kund
+		LÃ¤gg till en kund
 	</div>
 	<div class="content">
 		<div class="ui form">

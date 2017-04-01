@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <script>
 $( function() {
 	
@@ -60,7 +59,6 @@ $( function() {
 	<div id="tableHolder"></div>
 </div>
 
-=======
 ﻿<script>
 $( function() {
 	
@@ -165,7 +163,6 @@ $( function() {
 </div>
 
 
->>>>>>> origin/master
 <div class="ui modal">
 	<i class="close icon"></i>
     <div class="header">
@@ -188,7 +185,6 @@ $( function() {
 				</div>
 			</div>
 			<div class="fields">
-<<<<<<< HEAD
 				<div class="six wide required field">
 					<label>Status</label>
 					<select class="ui fluid dropdown" name="status">
@@ -202,7 +198,6 @@ $( function() {
 				<div class="sixteen wide field">
 					<label>Kommentar</label>
 					<textarea rows="2" name="comment"></textarea>
-=======
 				<div class="sixteen wide field">
 					<label>Kommentar</label>
 					<textarea rows="2" name="comment"></textarea>
@@ -220,9 +215,7 @@ $( function() {
 						<option value="2">Prospekt</option>
 					</select>
 				</div>
-				<div class="four wide required field">
-					
->>>>>>> origin/master
+				<div class="four wide required field">			
 				</div>
 			</div>
 		</div>

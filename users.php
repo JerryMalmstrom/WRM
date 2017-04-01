@@ -10,6 +10,7 @@ $( function() {
     });
 	
 	
+	
 	$('.ui.form').form({
     fields: {
 		username: {
@@ -121,6 +122,7 @@ $( function() {
 		Lägg till en användare
 	</div>
 	<div class="content">
+		<form>
 		<div class="ui form">
 			<div class="fields">
 				<div class="six wide required field">
@@ -167,16 +169,13 @@ $( function() {
 						<option value="2">Borealis</option>
 					</select>
 				</div>
-				<div class="five wide action field">
+				<div class="five wide field">
 					<label>Bild</label>
 					<input type="text" placeholder="Bild" name="profileImage">
-					<button class="ui icon button">
-						<i class="file icon"></i>
-					</button>
 				</div>
 				<div class="five wide field">
 					<label>Färg</label>
-					<input type="color" placeholder="Färg" name="color">
+					<input type="text" placeholder="Färg" name="color">
 				</div>
 			</div>
 		</div>
@@ -186,7 +185,7 @@ $( function() {
       <i class="remove icon"></i>
       Avbryt
     </div>
-    <div id="save" class="ui primary submit button">
+    <div id="save" class="ui green save inverted button">
       <i class="checkmark icon"></i>
       Spara
     </div>

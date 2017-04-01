@@ -73,7 +73,11 @@
 				
 			},
 			eventDragStart: function(event, jsEvent) {
+<<<<<<< HEAD
 								
+=======
+				$('.external').attr("data-tooltip", "");		
+>>>>>>> origin/master
 			},
 			eventDrop: function(event, delta, revertFunc) {
 				$.post("save-to-db.php", { 

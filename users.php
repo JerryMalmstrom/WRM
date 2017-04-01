@@ -167,13 +167,16 @@ $( function() {
 						<option value="2">Borealis</option>
 					</select>
 				</div>
-				<div class="five wide field">
+				<div class="five wide action field">
 					<label>Bild</label>
 					<input type="text" placeholder="Bild" name="profileImage">
+					<button class="ui icon button">
+						<i class="file icon"></i>
+					</button>
 				</div>
 				<div class="five wide field">
 					<label>Färg</label>
-					<input type="text" placeholder="Färg" name="color">
+					<input type="color" placeholder="Färg" name="color">
 				</div>
 			</div>
 		</div>

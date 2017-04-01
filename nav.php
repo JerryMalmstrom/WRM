@@ -5,6 +5,7 @@
 		<a class="item" href="?page=calendar"><i class="calendar icon"></i>Kalender</a>
 		<a class="item" href="?page=users"><i class="user icon"></i>Användare</a>
 		<a class="item" href="?page=customers"><i class="blind icon"></i>Kunder</a>
+		<a class="item" href="?page=reporting"><i class="bar chart icon"></i>Rapporter</a>
 		
 		<div class="right menu">
 			<a class="item" href="?page=profile"><img class="ui avatar image" src="<?php echo $login_image; ?>"> <?php echo $login_name; ?></a>

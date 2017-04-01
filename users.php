@@ -62,8 +62,7 @@ $( function() {
         ]
       }
     }
-  })
-;
+  });
 	
 });
 </script>
@@ -184,7 +183,7 @@ $( function() {
       <i class="remove icon"></i>
       Avbryt
     </div>
-    <div id="save" class="ui green save inverted button">
+    <div id="save" class="ui primary submit button">
       <i class="checkmark icon"></i>
       Spara
     </div>

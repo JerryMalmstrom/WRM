@@ -23,8 +23,16 @@
 			$q_date = $_POST["date"];
 			$q_hours = $_POST["hours"];
 			$q_cust = $_POST["customer"];
-						
-			$query = "INSERT INTO events (user,date,hours,customer) VALUES ('$q_user','$q_date','$q_hours','$q_cust')";
+			
+			$sql1 = $db->query("select rate from rates where userID = '$q_user' AND customerID = '$q_cust'");
+			
+			while ($rates = $sql1->fetch_assoc()) {
+				$q_rate = $rates['rate'];
+			} 
+			
+			//echo "User:" . $q_user . ", Rate:" . $q_rate;
+			
+			$query = "INSERT INTO events (user,date,hours,customer,rate) VALUES ('$q_user','$q_date','$q_hours','$q_cust','$q_rate')";
 				
 			$sql = $db->query($query);
 			
@@ -71,14 +79,20 @@
 			]);
 			break;
 		case "customer_add":
-			$db->insert("Customers",[
-			"username" => $_POST["username"],
-			"name" => $_POST["name"],
-			"role" => "User",
-			"email" => $_POST["email"],
-			"password" => $_POST["password"],
-			"company" => $_POST["company"],
-			"color" => $_POST["color"]]);
+		
+			$q_name = $_POST["name"];
+			$q_address = $_POST["address"];
+			$q_phone = $_POST["phone"];
+			$q_status = $_POST["status"];
+			$q_comment = $_POST["comment"];
+			$q_user = $_POST["user"];
+			
+			$query = "INSERT INTO customers (name, address, phone, status, comment) VALUES ('$q_name','$q_address','$q_phone','$q_status','$q_comment')";
+			
+			$sql = $db->query($query);
+						
+			feed_log($db, $q_user, "lade till en kund","Kund: $q_name");
+			
 			break;
 			
 		default:

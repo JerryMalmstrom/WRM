@@ -2,8 +2,6 @@
 	$(document).ready(function() {
 		// page is now ready, initialize the calendar...
 		
-		var oldEvent;
-		
 		$('.ui.dropdown').dropdown();
 		
 		$('#external-events .fc-event').each(function() {
@@ -42,9 +40,11 @@
 						});
 					}
 				}).modal('show');
+								
+				//console.log(calEvent);
 				
 			},
-			eventReceive: function(event) {
+			eventReceive: function(event, date) {
 				$.post("save-to-db.php", { 
 					type: 'event_add',
 					user: event.user,
@@ -52,38 +52,36 @@
 					customer: event.customer,
 					hours: event.hours })
 					.done(function( data ) {
-						//alert( data );
+						
 					});
+				event.date = event.start.format();
+				
 			},
 			eventResize: function(event, delta, revertFunc) {
 				nrofDays = (delta/3600/24000); //1
 				
-				//alert(nrofDays);
-				//alert(event.end.format());
-				
+				dateF = moment(event.end);
 				
 				for (x=0;x<nrofDays;x++) {
-					//alert(event.end.subtract(1, 'days').format());
-					$.post("save-to-db.php", {type: 'event_add',user: event.user,date: event.end.subtract(1, 'days').format(),customer: event.customer,	hours: event.hours })
+					$.post("save-to-db.php", {type: 'event_add',user: event.user,date: dateF.subtract(1, 'days').format(),customer: event.customer,	hours: event.hours })
 					.done(function() {$('#calendar').fullCalendar( 'refetchEvents')});
-				}		
+				}
+				
+				$('#calendar').fullCalendar('removeEvents', event.id);
 				
 				$('#calendar').fullCalendar( 'refetchEvents');
 				
 			},
 			eventDragStart: function(event, jsEvent) {
-				oldEvent = event;
-				
+								
 			},
 			eventDrop: function(event, delta, revertFunc) {
-				//alert(oldEvent.date + "->" + event.start.format());
-				
 				$.post("save-to-db.php", { 
 					type: 'event_move',
 					id: event.id,
 					user: <?php echo $login_id ?>,
 					date: event.start.format(),
-					});				
+					});	
 			}
 		});
 		

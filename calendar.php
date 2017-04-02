@@ -98,9 +98,7 @@
 					stick: true // maintain when user navigates (see docs on the renderEvent method)
 				});
 			});
-		})
-		
-		
+		})	
 	});
 </script>
 

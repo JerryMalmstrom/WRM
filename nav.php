@@ -9,11 +9,13 @@
 		
 		<div class="right menu">
 			<div class="ui dropdown item">
-				<a class="item" href="?page=profile"><img class="ui avatar image" src="<?php echo $login_image; ?>"> <?php echo $login_name; ?></a>
+				Användare <i class="dropdown icon"></i>
 				<div class="menu">
-					<a class="ui compact red basic button item" href="logout.php">Logga ut</a>
+					<a class="item" href="?page=profile">Profil</a>
+					<a class="item" href="logout.php">Logga ut</a>
 				</div>
 			</div>
+			<img class="ui avatar image" src="<?php echo $login_image; ?>">
 		</div>
 	</div>
 </div>

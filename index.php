@@ -1,17 +1,16 @@
+<?php
+	$time = microtime();
+	$time = explode(' ', $time);
+	$time = $time[1] + $time[0];
+	$start = $time;
+?>
+
 <!DOCTYPE html>
 <!--[if lte IE 6]><html class="preIE7 preIE8 preIE9"><![endif]-->
 <!--[if IE 7]><html class="preIE8 preIE9"><![endif]-->
 <!--[if IE 8]><html class="preIE9"><![endif]-->
 <!--[if gte IE 9]><!--><html><!--<![endif]-->
-	<head>
-	
-	<?php
-		$time = microtime();
-		$time = explode(' ', $time);
-		$time = $time[1] + $time[0];
-		$start = $time;
-	?>
-	
+	<head>	
 	<meta charset="UTF-8">
 	<title>White Red Manager</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">

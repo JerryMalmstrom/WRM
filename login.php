@@ -121,7 +121,7 @@
 								<input type="password" name="password" placeholder="Lösenord">
 							</div>
 						</div>
-						<div class="ui fluid large red submit button">Login</div>
+						<div class="ui fluid large red submit button">Logga in</div>
 					</div>
 					
 					<?php if ($error) {

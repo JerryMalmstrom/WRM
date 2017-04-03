@@ -4,6 +4,14 @@
 <!--[if IE 8]><html class="preIE9"><![endif]-->
 <!--[if gte IE 9]><!--><html><!--<![endif]-->
 	<head>
+	
+	<?php
+		$time = microtime();
+		$time = explode(' ', $time);
+		$time = $time[1] + $time[0];
+		$start = $time;
+	?>
+	
 	<meta charset="UTF-8">
 	<title>White Red Manager</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">

@@ -8,7 +8,7 @@
 		
 	<div class="right menu">
 		<div class="ui dropdown item">
-			Användare <i class="dropdown icon"></i>
+			<?php echo $login_name; ?> <i class="dropdown icon"></i>
 			<div class="menu">
 				<a class="item" href="?page=profile">Profil</a>
 				<a class="item" href="logout.php">Logga ut</a>

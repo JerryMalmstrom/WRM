@@ -22,7 +22,7 @@
 								<?php echo $row['name']; ?>
 							</a> <?php echo $row['title']; ?>
 							<div class="date">
-								<?php echo moment($row['date']).fromNow(); ?>
+								<?php echo moment($row['date']); ?>
 							</div>
 						</div>
 						<div class="meta">

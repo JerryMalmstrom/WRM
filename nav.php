@@ -8,8 +8,12 @@
 		<a class="item" href="?page=reporting"><i class="bar chart icon"></i>Rapporter</a>
 		
 		<div class="right menu">
-			<a class="item" href="?page=profile"><img class="ui avatar image" src="<?php echo $login_image; ?>"> <?php echo $login_name; ?></a>
-			<a class="ui compact red basic button item" href="logout.php">Logga ut</a>
+			<div class="ui dropdown item">
+				<a class="item" href="?page=profile"><img class="ui avatar image" src="<?php echo $login_image; ?>"> <?php echo $login_name; ?></a>
+				<div class="menu">
+					<a class="ui compact red basic button item" href="logout.php">Logga ut</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

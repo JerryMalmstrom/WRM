@@ -2,7 +2,7 @@
 $( function() {
 	
     function addUser() {
-		$.post("save-to-db.php", { type: 'user_add', username: username.val(), name: name.val(), email: email.val(), password: password.val(), company: 'Test', color: '1' });
+		$.post("save-to-db.php", { type: 'user_add', username: username.val(), name: name.val(), email: email.val(), password: password.val(), company: company.val(), color: color.val() });
 	}
 		
 	$( "#create-user" ).button().on( "click", function() {
@@ -86,7 +86,7 @@ $( function() {
 						<a class="ui left corner label">
 							<i class="male icon"></i>
 						</a>
-						<img src="<?php echo "/WRM" . $d["profileImage"]; ?>">
+						<img src="<?php echo $d["profileImage"]; ?>">
 					</div>
 					<div class="content">
 						<div class="header"><?php echo $d["name"]; ?></div>

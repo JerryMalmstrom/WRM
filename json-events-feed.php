@@ -5,7 +5,9 @@
 try {
 	
 	
-	$query = "SELECT * from vevents";
+	//$query = "SELECT * from vevents";
+	
+	$query = "select e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color from ((events e left join customers c on((e.customer = c.ID))) left join users u on((e.user = u.ID)))";
 
 	$sql = $db->query($query);
 	

@@ -1,5 +1,5 @@
 <!-- Fixed navbar -->
-<div class="ui small menu">
+<div class="ui stackable menu">
 	<a class="item" href="index.php"><i class="home icon"></i>White Red Manager</a>
 	<a class="item" href="?page=calendar"><i class="calendar icon"></i>Kalender</a>
 	<a class="item" href="?page=users"><i class="user icon"></i>Användare</a>

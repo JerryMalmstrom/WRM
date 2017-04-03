@@ -45,7 +45,7 @@
 		
 	</div>
 	
-	<div class="ui footer">
+	<div class="ui container">
 		<?php 
 			require("footer.php");
 		?>

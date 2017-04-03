@@ -15,6 +15,12 @@
 		$('#calendar').fullCalendar({
 			editable: true,
 			droppable: true,
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay,listWeek'
+			},
+			eventLimit: true,
 			events: {
 				url: 'json-events-feed.php',
 				type: 'POST', // Send post data

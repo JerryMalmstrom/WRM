@@ -73,7 +73,7 @@ $( function() {
 		<button class="ui button" id="create-user">Skapa användare</button>
 	</div>
 	
-	<div class="ui link cards">
+	<div class="ui three stackable cards">
 	<?php
 			$query = "select * from users";
 			$sql = $db->query($query);

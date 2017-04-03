@@ -28,9 +28,10 @@
 					// options apply to agendaWeek and agendaDay views
 				},
 				week: {
-					 aspectRatio: 4
+					// options apply to basicWeek and agendaWeek views
 				},
 			},
+			contentHeight: 'auto',
 			weekNumbers: true,
 			eventLimit: true,
 			events: {

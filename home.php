@@ -1,3 +1,12 @@
+<script>
+	$('.date').load(function() {
+		(this).text() = "Test";
+	});
+	
+	//$.fullCalendar.moment('<?php echo $row['date']; ?>').fromNow();
+
+</script>
+
 <div class="column">
 	<div class="ui container">
 	<p>Feed</p> <!-- Test -->
@@ -22,7 +31,7 @@
 								<?php echo $row['name']; ?>
 							</a> <?php echo $row['title']; ?>
 							<div class="date">
-								<script>$.fullCalendar.moment('<?php echo $row['date']; ?>').fromNow();</script>
+								<?php echo $row['date']; ?>
 							</div>
 						</div>
 						<div class="meta">

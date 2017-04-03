@@ -4,7 +4,6 @@
 	$time = $time[1] + $time[0];
 	$start = $time;
 ?>
-
 <!DOCTYPE html>
 <!--[if lte IE 6]><html class="preIE7 preIE8 preIE9"><![endif]-->
 <!--[if IE 7]><html class="preIE8 preIE9"><![endif]-->

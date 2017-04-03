@@ -18,7 +18,18 @@
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,agendaWeek,agendaDay,listWeek'
+				right: 'month,basicWeek,listWeek'
+			},
+			views: {
+				basic: {
+					// options apply to basicWeek and basicDay views
+				},
+				agenda: {
+					// options apply to agendaWeek and agendaDay views
+				},
+				week: {
+					// options apply to basicWeek and agendaWeek views
+				},
 			},
 			eventLimit: true,
 			events: {

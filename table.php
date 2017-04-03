@@ -20,7 +20,7 @@
 		{
 			echo "<tr><td>" . $d["name"] . 
 				"</td><td>" . $d["address"] .
-				"</td><td>" . $d["phone"] .
+				"</td><td><a href='tel:" . $d["phone"] . "'>" . $d["phone"] . "</a>";
 				"</td><td>" . $d["status"] .
 				"</td><td>" . $d["contacts"] .
 				"</td><td>" . $d["comment"] .

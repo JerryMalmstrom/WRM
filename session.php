@@ -27,7 +27,7 @@
 	if ($ses_sql->num_rows < 1) {
 			echo "We could not find a match for ID $user_check, sorry about that. Please try again.";	
 	}
-		
+	
 	$s = $ses_sql->fetch_assoc();
 	
 	$login_session = $s['username'];

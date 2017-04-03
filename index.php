@@ -32,7 +32,7 @@
 	
 	
 	
-	<div class="ui container" role="main">
+	<div class="ui container">
 	
 		<?php 
 			if($_GET) {

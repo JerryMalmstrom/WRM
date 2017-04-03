@@ -15,9 +15,9 @@ $( function() {
 				<div class="fields">
 					<div class="field">
 						<label>Från:</label>
-						<input type="date" name="fromdate" value="2017-03-01">
+						<input type="date" name="fromdate" value="<?php moment().startOf('month'); ?>">
 						<label>Till:</label>
-						<input type="date" name="todate" value="2017-03-30">
+						<input type="date" name="todate" value="<?php moment().endOf('month'); ?>">
 						<label>Användare:</label>
 						<div class="ui multiple selection dropdown">
 							<input name="users" type="hidden">
@@ -43,9 +43,7 @@ $( function() {
 								<div class="item" data-value="4">Berras Kakor</div>
 							</div>
 						</div>
-						
-						
-						
+						<br/>
 						<input type="hidden" name="type" value="report1">
 						<button class="ui button" id="show-report">Visa rapport</button>
 					</div>

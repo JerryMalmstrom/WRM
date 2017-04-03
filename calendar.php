@@ -28,7 +28,7 @@
 					// options apply to agendaWeek and agendaDay views
 				},
 				week: {
-					// options apply to basicWeek and agendaWeek views
+					 aspectRatio: 4
 				},
 			},
 			weekNumbers: true,

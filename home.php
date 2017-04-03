@@ -1,6 +1,6 @@
 <script>
 	$('div.date').load(function() {
-		(this).text("Test");
+		this.text("Test");
 	});
 	
 	//$.fullCalendar.moment('<?php echo $row['date']; ?>').fromNow();

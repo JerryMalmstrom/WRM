@@ -1,6 +1,6 @@
 <div class="column">
 	<div class="ui container">
-	<p></p>
+	<p>Feed</p>
 		<div class="ui feed">
 		
 		<?php

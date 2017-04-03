@@ -2,8 +2,6 @@
 	$(document).ready(function() {
 		// page is now ready, initialize the calendar...
 		
-		$('.ui.dropdown').dropdown();
-		
 		$('#external-events .fc-event').each(function() {
 			// make the event draggable using jQuery UI
 			$(this).draggable({

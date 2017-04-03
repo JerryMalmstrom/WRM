@@ -44,6 +44,13 @@
 		?>
 		
 	</div>
+	
+	<div class="ui footer">
+		<?php 
+			require("footer.php");
+		?>
+	</div>
+	
 	</body>
 </html>
 

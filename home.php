@@ -14,7 +14,7 @@
 				?>
 				<div class="event">
 					<div class="label">
-						<img src="<?php echo "/WRM" . str_replace(".png", "_small.jpg", $row['profileImage']);?>">
+						<img src="<?php echo $login_image; ?>">
 					</div>
 					<div class="content">
 						<div class="summary">

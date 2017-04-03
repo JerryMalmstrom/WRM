@@ -35,6 +35,6 @@
 	$login_color = $s['color'];
 	$login_id = $s['ID'];
 	$login_image = $s['profileImage'];
-	$login_image = "/WRM" . str_replace(".png", "_small.jpg", $login_image);
+	$login_image = str_replace(".png", "_small.jpg", $login_image);
 	
 ?>

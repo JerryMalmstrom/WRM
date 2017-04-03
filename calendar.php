@@ -18,7 +18,7 @@
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,basicWeek,listWeek'
+				right: 'month,basicWeek,listMonth'
 			},
 			views: {
 				basic: {
@@ -31,6 +31,7 @@
 					// options apply to basicWeek and agendaWeek views
 				},
 			},
+			weekNumbers: true,
 			eventLimit: true,
 			events: {
 				url: 'json-events-feed.php',

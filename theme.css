@@ -1,17 +1,3 @@
-body {
-  padding-top: 0px;
-  padding-bottom: 30px;
-  font-family: 'Open Sans';
-}
-
-.theme-showcase > p > .btn {
-  margin: 5px 0;
-}
-
-.theme-showcase .navbar .container {
-  width: auto;
-}
-
 #external-events .fc-event {
 	width: 150px;
 	margin-top: 15px;
@@ -24,4 +10,8 @@ body {
 
 .height {
 	height: 40px;
+}
+
+.ui.menu:last-child {
+    margin-bottom: 20px;
 }

@@ -5,7 +5,7 @@ $( function() {
 		
 		userID = <?php echo $login_id ?>;
 		
-		$.post("save-to-db.php", { type: 'user_add', user: userID ,username: username.val(), name: name.val(), email: email.val(), password: password.val(), company: company.val(), color: color.val() 
+		$.post("save-to-db.php", { type: 'user_add', user: userID , username: username.val(), name: name.val(), role: role.val(), email: email.val(), password: password.val(), company: company.val(), color: color.val() 
 		}).done(function() {
 			$('.ui.modal').modal('hide');
 			//updateTable();

@@ -15,13 +15,32 @@
 			
 			if ($r_users != "") {
 				$parameters .= " AND user IN (" . (string)$r_users . ")";
-				$user = $db->query("SELECT name FROM users WHERE ID IN ($r_users)");
+				$user = $db->query("SELECT name,ID FROM users WHERE ID IN ($r_users)");
 				$r_users = "";
+				$a_users = array();
+				
+				$x = 0;
+				
 				while ($c = $user->fetch_assoc()) {
+					$a_users[$x]['ID'] = $c['ID'];
+					$a_users[$x]['name'] = $c['name'];
 					$r_users .= $c['name'] . ", ";
+					$x++;
 				}
 			} else {
 				$r_users = "Alla";
+				
+				$user = $db->query("SELECT name, ID FROM users");
+				$a_users = array();
+				
+				$x = 0;
+				
+				while ($c = $user->fetch_assoc()) {
+					$a_users[$x]['ID'] = $c['ID'];
+					$a_users[$x]['name'] = $c['name'];
+					$x++;
+				}
+				
 			}
 			
 			if ($r_customers != "") {
@@ -44,7 +63,21 @@
 			while ($r = $sql->fetch_assoc()) {
 				$sumH += $r['hours'];
 				$sumR += $r['hours'] * $r['rate'];
+								
 			}
+			
+			
+			$query = "select e.user, SUM(e.hours), e.rate, u.name from events e LEFT JOIN users u ON u.ID = e.user " . $parameters . " GROUP BY e.user";
+			$sql = $db->query($query);
+			
+			$ua = array( array(),array(),array() );
+			
+			while ($r = $sql->fetch_assoc()) {
+				$x = $r['user'];
+				$ua[$x]["name"] = $r['name'];
+				$ua[$x]["hours"] = $r['SUM(e.hours)'];
+			}
+			
 			
 			break;
 		default:
@@ -108,6 +141,21 @@
 					<td><?php echo $r_customers; ?></td>
 				</tr>
 				
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="ui container">
+		<table class="ui celled table">
+			<thead>
+				<th>Användare</th>
+				<th>Timmar</th>
+			</thead>
+			<tbody>
+				<?php
+				foreach ($a_users as $u) {
+					echo "<tr><td>" . $u['name'] . "</td><td>" . $ua[$u['ID']]['hours'] . "</td></tr>";
+				} ?>
 			</tbody>
 		</table>
 	</div>

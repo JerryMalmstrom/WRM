@@ -5,6 +5,13 @@ $( function() {
     });	
 	
 	$('.ui.dropdown').dropdown();
+	
+	startDate = $.fullCalendar.moment().startOf('month');
+	endDate = $.fullCalendar.moment().endOf('month');
+	
+	$('[name=fromdate]').val(startDate);
+	$('[name=todate]').val(endDate);
+	
 });
 </script>
 
@@ -15,9 +22,9 @@ $( function() {
 				<div class="fields">
 					<div class="field">
 						<label>Från:</label>
-						<input type="date" name="fromdate" value="<?php moment().startOf('month'); ?>">
+						<input type="date" name="fromdate" value="">
 						<label>Till:</label>
-						<input type="date" name="todate" value="<?php moment().endOf('month'); ?>">
+						<input type="date" name="todate" value="">
 						<label>Användare:</label>
 						<div class="ui multiple selection dropdown">
 							<input name="users" type="hidden">

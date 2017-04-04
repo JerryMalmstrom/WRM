@@ -2,7 +2,7 @@
 	$(document).ready(function() {
 		// page is now ready, initialize the calendar...
 		
-		$('#external-events .fc-event').each(function() {
+		$('.fc-event.external').each(function() {
 			// make the event draggable using jQuery UI
 			$(this).draggable({
 				zIndex: 999,
@@ -33,16 +33,21 @@
 			},
 			contentHeight: 'auto',
 			weekNumbers: true,
-			eventLimit: true,
+			eventLimit: false,
 			events: {
 				url: 'json-events-feed.php',
 				type: 'POST', // Send post data
-
+				data: function() {
+					return {
+						users: $('[name=users]').val()
+					};
+				},
 				error: function() {
 					alert('There was an error while fetching events.');
 				}
 			},
 			eventClick: function(calEvent, jsEvent, view) {
+				
 				$('#modalmessage').text(calEvent.date + " - " + calEvent.title);
 				$('.ui.basic.modal').modal({
 					onDeny : function(){
@@ -52,13 +57,15 @@
 						$.post("save-to-db.php", { 
 						type: 'event_remove',
 						user: <?php echo $login_id ?>,
-						id: calEvent.id}).done(function() {
+						id: calEvent.id
+						}).done(function() {
+							$('#calendar').fullCalendar( 'removeEvents' );
 							$('#calendar').fullCalendar( 'refetchEvents');
 						});
 					}
 				}).modal('show');
-								
-				//console.log(calEvent);
+							
+				//console.log($('[name=users]').val());
 				
 			},
 			eventReceive: function(event, date) {
@@ -69,9 +76,11 @@
 					customer: event.customer,
 					hours: event.hours })
 					.done(function( data ) {
-						
+						$('#calendar').fullCalendar( 'removeEvents' );
+						$('#calendar').fullCalendar( 'refetchEvents');
 					});
-				event.date = event.start.format();
+				//event.date = event.start.format();
+				
 				
 			},
 			eventResize: function(event, delta, revertFunc) {
@@ -80,17 +89,12 @@
 				dateF = moment(event.end);
 				
 				for (x=0;x<nrofDays;x++) {
-					$.post("save-to-db.php", {type: 'event_add',user: event.user,date: dateF.subtract(1, 'days').format(),customer: event.customer,	hours: event.hours })
-					.done(function() {$('#calendar').fullCalendar( 'refetchEvents')});
+					$.post("save-to-db.php", {type: 'event_add',user: event.user,date: dateF.subtract(1, 'days').format(),customer: event.customer,	hours: event.hours });
 				}
 				
-				$('#calendar').fullCalendar('removeEvents', event.id);
-				
+				$('#calendar').fullCalendar( 'removeEvents' );
 				$('#calendar').fullCalendar( 'refetchEvents');
 				
-			},
-			eventDragStart: function(event, jsEvent) {
-				$('.external').attr("data-tooltip", "");		
 			},
 			eventDrop: function(event, delta, revertFunc) {
 				$.post("save-to-db.php", { 
@@ -105,7 +109,7 @@
 		$('[name=customer],[name=hours]').change(function () {
 			$('.external').text('<?php echo strtoupper($login_session) ?>' + " : " + $('[name=customer] option:selected').text() + " : " + $('[name=hours]').val());
 			
-			$('#external-events .fc-event').each(function() {
+			$('.fc-event.external').each(function() {
 				$(this).data('event', {
 					title: $.trim($(this).text()), // use the element's text as the event title
 					hours: $('[name=hours]').val(),
@@ -115,16 +119,25 @@
 					stick: true // maintain when user navigates (see docs on the renderEvent method)
 				});
 			});
-		})	
+		});
+		
+		$('[name=users]').change(function () {
+			$('#calendar').fullCalendar( 'removeEvents' );
+			$('#calendar').fullCalendar( 'refetchEvents');
+		});
+		
 	});
 </script>
 
 <?php
-	$sql = sql_read($db, "select * from customers");
+	$sql = sql_read($db, "select ID, name from customers ORDER BY name");
+	
+	$sql2 = sql_read($db, "SELECT ID, username FROM users ORDER BY username");
 ?>
 
 <div class="ui grid">
 	<div class="eight wide column">
+		<h4>Skapa:</h4>
 		<select class="ui search dropdown" name="customer">
 		<option value="">Kund</option>
 		<?php 
@@ -133,7 +146,6 @@
 			}
 		?>
 		</select>
-		
 		<select class="ui compact selection dropdown" data-uid="<?php echo $login_id; ?>" name="hours">
 			<option value="">Timmar</option>
 			<option value=1>1h</option>
@@ -145,11 +157,23 @@
 			<option value=7>7h</option>
 			<option value=8>8h</option>
 		</select>
+		<div id='draoslapp' class='ui fc-event external' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>;'><--- Kund och timmar</div>
 	</div>
-	<div class="four wide column" id='external-events'>
-		<div class='ui fc-event external' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>'>-</div>
+	<div class="eight wide column">
+		<h4>Filtrera:</h4>
+		<div class="ui multiple selection dropdown">
+			<input name="users" type="hidden">
+			<i class="dropdown icon"></i>
+			<div class="default text" data-value=''>Alla Användare</div>
+			<div class="menu">
+				<?php while ($u = $sql2->fetch_assoc())	{
+					echo "<div class='item' data-value='" . $u['ID'] . "'>" . strtoupper($u['username']) . "</div>";
+				} ?>
+			</div>
+		</div>
 	</div>
 </div>
+<br/>
 
 <div class="sixteen wide column">
 	<div id='calendar'></div>

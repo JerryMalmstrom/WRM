@@ -124,11 +124,6 @@ $( function() {
 						<input type="email" placeholder="Email" name="email">
 					</div>
 					<div class="six wide field">
-						<label>Status</label>
-						<select class="ui fluid dropdown" name="status">
-							<option value="1">Kund</option>
-							<option value="2">Prospekt</option>
-						</select>
 					</div>
 					<div class="four wide required field">			
 					</div>

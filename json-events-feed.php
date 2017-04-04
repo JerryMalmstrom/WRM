@@ -4,10 +4,23 @@
 
 try {
 	
+	if ($_POST["users"] != '') {
+		$user = $_POST["users"];
+		
+		$query = 
+		"SELECT e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color, u.ID
+		 FROM events e LEFT JOIN customers c ON (e.customer = c.ID)
+		 LEFT JOIN users u ON (e.user = u.ID)
+		 WHERE u.ID IN ($user)";
+	}
+	else {
+		$query = 
+		"SELECT e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color
+		 FROM ((events e left join customers c ON((e.customer = c.ID)))
+		 LEFT JOIN users u ON((e.user = u.ID)))"; 		 
+	}
 	
-	//$query = "SELECT * from vevents";
 	
-	$query = "select e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color from ((events e left join customers c on((e.customer = c.ID))) left join users u on((e.user = u.ID)))";
 
 	$sql = $db->query($query);
 	

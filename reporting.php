@@ -4,8 +4,6 @@ $( function() {
 		$('#report_form').submit();
     });	
 	
-	$('.ui.dropdown').dropdown();
-	
 	startDate = $.fullCalendar.moment().startOf('month').format('YYYY-MM-DD');
 	endDate = $.fullCalendar.moment().endOf('month').format('YYYY-MM-DD');
 	

@@ -24,7 +24,6 @@ $( function() {
 	$query2 = "SELECT ID, name FROM customers ORDER BY name";
 	$sql2 = $db->query($query2);
 	
-	
 ?>
 
 <div class="ui content">

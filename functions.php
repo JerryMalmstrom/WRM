@@ -20,9 +20,12 @@
 
 	function feed_log($db, $user, $title, $description) {
 		$query = "INSERT INTO feed (user,title,description) VALUES ('$user','$title','$description')";
-
 		$sql = $db->query($query);
 	}
 	
+	function sql_read($db, $query) {
+		$sql = $db->query($query);
+		return $sql;
+	}
 	
 ?>

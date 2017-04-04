@@ -15,7 +15,7 @@
 		require('functions.php');
 	
 		//$data = $db->query("SELECT * FROM vcustomers");
-		$data = $db->query("select c.ID AS ID,c.name AS name,c.address AS address,c.phone AS phone,c.status AS status,c.comment AS comment,(select count(0) from users where (users.company = c.ID)) AS contacts from customers c ORDER BY name");
+		$data = sql_read($db, "select c.ID AS ID,c.name AS name,c.address AS address,c.phone AS phone,c.status AS status,c.comment AS comment,(select count(0) from users where (users.company = c.ID)) AS contacts from customers c ORDER BY name");
 		while ($d = $data->fetch_assoc())
 		{
 			echo "<tr><td>" . $d["name"] . 

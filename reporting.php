@@ -18,11 +18,8 @@ $( function() {
 
 <?php
 
-	$query = "SELECT ID, username FROM users ORDER BY username";
-	$sql = $db->query($query);
-	
-	$query2 = "SELECT ID, name FROM customers ORDER BY name";
-	$sql2 = $db->query($query2);
+	$sql = sql_read($db, "SELECT ID, username FROM users ORDER BY username");
+	$sql2 = sql_read($db, "SELECT ID, name FROM customers ORDER BY name");
 	
 ?>
 

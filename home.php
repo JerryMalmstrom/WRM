@@ -4,11 +4,7 @@
 		<div class="ui feed">
 		
 		<?php
-			//$query = "select * from vfeed limit 0,10";
-			
-			$query = "select f.ID AS ID,f.user AS user,f.date AS date,f.title AS title,f.description AS description,u.name AS name,u.profileImage AS profileImage from (feed f left join users u on((u.ID = f.user))) order by f.date desc limit 0,10";
-			
-			$sql = $db->query($query);
+			$sql = sql_read($db, "select f.ID AS ID,f.user AS user,f.date AS date,f.title AS title,f.description AS description,u.name AS name,u.profileImage AS profileImage from (feed f left join users u on((u.ID = f.user))) order by f.date desc limit 0,10");
 
 			while ($row = $sql->fetch_assoc()) {
 				?>

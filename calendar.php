@@ -120,7 +120,7 @@
 </script>
 
 <?php
-	$sql = $db->query("select * from customers");
+	$sql = sql_read($db, "select * from customers");
 ?>
 
 <div class="ui grid">

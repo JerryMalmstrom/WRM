@@ -10,19 +10,7 @@
 		$username = $_POST['username'];
 		$password = md5($_POST['password']);
 		  
-		$query = "SELECT id FROM users WHERE username = '$username' and password = '$password'";
-		
-		if (!$sql = $db->query($query)) {
-		// Oh no! The query failed. 
-		echo "Sorry, the website is experiencing problems.";
-
-		// Again, do not do this on a public site, but we'll show you how
-		// to get the error information
-		echo "Error: Our query failed to execute and here is why: \n";
-		echo "Query: " . $sql . "\n";
-		echo "Errno: " . $db->errno . "\n";
-		echo "Error: " . $db->error . "\n";
-		exit;
+		$sql = sql_read($db, "SELECT id FROM users WHERE username = '$username' and password = '$password'");
 	}
 		
 		if($sql->num_rows == 1) {

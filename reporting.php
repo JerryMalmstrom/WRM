@@ -18,10 +18,10 @@ $( function() {
 
 <?php
 
-	$query = "select * from users";
+	$query = "SELECT ID, username FROM users ORDER BY username";
 	$sql = $db->query($query);
 	
-	$query2 = "select * from customers";
+	$query2 = "SELECT ID, name FROM customers ORDER BY name";
 	$sql2 = $db->query($query2);
 	
 	
@@ -44,7 +44,7 @@ $( function() {
 							<div class="default text">Alla</div>
 							<div class="menu">
 								<?php while ($u = $sql->fetch_assoc())	{
-									echo "<div class='item' data-value='" . $u['ID'] . "'>" . $u['Username'] . "</div>";
+									echo "<div class='item' data-value='" . $u['ID'] . "'>" . $u['username'] . "</div>";
 								} ?>
 							</div>
 						</div>

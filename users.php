@@ -75,10 +75,7 @@ $( function() {
 	
 	<div class="ui four stackable cards">
 	<?php
-			//$query = "select * from users";
-			//$sql = $db->query($query);
-			
-			$sql = sql_read($db, "select * from users");
+			$sql = sql_read($db, "SELECT * FROM users ORDER BY name");
 			
 			while ($d = $sql->fetch_assoc())
 			{				

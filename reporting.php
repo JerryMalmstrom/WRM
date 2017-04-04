@@ -6,8 +6,8 @@ $( function() {
 	
 	$('.ui.dropdown').dropdown();
 	
-	startDate = $.fullCalendar.moment().startOf('month').format();
-	endDate = $.fullCalendar.moment().endOf('month').format();
+	startDate = $.fullCalendar.moment().startOf('month').format('YYYY-MM-DD');
+	endDate = $.fullCalendar.moment().endOf('month').format('YYYY-MM-DD');
 	
 	$('[name=fromdate]').val(startDate);
 	$('[name=todate]').val(endDate);

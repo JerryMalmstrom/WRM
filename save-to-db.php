@@ -60,12 +60,22 @@
 			"company" => $_POST["company"],
 			"color" => $_POST["color"]]);*/
 			
+			$q_username = $_POST["username"];
+			$q_name = $_POST["name"];
+			$q_role = $_POST["role"];
+			$q_email = $_POST["email"];
+			$q_password = $_POST["password"];
+			$q_company = $_POST["company"];
+			$q_color = $_POST["color"];
+			
+			
 			$q_user = $_POST["user"];
 			
-			$query = "INSERT INTO users (username, name, role, email, password, company, color) VALUES ('$_POST['username']','$_POST['name']','$_POST['role']','$_POST['email']','$_POST['password']', '$_POST['company']', '$_POST['color']')";
+			$query = "INSERT INTO users (username, name, role, email, password, company, color)
+			VALUES ('$q_username','$q_name','$q_role','$q_email','$q_password', '$q_company', '$q_color')";
 			$sql = $db->query($query);
 						
-			feed_log($db, $q_user, "lade till en användare","Användare: $_POST['name']");
+			feed_log($db, $q_user, "lade till en användare","Användare: $q_name");
 			
 			
 			break;

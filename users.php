@@ -2,12 +2,20 @@
 $( function() {
 	
     function addUser() {
-		$.post("save-to-db.php", { type: 'user_add', username: username.val(), name: name.val(), email: email.val(), password: password.val(), company: company.val(), color: color.val() });
+		$.post("save-to-db.php", { type: 'user_add', username: username.val(), name: name.val(), email: email.val(), password: password.val(), company: company.val(), color: color.val() 
+		}).done(function() {
+			$('.ui.modal').modal('hide');
+			//updateTable();
+		});
 	}
 		
 	$( "#create-user" ).button().on( "click", function() {
 		$('.ui.modal').modal('show');
     });
+	
+	$('#save').button().on( "click", function() {
+		addUser();
+	});
 	
 	
 	

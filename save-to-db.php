@@ -51,14 +51,23 @@
 			
 			break;
 		case "user_add":
-			$db->insert("Users",[
+			/*$db->insert("Users",[
 			"username" => $_POST["username"],
 			"name" => $_POST["name"],
 			"role" => "User",
 			"email" => $_POST["email"],
 			"password" => $_POST["password"],
 			"company" => $_POST["company"],
-			"color" => $_POST["color"]]);
+			"color" => $_POST["color"]]);*/
+			
+			$q_user = $_POST["user"];
+			
+			$query = "INSERT INTO users (username, name, role, email, password, company, color) VALUES ('$_POST['username']','$_POST['name']','$_POST['role']','$_POST['email']','$_POST['password']', '$_POST['company']', '$_POST['color']')";
+			$sql = $db->query($query);
+						
+			feed_log($db, $q_user, "lade till en användare","Användare: $_POST['name']");
+			
+			
 			break;
 		case "user_update":
 			$db->update("Users",[

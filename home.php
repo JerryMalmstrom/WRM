@@ -37,8 +37,8 @@
 
 <script>
 	$('div.date').each(function() {
-		text = $( this ).text();
-		$.fullCalendar.moment(text.format("YYYY-MM-DD hh:mm:ss")).fromNow();
+		text = $.fullCalendar.moment($( this ).text());
+		text.fromNow();
 	});
 	
 	//$.fullCalendar.moment('<?php echo $row['date']; ?>').fromNow();

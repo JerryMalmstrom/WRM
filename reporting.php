@@ -15,6 +15,18 @@ $( function() {
 });
 </script>
 
+
+<?php
+
+	$query = "select * from users";
+	$sql = $db->query($query);
+	
+	$query2 = "select * from customers";
+	$sql2 = $db->query($query2);
+	
+	
+?>
+
 <div class="ui content">
 	<div class="eight wide column" style="margin-bottom: 30px;">
 		<form id="report_form" action="open_report.php" method="post" target="_blank">
@@ -31,10 +43,9 @@ $( function() {
 							<i class="dropdown icon"></i>
 							<div class="default text">Alla</div>
 							<div class="menu">
-								<div class="item" data-value="2">JeM</div>
-								<div class="item" data-value="3">OG</div>
-								<div class="item" data-value="4">JM</div>
-								<div class="item" data-value="5">SI</div>
+								<?php while ($u = $sql->fetch_assoc())	{
+									echo "<div class='item' data-value='" . $u['ID'] . "'>" . $u['Username'] . "</div>";
+								} ?>
 							</div>
 						</div>
 						
@@ -44,10 +55,9 @@ $( function() {
 							<i class="dropdown icon"></i>
 							<div class="default text">Alla</div>
 							<div class="menu">
-								<div class="item" data-value="1">White Red</div>
-								<div class="item" data-value="2">Uddevalla</div>
-								<div class="item" data-value="3">Borealis</div>
-								<div class="item" data-value="4">Berras Kakor</div>
+								<?php while ($c = $sql2->fetch_assoc())	{
+									echo "<div class='item' data-value='" . $c['ID'] . "'>" . $c['name'] . "</div>";
+								} ?>
 							</div>
 						</div>
 						<br/>

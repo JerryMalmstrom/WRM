@@ -44,7 +44,7 @@ $( function() {
 							<div class="default text">Alla</div>
 							<div class="menu">
 								<?php while ($u = $sql->fetch_assoc())	{
-									echo "<div class='item' data-value='" . $u['ID'] . "'>" . $u['username'] . "</div>";
+									echo "<div class='item' data-value='" . $u['ID'] . "'>" . strtoupper($u['username']) . "</div>";
 								} ?>
 							</div>
 						</div>

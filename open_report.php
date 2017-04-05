@@ -3,9 +3,11 @@
 	require('config.php');
 	require('functions.php');
 	
+	$reportURL = "";
 
 	switch ($_POST["type"]) {
-		case "report1":
+		case "planning":
+			$reportURL = "planning.html";
 			$r_fromdate = $_POST["fromdate"];
 			$r_todate = $_POST["todate"];
 			$r_users = $_POST["users"];
@@ -77,19 +79,67 @@
 				$ua[$x]["name"] = $r['name'];
 				$ua[$x]["hours"] = $r['SUM(e.hours)'];
 			}
+			break;
+		case "userlist":
+			$reportURL = "userlist.html";
+			$r_users = $_POST["users"];
+			$a_users = array();
 			
+			if ($r_users != "") {
+				$user = $db->query("SELECT username, name, ID FROM users WHERE ID IN ($r_users) ORDER BY name");
+				$r_users = "";
+				
+				$x = 0;
+				
+				while ($c = $user->fetch_assoc()) {
+					$a_users[$x]['ID'] = $c['ID'];
+					$a_users[$x]['username'] = $c['username'];
+					$a_users[$x]['name'] = $c['name'];
+					$x++;
+				}
+			} else {
+				$user = $db->query("SELECT username, name, ID FROM users ORDER BY name");
+				
+				$x = 0;
+				
+				while ($c = $user->fetch_assoc()) {
+					$a_users[$x]['ID'] = $c['ID'];
+					$a_users[$x]['username'] = $c['username'];
+					$a_users[$x]['name'] = $c['name'];
+					$x++;
+				}
+			}
+			break;
+		case "customerlist":
+			$reportURL = "customerlist.html";
+			$r_customers = $_POST["customers"];
+			$a_customers = array();
 			
+			if ($r_customers != "") {
+				$cust = $db->query("SELECT ID, name FROM customers WHERE ID IN ($r_customers) ORDER BY name");
+				$x = 0;
+				
+				while ($c = $cust->fetch_assoc()) {
+					$a_customers[$x]['ID'] = $c['ID'];
+					$a_customers[$x]['name'] = $c['name'];
+					$x++;
+				}
+			} else {
+				$cust = $db->query("SELECT ID, name, status FROM customers ORDER BY name");
+				$x = 0;
+				
+				while ($c = $cust->fetch_assoc()) {
+					$a_customers[$x]['ID'] = $c['ID'];
+					$a_customers[$x]['name'] = $c['name'];
+					$a_customers[$x]['status'] = $c['status'];
+					$x++;
+				}
+			}
 			break;
 		default:
 			break;
 	}
-	
-	
-	
-?>
-
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <!--[if lte IE 6]><html class="preIE7 preIE8 preIE9"><![endif]-->
 <!--[if IE 7]><html class="preIE8 preIE9"><![endif]-->
 <!--[if IE 8]><html class="preIE9"><![endif]-->
@@ -112,52 +162,7 @@
 	</style>
 	
 	</head>
-	<body>
 	
-	<h1 class="ui center aligned header">WRM Rapport</h1>
-	<h2 class="ui center aligned header"><?php echo $r_fromdate . " - " . $r_todate; ?></h2>
-	
-	<div class="ui container">
-		<table class="ui celled table">
-			<thead>
-				<th>Parameter</th>
-				<th>Värde</th>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Timmar</td>
-					<td><?php echo $sumH; ?></td>
-				</tr>
-				<tr>
-					<td>Intäkt</td>
-					<td><?php echo $sumR; ?></td>
-				</tr>
-				<tr>
-					<td>Användare</td>
-					<td><?php echo $r_users; ?></td>
-				</tr>
-				<tr>
-					<td>Kunder</td>
-					<td><?php echo $r_customers; ?></td>
-				</tr>
-				
-			</tbody>
-		</table>
-	</div>
-	
-	<div class="ui container">
-		<table class="ui celled table">
-			<thead>
-				<th>Användare</th>
-				<th>Timmar</th>
-			</thead>
-			<tbody>
-				<?php
-				foreach ($a_users as $u) {
-					echo "<tr><td>" . $u['name'] . "</td><td>" . $ua[$u['ID']]['hours'] . "</td></tr>";
-				} ?>
-			</tbody>
-		</table>
-	</div>
-	</body>
+	<?php require($reportURL); ?>
+		
 </html>

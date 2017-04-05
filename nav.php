@@ -1,3 +1,16 @@
+<script>
+$(document).ready(function () {
+    var url = window.location;
+    // Will only work if string in href matches with location
+        //$('.menu a[href="' + url + '"]').parent().addClass('active');
+
+    // Will also work for relative and absolute hrefs
+        $('.menu a').filter(function () {
+            return this.href == url;
+        }).addClass('active');
+});
+</script>
+
 <!-- Fixed navbar -->
 <div class="ui container">
 	<div class="ui stackable menu">
@@ -15,7 +28,7 @@
 					<a class="item" href="logout.php">Logga ut</a>
 				</div>
 			</div>
-			<a class="item" href=""><img class="ui avatar image" src="<?php echo $login_image; ?>"></a>
+			<a class="item"><img class="ui avatar image" src="<?php echo $login_image; ?>"></a>
 		</div>
 	</div>
 </div>

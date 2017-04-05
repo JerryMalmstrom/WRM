@@ -1,0 +1,21 @@
+<body>
+	
+	<h1 class="ui center aligned header">WRM Användarlista</h1>
+	<h2 class="ui center aligned header"></h2>
+	
+	<div class="ui container">
+		<table class="ui celled table">
+			<thead>
+				<th>ID</th>
+				<th>Namn</th>
+				<th>Användarnamn</th>
+			</thead>
+			<tbody>
+				<?php
+				foreach ($a_users as $u) {
+					echo "<tr><td>" . $u['ID'] . "</td><td>" . $u['name'] . "</td><td>" . $u['username'] . "</td></tr>";
+				} ?>
+			</tbody>
+		</table>
+	</div>
+</body>

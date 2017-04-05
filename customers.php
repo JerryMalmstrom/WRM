@@ -4,9 +4,34 @@ $( function() {
 	updateTable();
 	
 	$('#create-customer').button().on( "click", function() {
+		$('[name=ID]').val(1);
 		$('.ui.modal').modal('show');
     });	
 	
+	$( "body" ).on( "click", ".editCustomer", function( event ) {
+		event.preventDefault();
+		
+		$('[name=ID]').val(0);
+		
+		var data = {};
+		
+		$( this ).parent().parent().find('td').each(function() {
+			data[$(this).attr('id')] = $(this).text();
+		});
+		
+		//console.log(data.rate);
+		
+		$('[name=ID]').val(data.id);
+		$('[name=name]').val(data.name);
+		$('[name=address]').val(data.address);
+		$('[name=phone]').val(data.phone);
+		$('[name=email]').val(data.email);
+		$('[name=status]').val(data.status);
+		$('[name=comment]').val(data.comment);
+		$('[name=rate]').val(data.rate);
+		
+		$('.ui.modal').modal('show');
+	});
 	
 	$('.ui.form').form({
 		on: 'blur',
@@ -24,7 +49,12 @@ $( function() {
 	});
 	
 	$('#save').button().on( "click", function() {
-		addCustomer();
+		if ($('[name=ID]').val() === 1) {
+			addCustomer();
+		} else {
+			updateCustomer();
+		}
+		
 	});
 	
 	$('[name=search]').keyup(function() {
@@ -43,6 +73,17 @@ $( function() {
 		.done(function() {
 			$('.ui.modal').modal('hide');
 			updateTable();
+		});
+	};
+	
+	function updateCustomer() {
+		userID = <?php echo $login_id ?>;
+		
+		$.post("save-to-db.php", { type: 'customer_update', cID: $('[name=ID]').val(), user: userID, name: $('[name=name]').val(), address: $('[name=address]').val(), phone: $('[name=phone]').val(), email: $('[name=email]').val(), status: $('[name=status]').val(), comment: $('[name=comment]').val(), rate: $('[name=rate]').val() })
+		.done(function(result) {
+			$('.ui.modal').modal('hide');
+			//updateTable();
+			console.log(result);
 		});
 	};
 	
@@ -83,7 +124,7 @@ $( function() {
 ﻿<div class="ui modal">
 	<i class="close icon"></i>
     <div class="header">
-		Lägg till en kund
+		Lägg till/ändra en kund
 	</div>
 	<div class="content">
 		<form id="customers_form">
@@ -124,8 +165,11 @@ $( function() {
 						<input type="email" placeholder="Email" name="email">
 					</div>
 					<div class="six wide field">
+						<label>Rate</label>
+						<input type="text" placeholder="0" name="rate">
 					</div>
-					<div class="four wide required field">			
+					<div class="four wide field">			
+						<input type="hidden" value=0 name="ID">
 					</div>
 				</div>
 			</div>

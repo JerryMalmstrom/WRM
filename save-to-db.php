@@ -24,7 +24,7 @@
 			$q_hours = $_POST["hours"];
 			$q_cust = $_POST["customer"];
 			
-			$sql1 = $db->query("select rate from rates where userID = '$q_user' AND customerID = '$q_cust'");
+			$sql1 = $db->query("select c.ID, r.rate as rate from customers c JOIN rates r ON r.ID = c.rate WHERE c.ID = $q_cust");
 			
 			while ($rates = $sql1->fetch_assoc()) {
 				$q_rate = $rates['rate'];
@@ -80,22 +80,38 @@
 			
 			break;
 		case "user_update":
-			$db->update("Users",[
-				"username" => $_POST["username"],
-				"name" => $_POST["name"],
-				"email" => $_POST["email"],
-				"company" => $_POST["company"],
-				"color" => $_POST["color"]
-			],[
-				"username" => $login_session
-			]);
+			$q_username = $_POST["username"];
+			$q_name = $_POST["name"];
+			$q_email = $_POST["email"];
+			$q_company = 1; //$_POST["company"];
+			$q_color = $_POST["color"];
+			$q_image = $_POST["image"];
+			
+			$q_user = $_POST["user"];
+			
+			$query = "UPDATE users SET username = '$q_username', name = '$q_name', email = '$q_email', company = '$q_company', color = '$q_color', profileImage = '$q_image' WHERE ID = '$q_user'";
+			
+			$sql = $db->query($query);
+						
+			feed_log($db, $q_user, "uppdaterade sin användarprofil","");
+			
 			break;
 		case "customer_update":
-			$db->update("Customers",[
-				"name" => $_POST["name"]
-			],[
-				"ID" => $_POST["ID"]
-			]);
+			$q_name = $_POST["name"];
+			$q_address = $_POST["address"];
+			$q_phone = $_POST["phone"];
+			$q_status = $_POST["status"];
+			$q_comment = $_POST["comment"];
+			$q_user = $_POST["user"];
+			$q_id = $_POST["cID"];
+			$q_rate = $_POST["rate"];
+			
+			$query = "UPDATE customers SET (name = '$q_name', address = '$q_address', phone = '$q_phone', status = '$q_status', comment = '$q_comment', rate = $q_rate) WHERE ID = $q_id";
+			
+			$sql = $db->query($query);
+						
+			feed_log($db, $q_user, "ändrade en kund","Kund: $q_name");
+			
 			break;
 		case "customer_add":
 		

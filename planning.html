@@ -1,0 +1,47 @@
+<body>
+	
+	<h1 class="ui center aligned header">WRM Rapport</h1>
+	<h2 class="ui center aligned header"><?php echo $r_fromdate . " - " . $r_todate; ?></h2>
+	
+	<div class="ui container">
+		<table class="ui celled table">
+			<thead>
+				<th>Parameter</th>
+				<th>Värde</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Timmar</td>
+					<td><?php echo $sumH; ?></td>
+				</tr>
+				<tr>
+					<td>Intäkt</td>
+					<td><?php echo $sumR; ?></td>
+				</tr>
+				<tr>
+					<td>Användare</td>
+					<td><?php echo $r_users; ?></td>
+				</tr>
+				<tr>
+					<td>Kunder</td>
+					<td><?php echo $r_customers; ?></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br/>
+	<div class="ui container">
+		<table class="ui celled table">
+			<thead>
+				<th>Användare</th>
+				<th>Timmar</th>
+			</thead>
+			<tbody>
+				<?php
+				foreach ($a_users as $u) {
+					echo "<tr><td>" . $u['name'] . "</td><td>" . $ua[$u['ID']]['hours'] . "</td></tr>";
+				} ?>
+			</tbody>
+		</table>
+	</div>
+	</body>

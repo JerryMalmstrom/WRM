@@ -27,9 +27,9 @@ $( function() {
 		
 		$( this ).parent().parent().find('td').each(function() {
 			data[$(this).attr('id')] = $(this).text();
-			
 		});
-		
+		console.log(data.rate);
+		$('#rateI').val(data.rate).change();
 		$('[name=cID]').val(data.cID);
 		$('[name=name]').val(data.name);
 		$('[name=address]').val(data.address);
@@ -37,18 +37,19 @@ $( function() {
 		$('[name=email]').val(data.email);
 		$('[name=status]').val(data.status);
 		$('[name=comment]').val(data.comment);
-		$('[name=rate]').val(data.rate);
+		
 		$('#delete').show();
 		
 		$('#cModal').modal('show');
 	});
 	
 	$('#save').button().on( "click", function() {
-		if ($('[name=cID]').val() === 0) {
+		if ($('[name=cID]').val() === "0") {
 			addCustomer();
 		} else {
 			updateCustomer();
 		}
+		
 		
 	});
 	
@@ -83,11 +84,12 @@ $( function() {
 	};
 	
 	function updateCustomer() {
-		$.post("save-to-db.php", { type: 'customer_update', cID: $('[name=cID]').val(), user: userID, name: $('[name=name]').val(), address: $('[name=address]').val(), phone: $('[name=phone]').val(), email: $('[name=email]').val(), status: $('[name=status]').val(), comment: $('[name=comment]').val(), rate: $('[name=rate]').val() })
+		$.post("save-to-db.php", { type: 'customer_update', user: userID, cID: $('[name=cID]').val(), name: $('[name=name]').val(), address: $('[name=address]').val(), phone: $('[name=phone]').val(), email: $('[name=email]').val(), status: $('[name=status]').val(), comment: $('[name=comment]').val(), rate: $('[name=rate]').val() })
 		.done(function(result) {
 			$('#cModal').modal('hide');
 			updateTable();
 		});
+			
 	};
 	
 	function searchCustomer() {
@@ -168,8 +170,15 @@ $( function() {
 						<input type="email" placeholder="Email" name="email">
 					</div>
 					<div class="six wide field">
-						<label>Rate</label>
-						<input type="text" placeholder="0" name="rate">
+						<label>Timpeng</label>
+						<select class="ui fluid dropdown" id="rateI" name="rate">
+							<?php
+								$data = sql_read($db, "SELECT ID, rate FROM rates");
+								while ($d = $data->fetch_assoc() ) {
+									echo "<option value='" . $d['ID'] . "'>" . $d['rate'] . "</option>";
+								}
+							?>
+						</select>
 					</div>
 					<div class="four wide field">			
 						<input type="hidden" value="0" name="cID">

@@ -100,16 +100,17 @@
 			$q_name = $_POST["name"];
 			$q_address = $_POST["address"];
 			$q_phone = $_POST["phone"];
+			$q_email = $_POST["email"];
 			$q_status = $_POST["status"];
 			$q_comment = $_POST["comment"];
 			$q_user = $_POST["user"];
 			$q_id = $_POST["cID"];
 			$q_rate = $_POST["rate"];
 			
-			$query = "UPDATE customers SET (name = '$q_name', address = '$q_address', phone = '$q_phone', status = '$q_status', comment = '$q_comment', rate = $q_rate) WHERE ID = $q_id";
+			$query = "UPDATE customers SET name = '$q_name', address = '$q_address', phone = '$q_phone', email = '$q_email', status = '$q_status', comment = '$q_comment', rate = '$q_rate' WHERE ID = '$q_id'";
 			
 			$sql = $db->query($query);
-						
+				
 			feed_log($db, $q_user, "ändrade en kund","Kund: $q_name");
 			
 			break;

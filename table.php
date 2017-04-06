@@ -9,7 +9,6 @@
 			<th>Status</th>
 			<th>Kontakter</th>
 			<th>Kommentar</th>
-			<th>Timpris</tr>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,7 +16,7 @@
 		require('config.php');
 		require('functions.php');
 	
-		$data = sql_read($db, "select c.ID AS ID,c.name AS name,c.address AS address,c.phone AS phone,c.email as email,c.status AS status,c.comment AS comment, r.rate as rate,(select count(0) from users where (users.company = c.ID)) AS contacts from customers c " .
+		$data = sql_read($db, "select c.ID AS ID,c.name AS name,c.address AS address,c.phone AS phone,c.email as email,c.status AS status,c.comment AS comment, r.ID as rate,(select count(0) from users where (users.company = c.ID)) AS contacts from customers c " .
 		"LEFT JOIN rates r ON r.ID = c.rate ORDER BY name");
 		while ($d = $data->fetch_assoc())
 		{
@@ -29,7 +28,7 @@
 				"</td><td id='status'>" . $d["status"] .
 				"</td><td>" . $d["contacts"] .
 				"</td><td id='comment'>" . $d["comment"] .
-				"</td><td id='rate'>" . $d["rate"] .
+				"</td><td id='rate' style='display: none'>" . $d["rate"] .
 				"</td></tr>";
 		}
 ?>

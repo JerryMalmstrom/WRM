@@ -31,7 +31,7 @@ $( function() {
 	
 	$( '#update-user' ).button().on( "click", function() {
 		userID = <?php echo $login_id ?>;
-		$.post("save-to-db.php", { type: 'user_update', user: userID, username: $('#username').val(), name: $('#name').val(), email: $('#email').val(), company: $('#company').val(), color: $('#color').val(), image: $('#pImage').attr('src') })
+		$.post("save-to-db.php", { type: 'user_update', user: userID, username: $('#username').val(), password: $('#password').val(), name: $('#name').val(), email: $('#email').val(), company: $('[name=customer] option:selected').val(), color: $('#color').val(), image: $('#pImage').attr('src') })
 		.done(function() {
 			alert("Uppdaterad");
 		});
@@ -40,6 +40,19 @@ $( function() {
 	
 });
 </script>
+
+<?php 
+
+	$sqlc = $db->query("SELECT ID, name FROM customers");
+	
+	$customersArray = array( array(),array() );
+		
+	while ($e = $sqlc->fetch_assoc())	{
+		$x = $e['ID'];
+		$customersArray[$x]['name'] = $e['name'];
+	}
+
+?>
 
 <div class="ui content">
 	<div class="ui container">
@@ -55,15 +68,17 @@ $( function() {
 					</thead>
 					<tbody>
 					<?php
-						$sql = $db->query("SELECT * FROM users WHERE username='$login_session'");
+						$sql = $db->query("SELECT * FROM users WHERE users.username='$login_session'");
 											
 						while ($d = $sql->fetch_assoc())	{
 							?>
 							<tr><td>ID</td><td><?php echo $d["ID"]; ?></td></tr>
 							<tr><td>Användarnamn</td><td><input id='username' type='text' value=<?php echo "'" . $d["username"] . "'"; ?>></td></tr>
+							<tr><td>Lösenord</td><td><input id='password' type='password' value='******'></td></tr>
 							<tr><td>Namn</td><td><input id='name' type='text' value=<?php echo "'" . $d["name"] . "'"; ?>></td></tr>
 							<tr><td>Email</td><td><input id='email' type='text' value=<?php echo "'" . $d["email"] . "'"; ?>></td></tr>
-							<tr><td>Företag</td><td><input id='company' type='text' value=<?php echo "'" . $d["company"] . "'"; ?>></td></tr>
+							<tr><td>Företag</td><td><select class="ui search dropdown" name="company">
+							<option value="1"><?php echo $customersArray[1]['name']; ?></select></td></tr>
 							<tr><td>Roll</td><td><?php echo $d["role"]; ?></td></tr>
 							<tr><td>Färg</td><td><input type='color' id='color' value=<?php echo "'" . trim($d["color"]) . "'"; ?>></td></tr>
 							<tr><td>Bild</td><td><img id='pImage' width='300px' src=<?php echo "'" . $d["profileImage"] . "'"; ?>></br><input type='file' name='fileToUpload'></td></tr>

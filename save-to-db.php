@@ -36,6 +36,8 @@
 				
 			$sql = $db->query($query);
 			
+			
+			
 			feed_log($db, $q_user, "lade till ett event","Event: $q_hours på kund");
 			
 			break;
@@ -51,20 +53,11 @@
 			
 			break;
 		case "user_add":
-			/*$db->insert("Users",[
-			"username" => $_POST["username"],
-			"name" => $_POST["name"],
-			"role" => "User",
-			"email" => $_POST["email"],
-			"password" => $_POST["password"],
-			"company" => $_POST["company"],
-			"color" => $_POST["color"]]);*/
-			
 			$q_username = $_POST["username"];
 			$q_name = $_POST["name"];
 			$q_role = $_POST["role"];
 			$q_email = $_POST["email"];
-			$q_password = $_POST["password"];
+			$q_password = md5($_POST["password"]);
 			$q_company = $_POST["company"];
 			$q_color = $_POST["color"];
 			
@@ -81,18 +74,28 @@
 			break;
 		case "user_update":
 			$q_username = $_POST["username"];
+			$q_password = $_POST["password"];
 			$q_name = $_POST["name"];
 			$q_email = $_POST["email"];
-			$q_company = 1; //$_POST["company"];
+			$q_company = $_POST["company"];
 			$q_color = $_POST["color"];
 			$q_image = $_POST["image"];
 			
 			$q_user = $_POST["user"];
 			
-			$query = "UPDATE users SET username = '$q_username', name = '$q_name', email = '$q_email', company = '$q_company', color = '$q_color', profileImage = '$q_image' WHERE ID = '$q_user'";
-			
-			$sql = $db->query($query);
+			if ($q_password == "******") {
+				$query = "UPDATE users SET username = '$q_username', name = '$q_name', email = '$q_email', company = '$q_company', color = '$q_color', profileImage = '$q_image' WHERE ID = '$q_user'";
+			} else {
+				$q_password = md5($q_password);
+				$query = "UPDATE users SET username = '$q_username', password = '$q_password', name = '$q_name', email = '$q_email', company = '$q_company', color = '$q_color', profileImage = '$q_image' WHERE ID = '$q_user'";
+			}
 						
+			$sql = $db->query($query);
+			
+			if ($db->error) {
+				echo "MySQL error $db->error <br> Query:<br> $query" . $db->errno;
+			}
+			
 			feed_log($db, $q_user, "uppdaterade sin användarprofil","");
 			
 			break;

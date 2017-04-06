@@ -176,7 +176,6 @@ $( function() {
 					<label>Företag</label>
 					<select class="ui fluid dropdown" name="company">
 						<option value="1">White Red</option>
-						<option value="2">Borealis</option>
 					</select>
 				</div>
 				<div class="five wide field">

@@ -12,8 +12,8 @@
 		echo 'Laddtid: '.$total_time.' sekunder.';
 	?>
 	</div>
-	<div class="center aligned column">White Red AB (c)</div>
-	<div class="center aligned column"></div>
+	<div class="center aligned column">White Red AB 🐵 2017</div>
+	<div class="center aligned column">Version 0.67</div>
 </div>
 <script>
 

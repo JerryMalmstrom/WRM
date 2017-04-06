@@ -3,25 +3,34 @@ $( function() {
 	
 	updateTable();
 	
+	userID = <?php echo $login_id ?>;
+	
+	
 	$('#create-customer').button().on( "click", function() {
-		$('[name=ID]').val(1);
-		$('.ui.modal').modal('show');
-    });	
+		$('[name=cID]').val(0);
+		$('[name=name]').val('');
+		$('[name=address]').val('');
+		$('[name=phone]').val('');
+		$('[name=email]').val('');
+		$('[name=status]').val('');
+		$('[name=comment]').val('');
+		$('[name=rate]').val('');
+		$('#delete').hide();
+		
+		$('#cModal').modal('show');
+    });
 	
 	$( "body" ).on( "click", ".editCustomer", function( event ) {
 		event.preventDefault();
-		
-		$('[name=ID]').val(0);
 		
 		var data = {};
 		
 		$( this ).parent().parent().find('td').each(function() {
 			data[$(this).attr('id')] = $(this).text();
+			
 		});
 		
-		//console.log(data.rate);
-		
-		$('[name=ID]').val(data.id);
+		$('[name=cID]').val(data.cID);
 		$('[name=name]').val(data.name);
 		$('[name=address]').val(data.address);
 		$('[name=phone]').val(data.phone);
@@ -29,32 +38,31 @@ $( function() {
 		$('[name=status]').val(data.status);
 		$('[name=comment]').val(data.comment);
 		$('[name=rate]').val(data.rate);
+		$('#delete').show();
 		
-		$('.ui.modal').modal('show');
-	});
-	
-	$('.ui.form').form({
-		on: 'blur',
-		fields: {
-			name: {
-				identifier: 'name',
-				rules: [
-				{
-					type   : 'empty',
-					prompt : 'Fyll i bolagsnamn'
-				}
-				]
-			}
-		}
+		$('#cModal').modal('show');
 	});
 	
 	$('#save').button().on( "click", function() {
-		if ($('[name=ID]').val() === 1) {
+		if ($('[name=cID]').val() === 0) {
 			addCustomer();
 		} else {
 			updateCustomer();
 		}
 		
+	});
+	
+	$('#delete').button().on( "click", function() {
+		$('#sure').modal('show');			
+	});
+	
+	$('#removeYes').button().on( "click", function() {
+		$.post("save-to-db.php", { type: 'customer_remove', user: userID, cID: $('[name=cID]').val() })
+		.done(function(result) {
+			$('.ui.modal').modal('hide');
+			updateTable();
+			//console.log("Test");
+		});
 	});
 	
 	$('[name=search]').keyup(function() {
@@ -67,23 +75,18 @@ $( function() {
 	};
 	
 	function addCustomer() {
-		userID = <?php echo $login_id ?>;
-		
 		$.post("save-to-db.php", { type: 'customer_add', user: userID, name: $('[name=name]').val(), address: $('[name=address]').val(), phone: $('[name=phone]').val(), status: $('[name=status]').val(), comment: $('[name=comment]').val() })
 		.done(function() {
-			$('.ui.modal').modal('hide');
+			$('#cModal').modal('hide');
 			updateTable();
 		});
 	};
 	
 	function updateCustomer() {
-		userID = <?php echo $login_id ?>;
-		
-		$.post("save-to-db.php", { type: 'customer_update', cID: $('[name=ID]').val(), user: userID, name: $('[name=name]').val(), address: $('[name=address]').val(), phone: $('[name=phone]').val(), email: $('[name=email]').val(), status: $('[name=status]').val(), comment: $('[name=comment]').val(), rate: $('[name=rate]').val() })
+		$.post("save-to-db.php", { type: 'customer_update', cID: $('[name=cID]').val(), user: userID, name: $('[name=name]').val(), address: $('[name=address]').val(), phone: $('[name=phone]').val(), email: $('[name=email]').val(), status: $('[name=status]').val(), comment: $('[name=comment]').val(), rate: $('[name=rate]').val() })
 		.done(function(result) {
-			$('.ui.modal').modal('hide');
-			//updateTable();
-			console.log(result);
+			$('#cModal').modal('hide');
+			updateTable();
 		});
 	};
 	
@@ -121,7 +124,7 @@ $( function() {
 	</div>
 </div>
 
-﻿<div class="ui modal">
+﻿<div id="cModal" class="ui modal">
 	<i class="close icon"></i>
     <div class="header">
 		Lägg till/ändra en kund
@@ -169,13 +172,35 @@ $( function() {
 						<input type="text" placeholder="0" name="rate">
 					</div>
 					<div class="four wide field">			
-						<input type="hidden" value=0 name="ID">
+						<input type="hidden" value="0" name="cID">
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
 	<div class="actions">
+		<div id="delete" class="ui red delete button" style="float: left">
+			<i class="warning icon"></i>
+			Ta bort
+		</div>
+		<div id="sure" class="ui modal">
+			<div class="header">
+			<i class="warning icon"></i>
+			Ta bort kund
+			</div>
+			<div class="description">
+				<p>Är du <b>säker</b> på att du vill ta bord denna kund?</p>
+			</div>
+			<div class="actions">
+				<div class="ui black deny button">
+				Nej
+				</div>
+				<div id="removeYes" class="ui positive right labeled icon button">
+				Ja
+				<i class="checkmark icon"></i>
+				</div>
+			</div>
+		</div>
 		<div id="cancel" class="ui red cancel inverted button">
 			<i class="remove icon"></i>
 			Avbryt

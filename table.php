@@ -21,8 +21,8 @@
 		"LEFT JOIN rates r ON r.ID = c.rate ORDER BY name");
 		while ($d = $data->fetch_assoc())
 		{
-			echo "<tr style='display: none'><td id='id'>" . $d["ID"] . "</td></tr>" .
-				"<tr><td id='name'><a href='#' class='editCustomer'>" . $d["name"] . 
+			echo "<tr><td id='cID' style='display: none'>" . $d["ID"] . "</td>" .
+				"<td id='name'><a href='#' class='editCustomer'>" . $d["name"] . 
 				"</a></td><td id='address'>" . $d["address"] .
 				"</td><td id='phone'><a href='tel:" . $d["phone"] . "'>" . $d["phone"] . "</a>" .
 				"</td><td id='email'><a href='mailto:" . $d["email"] . "'>" . $d["email"] . "</a>" .

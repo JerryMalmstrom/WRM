@@ -130,6 +130,18 @@
 			
 			break;
 			
+		case "customer_remove":
+			$q_user = $_POST["user"];
+			$q_id = $_POST["cID"];
+			
+			$query = "DELETE FROM customers WHERE id = $q_id";
+			
+			$sql = $db->query($query);
+			
+			feed_log($db, $q_user, "tog bort en kund","Kund: $q_id");
+			
+			break;
+			
 		default:
 			break;
 	}

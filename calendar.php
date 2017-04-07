@@ -66,10 +66,10 @@
 				}).modal('show');
 				*/
 				
-				$('[name=user]').text(calEvent.user);
-				$('[name=customer]').text(calEvent.customer);
-				$('[name=hours]').text(calEvent.hours);
-				$('[name=date]').text(calEvent.date);
+				$('[name=Muser]').val(calEvent.user);
+				$('[name=Mcustomer]').val(calEvent.customer);
+				$('[name=Mhours]').val(calEvent.hours);
+				$('[name=Mdate]').val(calEvent.date);
 				
 				$('#eventinfo').modal({
 					onDeny : function(){
@@ -231,19 +231,19 @@
 		<div class="ui form">
 			<div class="field">
 				<label>Användare</label>
-				<input type="text" name="user">
+				<input type="text" name="Muser">
 			</div>
 			<div class="field">
 				<label>Kund</label>
-				<input type="text" name="customer">
+				<input type="text" name="Mcustomer">
 			</div>
 			<div class="field">
 				<label>Timmar</label>
-				<input type="text" name="hours">
+				<input type="text" name="Mhours">
 			</div>
 			<div class="field">
 				<label>Datum</label>
-				<input type="text" name="date">
+				<input type="text" name="Mdate">
 			</div>
 		</div>
 	</div>

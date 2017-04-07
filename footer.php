@@ -13,7 +13,7 @@
 	?>
 	</div>
 	<div class="center aligned column">White Red AB 🐵 2017</div>
-	<div class="center aligned column">Version 0.67</div>
+	<div class="center aligned column">Version 0.67 <?php $gUsers['2']['name']; ?></div>
 </div>
 <script>
 

@@ -39,7 +39,8 @@
 				type: 'POST', // Send post data
 				data: function() {
 					return {
-						users: $('[name=users]').val()
+						users: $('[name=users]').val(),
+						eventID: $('[name=users]').val()
 					};
 				},
 				error: function() {
@@ -66,7 +67,7 @@
 				}).modal('show');
 				*/
 				
-				$('[name=Muser]').val(calEvent.user);
+				$('[name=Muser]').val(<?php $gUsers[1]['name']; ?>);
 				$('[name=Mcustomer]').val(calEvent.customer);
 				$('[name=Mhours]').val(calEvent.hours);
 				$('[name=Mdate]').val(calEvent.date);
@@ -133,12 +134,12 @@
 			
 			$('.fc-event.external').each(function() {
 				$(this).data('event', {
-					title: $.trim($(this).text()), // use the element's text as the event title
+					title: $.trim($(this).text()),
 					hours: $('[name=hours]').val(),
 					customer: $('[name=customer]').val(),
 					user: $('[name=hours]').attr("data-uid"),
 					color: "<?php echo $login_color ?>",
-					stick: true // maintain when user navigates (see docs on the renderEvent method)
+					stick: true 
 				});
 			});
 		});
@@ -152,8 +153,7 @@
 </script>
 
 <?php
-	$sql = sql_read($db, "select ID, name from customers ORDER BY name");
-	
+	$sql = sql_read($db, "SELECT ID, name FROM customers ORDER BY name");
 	$sql2 = sql_read($db, "SELECT ID, username FROM users ORDER BY username");
 ?>
 

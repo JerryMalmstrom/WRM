@@ -12,19 +12,22 @@ try {
 		 FROM events e LEFT JOIN customers c ON (e.customer = c.ID)
 		 LEFT JOIN users u ON (e.user = u.ID)
 		 WHERE u.ID IN ($user)";
-	}
-	else {
+	} else if ($_POST["users"] == '9999') {
 		$query = 
 		"SELECT e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color
-		 FROM ((events e left join customers c ON((e.customer = c.ID)))
-		 LEFT JOIN users u ON((e.user = u.ID)))"; 		 
+		 FROM events e left join customers c ON (e.customer = c.ID)
+		 LEFT JOIN users u ON (e.user = u.ID)";
+	} else {
+		$query = 
+		"SELECT e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color
+		 FROM events e left join customers c ON (e.customer = c.ID)
+		 LEFT JOIN users u ON (e.user = u.ID)
+		 WHERE e.ID = $user";
 	}
 	
 	
 
 	$sql = $db->query($query);
-	
-		
    
     // Returning array
     $events = array();
@@ -39,7 +42,6 @@ try {
         $e['hours'] = $row['hours'];
 		$e['customer'] = $row['cId'];
 		$e['color'] = $row['color'];
-				        
         // Merge the event array into the return array
         array_push($events, $e);
     }

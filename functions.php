@@ -28,4 +28,13 @@
 		return $sql;
 	}
 	
+	$sql = sql_read($db, "select * from users");
+	
+	$gUsers = array( array(), array() );
+	
+	while ($row = $sql->fetch_assoc()) {
+		$gUsers[$row['ID']]['username'] = $row['username'];
+		$gUsers[$row['ID']]['name'] = $row['name'];
+	}
+	
 ?>

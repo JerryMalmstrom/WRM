@@ -67,7 +67,7 @@
 				}).modal('show');
 				*/
 				
-				$('[name=Muser]').val(<?php $gUsers[2]['name']; ?>);
+				$('[name=Muser]').val(<?php echo $gUsers[2]['name']; ?>);
 				$('[name=Mcustomer]').val(calEvent.customer);
 				$('[name=Mhours]').val(calEvent.hours);
 				$('[name=Mdate]').val(calEvent.date);

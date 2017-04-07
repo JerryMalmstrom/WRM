@@ -45,7 +45,6 @@
 				}
 			},
 			eventClick: function(calEvent, jsEvent, view) {
-				/*
 				$('#modalmessage').text(calEvent.date + " - " + calEvent.title);
 				$('.ui.basic.modal').modal({
 					onDeny : function(){
@@ -62,8 +61,8 @@
 						});
 					}
 				}).modal('show');
-				*/
 				
+				/*
 				$('[name=Muser]').val('<?php echo $gUsers[2]['name']; ?>');
 				$('[name=Mcustomer]').val('<?php echo $gCustomers[1]['name']; ?>');
 				$('[name=Mhours]').val(calEvent.hours);
@@ -84,7 +83,7 @@
 						});
 					}
 				}).modal('show');
-				
+				*/
 				//console.log($('[name=users]').val());
 				
 			},

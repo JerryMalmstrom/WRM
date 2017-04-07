@@ -66,7 +66,10 @@
 				}).modal('show');
 				*/
 				
-				
+				$('[name=user]').text(calEvent.user);
+				$('[name=customer]').text(calEvent.customer);
+				$('[name=hours]').text(calEvent.hours);
+				$('[name=date]').text(calEvent.date);
 				
 				$('#eventinfo').modal({
 					onDeny : function(){
@@ -237,6 +240,10 @@
 			<div class="field">
 				<label>Timmar</label>
 				<input type="text" name="hours">
+			</div>
+			<div class="field">
+				<label>Datum</label>
+				<input type="text" name="date">
 			</div>
 		</div>
 	</div>

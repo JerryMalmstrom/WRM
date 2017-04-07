@@ -38,10 +38,7 @@
 				url: 'json-events-feed.php',
 				type: 'POST', // Send post data
 				data: function() {
-					return {
-						users: $('[name=users]').val(),
-						eventID: $('[name=users]').val()
-					};
+					return {users: $('[name=users]').val()};
 				},
 				error: function() {
 					alert('There was an error while fetching events.');
@@ -68,7 +65,7 @@
 				*/
 				
 				$('[name=Muser]').val('<?php echo $gUsers[2]['name']; ?>');
-				$('[name=Mcustomer]').val(calEvent.customer);
+				$('[name=Mcustomer]').val(<?php echo $gCustomers[?>calEvent.customer<?php]['name']; ?>);
 				$('[name=Mhours]').val(calEvent.hours);
 				$('[name=Mdate]').val(calEvent.date);
 				

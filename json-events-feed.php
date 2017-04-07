@@ -16,13 +16,13 @@ try {
 		$query = 
 		"SELECT e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color
 		 FROM events e left join customers c ON (e.customer = c.ID)
-		 LEFT JOIN users u ON (e.user = u.ID)";
+		 LEFT JOIN users u ON (e.user = u.ID)
+		 WHERE e.ID = $user";
 	} else {
 		$query = 
 		"SELECT e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color
 		 FROM events e left join customers c ON (e.customer = c.ID)
-		 LEFT JOIN users u ON (e.user = u.ID)
-		 WHERE e.ID = $user";
+		 LEFT JOIN users u ON (e.user = u.ID)";
 	}
 	
 	

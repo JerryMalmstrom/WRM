@@ -33,8 +33,9 @@
 	$gUsers = array( array(), array() );
 	
 	while ($row = $sql->fetch_assoc()) {
-		$gUsers[$row['ID']]['username'] = $row['username'];
-		$gUsers[$row['ID']]['name'] = $row['name'];
+		$x = $row['ID'];
+		$gUsers[$x]['username'] = $row['username'];
+		$gUsers[$x]['name'] = $row['name'];
 	}
 	
 ?>

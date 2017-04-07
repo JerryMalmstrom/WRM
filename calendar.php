@@ -47,7 +47,7 @@
 				}
 			},
 			eventClick: function(calEvent, jsEvent, view) {
-				
+				/*
 				$('#modalmessage').text(calEvent.date + " - " + calEvent.title);
 				$('.ui.basic.modal').modal({
 					onDeny : function(){
@@ -64,7 +64,26 @@
 						});
 					}
 				}).modal('show');
-							
+				*/
+				
+				
+				
+				$('#eventinfo').modal({
+					onDeny : function(){
+						
+					},
+					onApprove : function() {
+						$.post("save-to-db.php", { 
+						type: 'event_update',
+						user: <?php echo $login_id ?>,
+						id: calEvent.id
+						}).done(function() {
+							$('#calendar').fullCalendar( 'removeEvents' );
+							$('#calendar').fullCalendar( 'refetchEvents');
+						});
+					}
+				}).modal('show');
+				
 				//console.log($('[name=users]').val());
 				
 			},
@@ -198,4 +217,36 @@
       Ja
     </div>
   </div>
+</div>
+
+<div class="ui modal" id="eventinfo">
+	<i class="close icon"></i>
+	<div class="header">
+		Info
+	</div>
+	<div class="content">
+		<div class="ui form">
+			<div class="field">
+				<label>Användare</label>
+				<input type="text" name="user">
+			</div>
+			<div class="field">
+				<label>Kund</label>
+				<input type="text" name="customer">
+			</div>
+			<div class="field">
+				<label>Timmar</label>
+				<input type="text" name="hours">
+			</div>
+		</div>
+	</div>
+	<div class="actions">
+		<div class="ui black deny button">
+			Stäng
+		</div>
+		<div class="ui positive right labeled icon button">
+			Spara
+			<i class="checkmark icon"></i>
+		</div>
+	</div>
 </div>

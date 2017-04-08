@@ -41,19 +41,6 @@ $( function() {
 });
 </script>
 
-<?php 
-
-	$sqlc = $db->query("SELECT ID, name FROM customers");
-	
-	$customersArray = array( array(),array() );
-		
-	while ($e = $sqlc->fetch_assoc())	{
-		$x = $e['ID'];
-		$customersArray[$x]['name'] = $e['name'];
-	}
-
-?>
-
 <div class="ui content">
 	<div class="ui container">
 		<form>
@@ -78,7 +65,12 @@ $( function() {
 							<tr><td>Namn</td><td><input id='name' type='text' value=<?php echo "'" . $d["name"] . "'"; ?>></td></tr>
 							<tr><td>Email</td><td><input id='email' type='text' value=<?php echo "'" . $d["email"] . "'"; ?>></td></tr>
 							<tr><td>Företag</td><td><select class="ui search dropdown" name="company">
-							<option value="1"><?php echo $customersArray[1]['name']; ?></select></td></tr>
+							<?php 
+							foreach ($gCustomers as $c) {
+								echo "<option value='" . $c['ID'] . "'>" . $c['name'] . "</option>";
+							} 
+							?>
+							</select></td></tr>
 							<tr><td>Roll</td><td><?php echo $d["role"]; ?></td></tr>
 							<tr><td>Färg</td><td><input type='color' id='color' value=<?php echo "'" . trim($d["color"]) . "'"; ?>></td></tr>
 							<tr><td>Bild</td><td><img id='pImage' width='300px' src=<?php echo "'" . $d["profileImage"] . "'"; ?>></br><input type='file' name='fileToUpload'></td></tr>

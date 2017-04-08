@@ -36,5 +36,4 @@
 	$login_id = $s['ID'];
 	$login_image = $s['profileImage'];
 	$login_image = str_replace(".png", "_small.jpg", $login_image);
-	
 ?>

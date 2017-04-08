@@ -98,9 +98,6 @@
 						$('#calendar').fullCalendar( 'removeEvents' );
 						$('#calendar').fullCalendar( 'refetchEvents');
 					});
-				//event.date = event.start.format();
-				
-				
 			},
 			eventResize: function(event, delta, revertFunc) {
 				nrofDays = (delta/3600/24000); //1
@@ -148,21 +145,16 @@
 	});
 </script>
 
-<?php
-	$sql = sql_read($db, "SELECT ID, name FROM customers ORDER BY name");
-	$sql2 = sql_read($db, "SELECT ID, username FROM users ORDER BY username");
-?>
-
 <div class="ui grid">
 	<div class="eight wide column">
 		<h4>Skapa:</h4>
 		<select class="ui search dropdown" name="customer">
-		<option value="">Kund</option>
-		<?php 
-			while ($d = $sql->fetch_assoc()) {
-				echo "<option value='" . $d['ID'] . "'>" . $d['name'] . "</option>";
-			}
-		?>
+			<option value="">Kund</option>
+			<?php
+				foreach ($gCustomers as $d) {
+					echo "<option value='" . $d['ID'] . "'>" . $d['name'] . "</option>";
+				}
+			?>
 		</select>
 		<select class="ui compact selection dropdown" data-uid="<?php echo $login_id; ?>" name="hours">
 			<option value="">Timmar</option>
@@ -184,9 +176,11 @@
 			<i class="dropdown icon"></i>
 			<div class="default text" data-value=''>Alla Användare</div>
 			<div class="menu">
-				<?php while ($u = $sql2->fetch_assoc())	{
-					echo "<div class='item' data-value='" . $u['ID'] . "'>" . strtoupper($u['username']) . "</div>";
-				} ?>
+				<?php
+					foreach ($gUsers as $u) {
+						echo "<div class='item' data-value='" . $u['ID'] . "'>" . strtoupper($u['username']) . "</div>";
+					}
+				?>
 			</div>
 		</div>
 	</div>

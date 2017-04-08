@@ -121,6 +121,7 @@
 	$('div.date').each(function() {
 		Ntext = $.fullCalendar.moment($( this ).text().trim());
 		$( this ).text(Ntext.fromNow());
+		
 	});
 	
 	//$.fullCalendar.moment('<?php echo $row['date']; ?>').fromNow();

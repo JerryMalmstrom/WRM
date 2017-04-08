@@ -27,23 +27,6 @@
 		$sql = $db->query($query);
 		return $sql;
 	}
-	
-	$sql = sql_read($db, "select ID,username,name from users");
-	
-	$gUsers = array( array(), array() );
-	$gCustomers = array( array(), array() );
-	
-	while ($row = $sql->fetch_assoc()) {
-		$x = $row['ID'];
-		$gUsers[$x]['username'] = $row['username'];
-		$gUsers[$x]['name'] = $row['name'];
-	}
-	
-	$sql = sql_read($db, "select ID,name from customers");
-		
-	while ($row = $sql->fetch_assoc()) {
-		$x = $row['ID'];
-		$gCustomers[$x]['name'] = $row['name'];
-	}
-	
+
+
 ?>

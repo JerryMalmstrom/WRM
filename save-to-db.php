@@ -2,6 +2,8 @@
 
 	require('config.php');
 	require('functions.php');
+	require('settings.php');
+	
 	
 
 	switch ($_POST["type"]) {
@@ -14,7 +16,7 @@
 				
 			$sql = $db->query($query);
 			
-			feed_log($db, $q_user, "flyttade ett event","Event: $q_id till $q_date");
+			feed_log($db, $q_user, "flyttade timmar","Timmar: $q_id till $q_date");
 			
 			break;
 		case "event_add":
@@ -36,9 +38,7 @@
 				
 			$sql = $db->query($query);
 			
-			
-			
-			feed_log($db, $q_user, "lade till ett event","Event: $q_hours på kund");
+			feed_log($db, $q_user, "lade till timmar","Timmar: $q_hours på kund $gCustomers[$q_cust]['name']");
 			
 			break;
 		case "event_remove":
@@ -49,7 +49,7 @@
 			
 			$sql = $db->query($query);
 			
-			feed_log($db, $q_user, "tog bort ett event","Event: $q_id");
+			feed_log($db, $q_user, "tog bort timmar","");
 			
 			break;
 		case "user_add":
@@ -142,14 +142,12 @@
 			
 			$sql = $db->query($query);
 			
-			feed_log($db, $q_user, "tog bort en kund","Kund: $q_id");
+			feed_log($db, $q_user, "tog bort en kund","Kund: $gCustomers[$q_id]");
 			
 			break;
 			
 		default:
 			break;
 	}
-	
-	
 	
 ?>

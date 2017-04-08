@@ -38,13 +38,6 @@ $( function() {
 </script>
 
 
-<?php
-
-	$sql = sql_read($db, "SELECT ID, username FROM users ORDER BY username");
-	$sql2 = sql_read($db, "SELECT ID, name FROM customers ORDER BY name");
-	
-?>
-
 <div class="ui grid">
 	<div class="seven wide column">
 		<form id="report_form" action="open_report.php" method="post" target="_blank">
@@ -80,7 +73,7 @@ $( function() {
 						<i class="dropdown icon"></i>
 						<div class="default text">Alla</div>
 						<div class="menu">
-							<?php while ($u = $sql->fetch_assoc())	{
+							<?php foreach ($gUsers as $u) {
 								echo "<div class='item' data-value='" . $u['ID'] . "'>" . strtoupper($u['username']) . "</div>";
 							} ?>
 						</div>
@@ -93,7 +86,7 @@ $( function() {
 						<i class="dropdown icon"></i>
 						<div class="default text">Alla</div>
 						<div class="menu">
-							<?php while ($c = $sql2->fetch_assoc())	{
+							<?php foreach ($gCustomers as $c) {
 								echo "<div class='item' data-value='" . $c['ID'] . "'>" . $c['name'] . "</div>";
 							} ?>
 						</div>

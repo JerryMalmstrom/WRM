@@ -34,6 +34,7 @@
 		require('functions.php');
 		require('session.php');
 		require('nav.php');
+		require('settings.php');
 	?>
 	
 	

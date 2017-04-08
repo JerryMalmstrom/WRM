@@ -31,7 +31,8 @@ $( function() {
 	
 	$( '#update-user' ).button().on( "click", function() {
 		userID = <?php echo $login_id ?>;
-		$.post("save-to-db.php", { type: 'user_update', user: userID, username: $('#username').val(), password: $('#password').val(), name: $('#name').val(), email: $('#email').val(), company: $('[name=customer] option:selected').val(), color: $('#color').val(), image: $('#pImage').attr('src') })
+		console.log($('#company').val());
+		$.post("save-to-db.php", { type: 'user_update', user: userID, username: $('#username').val(), password: $('#password').val(), name: $('#name').val(), email: $('#email').val(), company: $('#company').val(), color: $('#color').val(), image: $('#pImage').attr('src') })
 		.done(function() {
 			alert("Uppdaterad");
 		});
@@ -64,7 +65,7 @@ $( function() {
 							<tr><td>Lösenord</td><td><input id='password' type='password' value='******'></td></tr>
 							<tr><td>Namn</td><td><input id='name' type='text' value=<?php echo "'" . $d["name"] . "'"; ?>></td></tr>
 							<tr><td>Email</td><td><input id='email' type='text' value=<?php echo "'" . $d["email"] . "'"; ?>></td></tr>
-							<tr><td>Företag</td><td><select class="ui search dropdown" name="company">
+							<tr><td>Företag</td><td><select id='company' class="ui search dropdown" name="company">
 							<?php 
 							foreach ($gCustomers as $c) {
 								echo "<option value='" . $c['ID'] . "'>" . $c['name'] . "</option>";

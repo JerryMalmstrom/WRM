@@ -86,10 +86,7 @@ $( function() {
 	
 	<div class="ui four stackable cards">
 	<?php
-			$sql = sql_read($db, "SELECT * FROM users ORDER BY name");
-			
-			while ($d = $sql->fetch_assoc())
-			{				
+			foreach ($gUsers as $d)	{				
 	?>
 				<div class="card">
 					<div class="image">
@@ -101,7 +98,7 @@ $( function() {
 					<div class="content">
 						<div class="header"><?php echo $d["name"]; ?></div>
 						<div class="meta">
-							<?php echo $d["company"]; ?>
+							<?php echo $gCustomers[$d["company"]]['name']; ?>
 						</div>
 						<div class="description">
 							<?php echo $d["description"]; ?>

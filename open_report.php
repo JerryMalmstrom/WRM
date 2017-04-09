@@ -116,7 +116,7 @@
 			$a_customers = array();
 			
 			if ($r_customers != "") {
-				$cust = $db->query("SELECT ID, name FROM customers WHERE status IN ($r_customers) ORDER BY name");
+				$cust = $db->query("SELECT ID, name, status FROM customers WHERE status IN ('$r_customers') ORDER BY name");
 				$x = 0;
 				
 				while ($c = $cust->fetch_assoc()) {

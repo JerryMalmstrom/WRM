@@ -32,7 +32,7 @@ $( function() {
 	$( '#update-user' ).button().on( "click", function() {
 		userID = <?php echo $login_id ?>;
 		console.log($('#company').val());
-		$.post("save-to-db.php", { type: 'user_update', user: userID, username: $('#username').val(), password: $('#password').val(), name: $('#name').val(), email: $('#email').val(), company: $('#company').val(), color: $('#color').val(), image: $('#pImage').attr('src') })
+		$.post("save-to-db.php", { type: 'user_update', user: userID, username: $('#username').val(), password: $('#password').val(), name: $('#name').val(), email: $('#email').val(), company: $('#company').val(), color: $('#color').val(), description: $('#description').val(), image: $('#pImage').attr('src') })
 		.done(function() {
 			alert("Uppdaterad");
 		});
@@ -74,10 +74,12 @@ $( function() {
 							</select></td></tr>
 							<tr><td>Roll</td><td><?php echo $d["role"]; ?></td></tr>
 							<tr><td>Färg</td><td><input type='color' id='color' value=<?php echo "'" . trim($d["color"]) . "'"; ?>></td></tr>
+							<tr><td>Beskrivning</td><td><textarea id='description'><?php echo $d["description"]; ?></textarea></td></tr>
 							<tr><td>Bild</td><td><img id='pImage' width='300px' src=<?php echo "'" . $d["profileImage"] . "'"; ?>></br><input type='file' name='fileToUpload'></td></tr>
 							<?php //" . $d["profileImage"] . " 
 						}
 					?>
+					<script> $('#company').val(1); </script>
 					</tbody>
 				</table>
 				</form>

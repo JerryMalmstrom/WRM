@@ -80,14 +80,15 @@
 			$q_company = $_POST["company"];
 			$q_color = $_POST["color"];
 			$q_image = $_POST["image"];
+			$q_description = $_POST["description"];
 			
 			$q_user = $_POST["user"];
 			
 			if ($q_password == "******") {
-				$query = "UPDATE users SET username = '$q_username', name = '$q_name', email = '$q_email', company = '$q_company', color = '$q_color', profileImage = '$q_image' WHERE ID = '$q_user'";
+				$query = "UPDATE users SET username = '$q_username', name = '$q_name', email = '$q_email', company = '$q_company', color = '$q_color', description = '$q_description', profileImage = '$q_image' WHERE ID = '$q_user'";
 			} else {
 				$q_password = md5($q_password);
-				$query = "UPDATE users SET username = '$q_username', password = '$q_password', name = '$q_name', email = '$q_email', company = '$q_company', color = '$q_color', profileImage = '$q_image' WHERE ID = '$q_user'";
+				$query = "UPDATE users SET username = '$q_username', password = '$q_password', name = '$q_name', email = '$q_email', company = '$q_company', color = '$q_color', description = '$q_description', profileImage = '$q_image' WHERE ID = '$q_user'";
 			}
 						
 			$sql = $db->query($query);

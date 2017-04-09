@@ -80,15 +80,15 @@ $( function() {
 					</div>
 				</div>
 				<div id="customersField" class="field" style="display: none">
-					<label>Kunder:</label>
+					<label>Typ av kunder:</label>
 					<div class="ui multiple selection dropdown">
 						<input name="customers" type="hidden">
 						<i class="dropdown icon"></i>
 						<div class="default text">Alla</div>
 						<div class="menu">
-							<?php foreach ($gCustomers as $c) {
-								echo "<div class='item' data-value='" . $c['ID'] . "'>" . $c['name'] . "</div>";
-							} ?>
+							<div class='item' data-value='Intern'>Intern</div>
+							<div class='item' data-value='Kund'>Kund</div>
+							<div class='item' data-value='Prospekt'>Prospekt</div>
 						</div>
 					</div>
 				</div>

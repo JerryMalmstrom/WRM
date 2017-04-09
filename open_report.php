@@ -112,7 +112,7 @@
 			break;
 		case "customerlist":
 			$reportURL = "customerlist.html";
-			$r_customers = $_POST["customers"];
+			$r_customers = str_replace(",","','",$_POST["customers"]);
 			$a_customers = array();
 			
 			if ($r_customers != "") {
@@ -122,6 +122,7 @@
 				while ($c = $cust->fetch_assoc()) {
 					$a_customers[$x]['ID'] = $c['ID'];
 					$a_customers[$x]['name'] = $c['name'];
+					$a_customers[$x]['status'] = $c['status'];
 					$x++;
 				}
 			} else {

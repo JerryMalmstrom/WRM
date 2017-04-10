@@ -36,8 +36,8 @@ $( function() {
 	
 	
 	$('[name=fromdate]').on( "change", function(data) {
-		console.log($('[name=fromdate]').val());
-		endDate = $.fullCalendar.moment().endOf($('[name=fromdate]').val()).format('YYYY-MM-DD');
+		endDate = $('[name=fromdate]').val().endOf('month').format('YYYY-MM-DD');
+		console.log(endDate);
 		$('[name=todate]').val(endDate);
 	});
 	

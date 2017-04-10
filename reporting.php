@@ -39,10 +39,10 @@ $( function() {
 		endDate = $.fullCalendar.moment($('[name=fromdate]').val());
 		console.log(endDate);
 		
-		endDate.endOf('month').format('YYYY-MM-DD');
+		endDate = endDate.endOf('month').format('YYYY-MM-DD');
 		console.log(endDate);
 		
-		$('[name=todate]').val(endDate);
+		//$('[name=todate]').val(endDate);
 	});
 	
 });

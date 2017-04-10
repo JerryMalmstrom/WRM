@@ -9,18 +9,18 @@
 <!--[if IE 7]><html class="preIE8 preIE9"><![endif]-->
 <!--[if IE 8]><html class="preIE9"><![endif]-->
 <!--[if gte IE 9]><!--><html><!--<![endif]-->
-	<head>	
+	<head>
 	<meta charset="UTF-8">
 	<title>White Red Manager</title>
-	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
-	<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans|Roboto' type='text/css'>
-	<link rel='stylesheet' href='css/fullcalendar.css' />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css">
-	<link rel="stylesheet" href="theme.css" type="text/css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans|Roboto" type="text/css" />
+	<link rel="stylesheet" href="css/fullcalendar.css" type="text/css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css" type="text/css" />
+	<link rel="stylesheet" href="theme.css" type="text/css" />
 	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
 	
 	<script src='lib/moment.min.js'></script>
 	<script src='js/fullcalendar.js'></script>
@@ -74,4 +74,3 @@
 	
 	</body>
 </html>
-

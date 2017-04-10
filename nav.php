@@ -19,7 +19,7 @@ $(document).ready(function () {
 		<a class="item" href="?page=users"><i class="user icon"></i>Användare</a>
 		<a class="item" href="?page=customers"><i class="blind icon"></i>Kunder</a>
 		<a class="item" href="?page=reporting"><i class="bar chart icon"></i>Rapporter</a>
-			
+
 		<div class="right menu">
 			<div class="ui dropdown item">
 				<?php echo $login_name; ?> <i class="dropdown icon"></i>

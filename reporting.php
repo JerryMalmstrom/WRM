@@ -10,7 +10,7 @@ $( function() {
 	$('[name=fromdate]').val(startDate);
 	$('[name=todate]').val(endDate);
 	
-	$('[name=type]').on( "change", function(data) {
+	$('[name=type]').on( "change", function() {
 		switch($( this ).val()) {
 			case 'customerlist':
 				$('#fromtoField').hide();
@@ -33,6 +33,14 @@ $( function() {
 			default:;
 		}
 	});
+	
+	
+	$('[name=fromdate]').on( "change", function(data) {
+		console.log($('[name=fromdate]').val());
+		console.log($('[name=fromdate]').val());
+		endDate = $.fullCalendar.moment().endOf($('[name=fromdate]').val()).format('YYYY-MM-DD');
+		$('[name=todate]').val(endDate);
+	};
 	
 });
 </script>

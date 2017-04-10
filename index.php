@@ -30,15 +30,25 @@
 	<body>
 	
 	<?php
+	
+		$gUsers = [[]];
+		array_pop($gUsers);
+		
+		$gCustomers = [[]];
+		array_pop($gCustomers);
+		
+		$gRates = [[]];
+		array_pop($gRates);
+	
 		require('config.php');
 		require('functions.php');
 		require('session.php');
 		require('nav.php');
 		require('settings.php');
 		
-		data_read($db, "users");
-		data_read($db, "customers");
-		data_read($db, "rates");		
+		$gUsers = data_read($db, "users");
+		$gCustomers = data_read($db, "customers");
+		$gRates = data_read($db, "rates");		
 	?>
 	
 	

@@ -34,48 +34,66 @@
 				// Users
 				$sql = sql_read($db, "select ID,username,name,role,description,email,company,profileID,profileImage,color from users ORDER BY name");
 				
+				$tempUsers = [[]];
+				array_pop($tempUsers);
+				
 				while ($row = $sql->fetch_assoc()) {
 					$x = $row['ID'];
-					$gUsers[$x]['ID'] = $x;
-					$gUsers[$x]['username'] = $row['username'];
-					$gUsers[$x]['name'] = $row['name'];
-					$gUsers[$x]['role'] = $row['role'];
-					$gUsers[$x]['description'] = $row['description'];
-					$gUsers[$x]['email'] = $row['email'];
-					$gUsers[$x]['company'] = $row['company'];
-					$gUsers[$x]['profileID'] = $row['profileID'];
-					$gUsers[$x]['profileImage'] = $row['profileImage'];
-					$gUsers[$x]['color'] = $row['color'];
+					$tempUsers[$x]['ID'] = $x;
+					$tempUsers[$x]['username'] = $row['username'];
+					$tempUsers[$x]['name'] = $row['name'];
+					$tempUsers[$x]['role'] = $row['role'];
+					$tempUsers[$x]['description'] = $row['description'];
+					$tempUsers[$x]['email'] = $row['email'];
+					$tempUsers[$x]['company'] = $row['company'];
+					$tempUsers[$x]['profileID'] = $row['profileID'];
+					$tempUsers[$x]['profileImage'] = $row['profileImage'];
+					$tempUsers[$x]['color'] = $row['color'];
 				}
+				
+				return $tempUsers;
+				
 				break;
 				
 			case "customers":
 				// Kunder
 				$sql = sql_read($db, "select ID,name,address,phone,email,status,comment,rate from customers ORDER BY name");
 				
+				$tempCustomers = [[]];
+				array_pop($tempCustomers);
+				
 				while ($row = $sql->fetch_assoc()) {
 					$x = $row['ID'];
-					$gCustomers[$x]['ID'] = $x;
-					$gCustomers[$x]['name'] = $row['name'];
-					$gCustomers[$x]['address'] = $row['address'];
-					$gCustomers[$x]['phone'] = $row['phone'];
-					$gCustomers[$x]['email'] = $row['email'];
-					$gCustomers[$x]['status'] = $row['status'];
-					$gCustomers[$x]['comment'] = $row['comment'];
-					$gCustomers[$x]['rate'] = $row['rate'];
+					$tempCustomers[$x]['ID'] = $x;
+					$tempCustomers[$x]['name'] = $row['name'];
+					$tempCustomers[$x]['address'] = $row['address'];
+					$tempCustomers[$x]['phone'] = $row['phone'];
+					$tempCustomers[$x]['email'] = $row['email'];
+					$tempCustomers[$x]['status'] = $row['status'];
+					$tempCustomers[$x]['comment'] = $row['comment'];
+					$tempCustomers[$x]['rate'] = $row['rate'];
 				}
+				
+				return $tempCustomers;
+				
 				break;
 				
 			case "rates":
 				// Timpriser
 		
 				$sql = sql_read($db, "select ID,rate from rates ORDER BY ID");
-					
+				
+				$tempRates = [[]];
+				array_pop($tempRates);
+				
 				while ($row = $sql->fetch_assoc()) {
 					$x = $row['ID'];
-					$gRates[$x]['ID'] = $x;
-					$gRates[$x]['rate'] = $row['rate'];
+					$tempRates[$x]['ID'] = $x;
+					$tempRates[$x]['rate'] = $row['rate'];
 				}
+				
+				return $tempRates;
+				
 				break;
 			default:;
 		}

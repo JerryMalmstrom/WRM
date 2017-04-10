@@ -35,6 +35,12 @@
 		require('session.php');
 		require('nav.php');
 		require('settings.php');
+		
+		data_read($db, "users");
+		data_read($db, "customers");
+		data_read($db, "rates");
+		
+		
 	?>
 	
 	

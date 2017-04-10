@@ -15,6 +15,8 @@
 		$('#calendar').fullCalendar({
 			editable: true,
 			droppable: true,
+			allDayDefault: true,
+			
 			header: {
 				left: 'prev,next today',
 				center: 'title',
@@ -119,6 +121,14 @@
 					user: <?php echo $login_id ?>,
 					date: event.start.format(),
 					});	
+			},
+			loading: function( isLoading, view ) {
+				if (isLoading) {
+					$(document.body).css('cursor', 'wait');
+				} else {
+					$(document.body).css('cursor', 'default');
+				}
+				
 			}
 		});
 		

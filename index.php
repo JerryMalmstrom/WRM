@@ -38,9 +38,7 @@
 		
 		data_read($db, "users");
 		data_read($db, "customers");
-		data_read($db, "rates");
-		
-		
+		data_read($db, "rates");		
 	?>
 	
 	

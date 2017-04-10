@@ -7,5 +7,4 @@
 	
 	$gRates = [[]];
 	array_pop($gRates);
-	
 ?>

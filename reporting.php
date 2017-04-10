@@ -37,12 +37,8 @@ $( function() {
 	
 	$('[name=fromdate]').on( "change", function(data) {
 		endDate = $.fullCalendar.moment($('[name=fromdate]').val());
-		console.log(endDate);
-		
 		endDate = endDate.endOf('month').format('YYYY-MM-DD');
-		console.log(endDate);
-		
-		//$('[name=todate]').val(endDate);
+		$('[name=todate]').val(endDate);
 	});
 	
 });

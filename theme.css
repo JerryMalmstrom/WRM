@@ -20,3 +20,12 @@
 .ui.menu:last-child {
     margin-bottom: 20px;
 }
+
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+	.ui.container {
+		width: 768px;
+		margin-left: auto!important;
+		margin-right: auto!important;
+	}
+}

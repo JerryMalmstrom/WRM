@@ -15,6 +15,7 @@
 		$('#calendar').fullCalendar({
 			editable: true,
 			droppable: true,
+			
 			header: {
 				left: 'prev,next today',
 				center: 'title',
@@ -132,7 +133,7 @@
 					customer: $('[name=customer]').val(),
 					user: $('[name=hours]').attr("data-uid"),
 					color: "<?php echo $login_color ?>",
-					stick: true 
+					stick: true
 				});
 			});
 		});
@@ -167,7 +168,7 @@
 			<option value=7>7h</option>
 			<option value=8>8h</option>
 		</select>
-		<div id='draoslapp' class='ui fc-event external' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>;'><--- Kund och timmar</div>
+		<div id='draoslapp' class='ui fc-event external fc-draggable' style='background-color: <?php echo $login_color ?>; border-color: <?php echo $login_color ?>;'><--- Kund och timmar</div>
 	</div>
 	<div class="eight wide column">
 		<h4>Filtrera:</h4>

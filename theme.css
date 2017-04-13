@@ -8,8 +8,6 @@
 }
 
 .fc-event {
-	/*padding-left: 8px;
-	padding-right: 8px;*/
 	padding: 3px 3px 3px 5px;
 }
 
@@ -19,4 +17,24 @@
 
 .ui.menu:last-child {
     margin-bottom: 20px;
+}
+
+@media only screen 
+  and (min-device-width: 100px) 
+  and (max-width: 768px) {
+	.item.menuhide {
+        font-size: 0;
+    }
+	.item.menuhide i {
+		font-size: 1rem !important;
+		margin-left: 15px !important;
+		margin-right: 15px !important;
+	}
+	
+	.fc-content {
+		height: 30px;
+	}
+	.fc-title {
+		white-space: normal;
+	}	
 }

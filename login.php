@@ -33,7 +33,7 @@
 	<title>White Red Manager - Login</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
 	<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans|Roboto' type='text/css'>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
 	<link rel="stylesheet" href="theme.css" type="text/css">
 	
 	<style type="text/css">
@@ -52,7 +52,7 @@
   </style>
 	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
 	
 	<script>
 	$(document).ready(function() {

@@ -1,6 +1,6 @@
 <script>
 $( function() {
-	$('#show-report').button().on( "click", function() {
+	$('#show-report').on( "click", function() {
 		$('#report_form').submit();
     });	
 	

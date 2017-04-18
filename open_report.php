@@ -1,5 +1,5 @@
 <?php
-
+	
 	require('config.php');
 	require('functions.php');
 	
@@ -185,13 +185,19 @@
 	<link rel="stylesheet" href="theme.css" type="text/css">
 	
 	<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script src="//cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
+	<script src="js/tablesort.js"></script>
 	
 	<style>
 		h1 { margin-top: 40px!important;}
 		h3 { margin-bottom: 30px;}
 	</style>
+	
+	<script>
+	$(function() {
+		$('table').tablesort();
+	});
+	</script>
 	
 	</head>
 	

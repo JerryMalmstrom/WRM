@@ -17,6 +17,8 @@
 </div>
 <script>
 
-$('.ui.dropdown').dropdown();
+$(function() {
+	$('.ui.dropdown').dropdown();
+});
 
 </script>

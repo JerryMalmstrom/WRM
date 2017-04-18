@@ -1,4 +1,4 @@
-<table id="customers" class="ui single line table">
+<table id="customers" class="ui sortable celled table">
 	<thead>
 		<tr>
 			<th style="display: none">ID</th>

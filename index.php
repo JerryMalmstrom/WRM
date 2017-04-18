@@ -28,6 +28,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/sv.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/locale/sv.js"></script>
+	<script src="js/tablesort.js"></script>
 	</head>
 	<body>
 	

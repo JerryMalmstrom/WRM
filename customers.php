@@ -1,12 +1,9 @@
 <script>
 $( function() {
-	
 	updateTable();
-	
 	userID = <?php echo $login_id ?>;
 	
-	
-	$('#create-customer').button().on( "click", function() {
+	$('#create-customer').on( "click", function() {
 		$('[name=cID]').val(0);
 		$('[name=name]').val('');
 		$('[name=address]').val('');
@@ -43,7 +40,7 @@ $( function() {
 		$('#cModal').modal('show');
 	});
 	
-	$('#save').button().on( "click", function() {
+	$('#save').on( "click", function() {
 		if ($('[name=cID]').val() === "0") {
 			addCustomer();
 		} else {
@@ -53,11 +50,11 @@ $( function() {
 		
 	});
 	
-	$('#delete').button().on( "click", function() {
+	$('#delete').on( "click", function() {
 		$('#sure').modal('show');			
 	});
 	
-	$('#removeYes').button().on( "click", function() {
+	$('#removeYes').on( "click", function() {
 		$.post("save-to-db.php", { type: 'customer_remove', user: userID, cID: $('[name=cID]').val() })
 		.done(function(result) {
 			$('.ui.modal').modal('hide');
@@ -108,6 +105,8 @@ $( function() {
 			} 
 		}
 	};
+	
+	
 	
 });
 

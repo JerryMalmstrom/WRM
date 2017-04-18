@@ -8,6 +8,7 @@
 			<th>Email</th>
 			<th>Status</th>
 			<th>Kontakter</th>
+			<th>Kontrakt</th>
 			<th>Kommentar</th>
 		</tr>
 	</thead>
@@ -16,8 +17,9 @@
 		require('config.php');
 		require('functions.php');
 	
-		$data = sql_read($db, "select c.ID AS ID,c.name AS name,c.address AS address,c.phone AS phone,c.email as email,c.status AS status,c.comment AS comment, r.ID as rate,(select count(0) from users where (users.company = c.ID)) AS contacts from customers c " .
-		"LEFT JOIN rates r ON r.ID = c.rate ORDER BY name");
+		$data = sql_read($db, "select c.ID AS ID,c.name AS name,c.address AS address,c.phone AS phone,c.email as email,c.status AS status,c.comment AS comment, r.ID as rate,(select count(0) from users where (users.company = c.ID)) AS contacts, (select count(0) from contracts where (contracts.customer = c.ID)) AS contracts from customers c " .
+		"LEFT JOIN rates r ON r.ID = c.rate " .
+		"ORDER BY name");
 		while ($d = $data->fetch_assoc())
 		{
 			echo "<tr><td id='cID' style='display: none'>" . $d["ID"] . "</td>" .
@@ -27,6 +29,7 @@
 				"</td><td id='email'><a href='mailto:" . $d["email"] . "'>" . $d["email"] . "</a>" .
 				"</td><td id='status'>" . $d["status"] .
 				"</td><td>" . $d["contacts"] .
+				"</td><td>" . $d["contracts"] .
 				"</td><td id='comment'>" . $d["comment"] .
 				"</td><td id='rate' style='display: none'>" . $d["rate"] .
 				"</td></tr>";

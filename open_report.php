@@ -137,6 +137,37 @@
 				}
 			}
 			break;
+		case "contractlist":
+			$reportURL = "contractlist.html";
+			$r_customers = str_replace(",","','",$_POST["customers"]);
+			$a_customers = array();
+			
+			if ($r_customers != "") {
+				$cust = $db->query("SELECT c.ID AS ID, c.name AS name, c.status AS status, k.start AS start, k.end AS end FROM customers c " . 
+				"INNER JOIN contracts k ON k.customer = c.ID " . 
+				"WHERE status IN ('$r_customers') ORDER BY name");
+				$x = 0;
+				
+				while ($c = $cust->fetch_assoc()) {
+					$a_customers[$x]['name'] = $c['name'];
+					$a_customers[$x]['start'] = $c['start'];
+					$a_customers[$x]['end'] = $c['end'];
+					$x++;
+				}
+			} else {
+				$cust = $db->query("SELECT c.ID AS ID, c.name AS name, k.start AS start, k.end AS end FROM customers c " . 
+				"INNER JOIN contracts k ON k.customer = c.ID " . 
+				"ORDER BY name");
+				$x = 0;
+				
+				while ($c = $cust->fetch_assoc()) {
+					$a_customers[$x]['name'] = $c['name'];
+					$a_customers[$x]['start'] = $c['start'];
+					$a_customers[$x]['end'] = $c['end'];
+					$x++;
+				}
+			}
+			break;
 		default:
 			break;
 	}

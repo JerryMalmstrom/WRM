@@ -1,0 +1,21 @@
+<body>
+	
+	<h1 class="ui center aligned header">WRM Kontraktlista</h1>
+	<h2 class="ui center aligned header"></h2>
+	
+	<div class="ui container">
+		<table class="ui celled table">
+			<thead>
+				<th>Kund</th>
+				<th>Startdatum</th>
+				<th>Slutdatum</th>
+			</thead>
+			<tbody>
+				<?php
+				foreach ($a_customers as $u) {
+					echo "<tr><td>" . $u['name'] . "</td><td>" . $u['start'] . "</td><td>" . $u['end'] . "</td></tr>";
+				} ?>
+			</tbody>
+		</table>
+	</div>
+</body>

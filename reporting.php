@@ -30,6 +30,12 @@ $( function() {
 				$('#customersField').hide();
 				$('#show-report').show();
 				break;
+			case 'contractlist':
+				$('#fromtoField').hide();
+				$('#usersField').hide();
+				$('#customersField').show();
+				$('#show-report').show();
+				break;
 			default:;
 		}
 	});
@@ -59,6 +65,7 @@ $( function() {
 							<div class='item' data-value='planning'>Planering</div>
 							<div class='item' data-value='customerlist'>Kundlista</div>
 							<div class='item' data-value='userlist'>Användarlista</div>
+							<div class='item' data-value='contractlist'>Kontraktlista</div>
 						</div>
 					</div>
 				</div>

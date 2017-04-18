@@ -12,11 +12,11 @@ $( function() {
 		});
 	}
 		
-	$( "#create-user" ).button().on( "click", function() {
+	$( "#create-user" ).on( "click", function() {
 		$('.ui.modal').modal('show');
     });
 	
-	$('#save').button().on( "click", function() {
+	$('#save').on( "click", function() {
 		addUser();
 	});
 	

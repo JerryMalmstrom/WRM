@@ -29,7 +29,7 @@ $( function() {
 		});		
 	}
 	
-	$( '#update-user' ).button().on( "click", function() {
+	$( '#update-user' ).on( "click", function() {
 		userID = <?php echo $login_id ?>;
 		console.log($('#company').val());
 		$.post("save-to-db.php", { type: 'user_update', user: userID, username: $('#username').val(), password: $('#password').val(), name: $('#name').val(), email: $('#email').val(), company: $('#company').val(), color: $('#color').val(), description: $('#description').val(), image: $('#pImage').attr('src') })

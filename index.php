@@ -14,7 +14,7 @@
 	<title>White Red Manager</title>
 
 	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
-	<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans|Roboto' type='text/css'>
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans|Roboto" type="text/css">
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css" type="text/css">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css" type="text/css">
 	<link rel="stylesheet" href="jqui/jquery-ui.min.css" type="text/css">
@@ -25,7 +25,6 @@
 	<script src="jqui/jquery.ui.touch-punch.min.js"></script>
 	<script src="//cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/sv.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/locale/sv.js"></script>
 	<script src="js/tablesort.js"></script>

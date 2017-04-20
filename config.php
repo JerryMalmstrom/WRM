@@ -1,8 +1,8 @@
 <?php
-	define('DB_SERVER', 'jmark01');
-	define('DB_USERNAME', 'wrm');
-	define('DB_PASSWORD', '1qaz2wsx');
-	define('DB_DATABASE', 'WRM-DB');
+	define('DB_SERVER', 'SERVER');
+	define('DB_USERNAME', 'USER');
+	define('DB_PASSWORD', 'PASSWORD');
+	define('DB_DATABASE', 'DATABASE');
 	
 	
 	$db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);

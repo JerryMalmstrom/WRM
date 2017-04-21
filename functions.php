@@ -40,7 +40,7 @@
 				$x = 0;
 				
 				while ($row = $sql->fetch_assoc()) {
-					$tempUsers[$x]['ID'] = $x;
+					$tempUsers[$x]['ID'] = $row['ID'];
 					$tempUsers[$x]['username'] = $row['username'];
 					$tempUsers[$x]['name'] = $row['name'];
 					$tempUsers[$x]['role'] = $row['role'];

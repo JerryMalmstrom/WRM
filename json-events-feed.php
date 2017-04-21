@@ -1,6 +1,11 @@
 <?php
 	require('config.php');
-
+	
+	//echo "Start: " . $_POST['start'] . " End: " . $_POST['end'];
+	
+	$startdate = $_POST['start'];
+	$enddate = $_POST['end'];
+	
 	try {
 	
 		if ($_POST["users"] != '') {
@@ -8,19 +13,15 @@
 			$query = 
 			"SELECT e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color, u.ID
 			 FROM events e LEFT JOIN customers c ON (e.customer = c.ID)
-			 LEFT JOIN users u ON (e.user = u.ID)
-			 WHERE u.ID IN ($user)";
-		} else if ($_POST["users"] == '9999') {
-			$query = 
-			"SELECT e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color
-			 FROM events e left join customers c ON (e.customer = c.ID)
-			 LEFT JOIN users u ON (e.user = u.ID)
-			 WHERE e.ID = $user";
+			 LEFT JOIN users u ON (e.user = u.ID) 
+			 WHERE u.ID IN ($user) AND e.date >= '$startdate' AND e.date <= '$enddate'";
 		} else {
 			$query = 
 			"SELECT e.ID AS ID,e.user AS user,e.date AS date,e.hours AS hours,e.customer AS customer,c.ID AS cId,c.name AS cName,u.username AS username,u.color AS color
-			 FROM events e left join customers c ON (e.customer = c.ID)
-			 LEFT JOIN users u ON (e.user = u.ID)";
+			 FROM events e 
+			 LEFT JOIN customers c ON (e.customer = c.ID) 
+			 LEFT JOIN users u ON (e.user = u.ID) 
+			 WHERE e.date >= '$startdate' AND e.date <= '$enddate'";
 		}
 	
 		$sql = $db->query($query);

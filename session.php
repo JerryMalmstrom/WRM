@@ -17,10 +17,10 @@
 
 		// Again, do not do this on a public site, but we'll show you how
 		// to get the error information
-		echo "Error: Our query failed to execute and here is why: \n";
+		/*echo "Error: Our query failed to execute and here is why: \n";
 		echo "Query: " . $sql . "\n";
 		echo "Errno: " . $db->errno . "\n";
-		echo "Error: " . $db->error . "\n";
+		echo "Error: " . $db->error . "\n";*/
 		exit;
 	}
 	
@@ -36,4 +36,11 @@
 	$login_id = $s['ID'];
 	$login_image = $s['profileImage'];
 	$login_image = str_replace(".png", "_small.jpg", $login_image);
+	
+	if ($s['role'] == 'Admin') {
+		DEFINE ("ADMIN", true);
+	} else {
+		DEFINE ("ADMIN", false);
+	}
+	
 ?>

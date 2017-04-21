@@ -12,13 +12,12 @@
 				revert: true,      // will cause the event to go back to its
 				revertDuration: 0  //  original position after the drag
 			});
-
 		});		
 		
 		$('#calendar').fullCalendar({
 			editable: true,
 			schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-			resourceLabelText: 'Användare',
+			resourceLabelText: 'Konsult',
 			resourceAreaWidth: '20%',
 			slotWidth: '75',
 			businessHours: true,
@@ -36,30 +35,11 @@
 				}
 			},
 			resources: [
-			    {
-			        id: 2,
-			        title: 'Jerry'
-			    },
-			    {
-			        id: 3,
-			        title: 'Oscar'
-			    },
-			    {
-			        id: 5,
-			        title: 'Sebastian'
-			    },
-			    {
-			        id: 7,
-			        title: 'Mikael G'
-			    },
-			    {
-			        id: 8,
-			        title: 'Mikael J'
-			    },
-			    {
-			        id: 9,
-			        title: 'Andreas'
-			    }
+			<?php
+				foreach ($gUsers as $gu) {
+					echo "{id: " . $gu['ID'] . ",title: '" . $gu['name'] . "' },";
+				}
+			?>
 			],
 			contentHeight: 'auto',
 			weekNumbers: true,
@@ -70,7 +50,8 @@
 				data: function() {
 					return {users: $('[name=users]').val()};
 				},
-				error: function() {
+				error: function(data) {
+					//console.log(data.responseText);
 					alert('There was an error while fetching events.');
 				}
 			},
@@ -157,11 +138,6 @@
 					$(document.body).css('cursor', 'default');
 				}
 				
-			},
-			viewRender: function( view, element ) {
-				if (view.name == 'timelineMonth') {
-					// console.log("Nu");
-				}
 			}
 		});
 		
@@ -180,8 +156,26 @@
 			});
 		});
 		
+		
+		$('[name=userAdmin]').change(function () {
+			$('.external').text($('[name=userAdmin]').val() + " : " + $('[name=customer] option:selected').text() + " : " + $('[name=hours]').val());
+			
+			$('.fc-event.external').each(function() {
+				$(this).data('event', {
+					title: $.trim($(this).text()),
+					hours: $('[name=hours]').val(),
+					customer: $('[name=customer]').val(),
+					user: $('[name=userAdmin]').val(),
+					color: $('[name=userAdmin]').attr("data-color"),
+					stick: true
+				});
+				$(this).css("background-color", $('[name=userAdmin] option:selected').attr("data-color"));
+			});
+		});
+		
+		
 		$('[name=users]').change(function () {
-			$('#calendar').fullCalendar( 'removeEvents' );
+			//$('#calendar').fullCalendar( 'removeEvents' );
 			$('#calendar').fullCalendar( 'refetchEvents');
 		});
 		
@@ -191,6 +185,17 @@
 <div class="ui grid">
 	<div class="eight wide column">
 		<h4>Skapa:</h4>
+		
+		<?php if (ADMIN == true) { ?>
+		<select class="ui search dropdown" name="userAdmin">
+			<option value="">Användare</option>
+			<?php
+				foreach ($gUsers as $ua) {
+					echo "<option data-color='" . $ua['color'] . "' value='" . $ua['ID'] . "'>" . $ua['name'] . "</option>";
+				}
+			?>
+		</select>
+		<?php } ?>
 		<select class="ui search dropdown" name="customer">
 			<option value="">Kund</option>
 			<?php

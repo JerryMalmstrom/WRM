@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans|Roboto" type="text/css">
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css" type="text/css">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.css" type="text/css">
+	<link rel="stylesheet" href="//fullcalendar.io/js/fullcalendar-scheduler-1.6.1/scheduler.min.css"  type="text/css">
 	<link rel="stylesheet" href="jqui/jquery-ui.min.css" type="text/css">
 	<link rel="stylesheet" href="theme.css" type="text/css">
 	
@@ -27,6 +28,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/fullcalendar.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.3.1/locale/sv.js"></script>
+	<script src="//fullcalendar.io/js/fullcalendar-scheduler-1.6.1/scheduler.min.js"></script>
 	<script src="js/tablesort.js"></script>
 	</head>
 	<body>

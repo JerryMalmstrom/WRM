@@ -1,4 +1,7 @@
 <script>
+	/* global $ */
+	/* global moment */
+
 	$(document).ready(function() {
 		// page is now ready, initialize the calendar...
 		
@@ -14,24 +17,50 @@
 		
 		$('#calendar').fullCalendar({
 			editable: true,
+			schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+			resourceLabelText: 'Användare',
+			resourceAreaWidth: '20%',
+			slotWidth: '75',
+			businessHours: true,
 			droppable: true,
 			allDayDefault: true,
+			defaultView: 'timelineMonth',
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,basicWeek,listMonth'
+				right: 'timelineMonth,timelineWeek'
 			},
 			views: {
-				basic: {
-					// options apply to basicWeek and basicDay views
-				},
-				agenda: {
-					// options apply to agendaWeek and agendaDay views
-				},
-				week: {
-					// options apply to basicWeek and agendaWeek views
-				},
+				timelineWeek: {
+					slotDuration: '24:00:00'
+				}
 			},
+			resources: [
+			    {
+			        id: 2,
+			        title: 'Jerry'
+			    },
+			    {
+			        id: 3,
+			        title: 'Oscar'
+			    },
+			    {
+			        id: 5,
+			        title: 'Sebastian'
+			    },
+			    {
+			        id: 7,
+			        title: 'Mikael G'
+			    },
+			    {
+			        id: 8,
+			        title: 'Mikael J'
+			    },
+			    {
+			        id: 9,
+			        title: 'Andreas'
+			    }
+			],
 			contentHeight: 'auto',
 			weekNumbers: true,
 			eventLimit: false,
@@ -54,7 +83,7 @@
 					onApprove : function() {
 						$.post("save-to-db.php", { 
 						type: 'event_remove',
-						user: <?php echo $login_id ?>,
+						user: '<?php echo $login_id ?>',
 						id: calEvent.id
 						}).done(function() {
 							$('#calendar').fullCalendar( 'removeEvents' );
@@ -101,11 +130,11 @@
 					});
 			},
 			eventResize: function(event, delta, revertFunc) {
-				nrofDays = (delta/3600/24000); //1
+				var nrofDays = (delta/3600/24000); //1
 				
-				dateF = moment(event.end);
+				var dateF = moment(event.end);
 				
-				for (x=0;x<nrofDays;x++) {
+				for (var x=0;x<nrofDays;x++) {
 					$.post("save-to-db.php", {type: 'event_add',user: event.user,date: dateF.subtract(1, 'days').format(),customer: event.customer,	hours: event.hours });
 				}
 				
@@ -117,7 +146,7 @@
 				$.post("save-to-db.php", { 
 					type: 'event_move',
 					id: event.id,
-					user: <?php echo $login_id ?>,
+					user: '<?php echo $login_id ?>',
 					date: event.start.format(),
 					});	
 			},
@@ -128,6 +157,11 @@
 					$(document.body).css('cursor', 'default');
 				}
 				
+			},
+			viewRender: function( view, element ) {
+				if (view.name == 'timelineMonth') {
+					// console.log("Nu");
+				}
 			}
 		});
 		

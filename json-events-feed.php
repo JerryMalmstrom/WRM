@@ -31,13 +31,17 @@
 		// Fetch results
 		while ($row = $sql->fetch_assoc()) {
 			$e = array();
-			$e['title'] = strtoupper($row['username']) . " : " . $row['cName'] . " : " . $row['hours'];
+			$e['title'] = $row['cName'] . "\n " . $row['hours'] . " h";
 			$e['id'] = $row['ID'];
+			$e['resourceId'] = $row['user'];
 			$e['user'] = $row['user'];
 			$e['date'] = $row['date'];
 			$e['hours'] = $row['hours'];
 			$e['customer'] = $row['cId'];
 			$e['color'] = $row['color'];
+			$e['rTop'] = $row['cName'];
+			$e['rBottom'] = $row['hours'] . " h";
+			
 			// Merge the event array into the return array
 			array_push($events, $e);
 		}

@@ -87,7 +87,7 @@ $( function() {
 		<button class="ui button" id="create-user">Skapa användare</button>
 	</div>
 	
-	<div class="ui four stackable cards">
+	<div class="ui five stackable cards">
 	<?php
 			foreach ($gUsers as $d)	{				
 	?>

@@ -19,6 +19,16 @@
     margin-bottom: 20px;
 }
 
+
+.fc-timeline-event .fc-content {
+	height: 30px;
+}
+
+.fc-ltr .fc-timeline-event .fc-title {
+    padding-left: 8px;
+}
+
+
 @media only screen 
   and (min-device-width: 100px) 
   and (max-width: 768px) {
@@ -30,13 +40,6 @@
 		margin-left: 15px !important;
 		margin-right: 15px !important;
 	}
-	
-	.fc-content {
-		height: 30px;
-	}
-	.fc-title {
-		white-space: normal;
-	}	
   }
 
 @media only screen and (max-width: 991px) and (min-width: 768px) {

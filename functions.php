@@ -37,8 +37,9 @@
 				$tempUsers = [[]];
 				array_pop($tempUsers);
 				
+				$x = 0;
+				
 				while ($row = $sql->fetch_assoc()) {
-					$x = $row['ID'];
 					$tempUsers[$x]['ID'] = $x;
 					$tempUsers[$x]['username'] = $row['username'];
 					$tempUsers[$x]['name'] = $row['name'];
@@ -49,6 +50,7 @@
 					$tempUsers[$x]['profileID'] = $row['profileID'];
 					$tempUsers[$x]['profileImage'] = $row['profileImage'];
 					$tempUsers[$x]['color'] = $row['color'];
+					$x += 1;
 				}
 				
 				return $tempUsers;

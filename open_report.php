@@ -17,7 +17,7 @@
 			
 			if ($r_users != "") {
 				$parameters .= " AND user IN (" . (string)$r_users . ")";
-				$user = $db->query("SELECT name,ID FROM users WHERE ID IN ($r_users)");
+				$user = $db->query("SELECT name,ID FROM users WHERE ID IN ($r_users) ORDER BY name");
 				$r_users = "";
 				$a_users = array();
 				
@@ -32,7 +32,7 @@
 			} else {
 				$r_users = "Alla";
 				
-				$user = $db->query("SELECT name, ID FROM users");
+				$user = $db->query("SELECT name, ID FROM users ORDER BY name");
 				$a_users = array();
 				
 				$x = 0;
@@ -69,7 +69,7 @@
 			}
 			
 			
-			$query = "select e.user, SUM(e.hours), e.rate, u.name from events e LEFT JOIN users u ON u.ID = e.user " . $parameters . " GROUP BY e.user";
+			$query = "select e.user, SUM(e.hours), SUM(e.rate*e.hours), u.name from events e LEFT JOIN users u ON u.ID = e.user " . $parameters . " GROUP BY e.user";
 			$sql = $db->query($query);
 			
 			$ua = array( array(),array(),array() );
@@ -78,6 +78,7 @@
 				$x = $r['user'];
 				$ua[$x]["name"] = $r['name'];
 				$ua[$x]["hours"] = $r['SUM(e.hours)'];
+				$ua[$x]["rate"] = number_format($r['SUM(e.rate*e.hours)'], 0, '', ' ');
 			}
 			break;
 		case "userlist":

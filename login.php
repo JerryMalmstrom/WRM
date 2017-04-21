@@ -9,7 +9,7 @@
 		  
 		$username = $_POST['username'];
 		$password = md5($_POST['password']);
-		  
+		
 		$sql = sql_read($db, "SELECT ID FROM users WHERE username = '$username' and password = '$password'");
 			
 		if($sql->num_rows == 1) {

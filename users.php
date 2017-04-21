@@ -1,11 +1,14 @@
 <script>
+
+/* global $ */
+
 $( function() {
 	
     function addUser() {
 		
-		userID = <?php echo $login_id ?>;
+		var userID = "<?php echo $login_id ?>";
 		
-		$.post("save-to-db.php", { type: 'user_add', user: userID , username: $('[name=username]').val(), name: $('[name=name]').val(), role: $('[name=role]').val(), email: $('[name=email]').val(), password: $('[name=password]').val(), company: $('[name=company]').val(), color: $('[name=color]').val() 
+		$.post("save-to-db.php", { type: 'user_add', user: userID , username: $('[name=username]').val(), name: $('[name=name]').val(), role: $('[name=role]').val(), email: $('[name=email]').val(), password: $('[name=password]').val(), description: $('[name=description]').val(), company: $('[name=company]').val(), color: $('[name=color]').val() 
 		}).done(function() {
 			$('.ui.modal').modal('hide');
 			//updateTable();

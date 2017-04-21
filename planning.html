@@ -1,5 +1,4 @@
 <body>
-	
 	<h1 class="ui center aligned header">WRM Rapport</h1>
 	<h2 class="ui center aligned header"><?php echo $r_fromdate . " - " . $r_todate; ?></h2>
 	
@@ -16,7 +15,7 @@
 				</tr>
 				<tr>
 					<td>Intäkt</td>
-					<td><?php echo $sumR; ?> kr</td>
+					<td><?php echo number_format($sumR, 0, '', ' '); ?> kr</td>
 				</tr>
 				<tr>
 					<td>Användare</td>
@@ -35,13 +34,20 @@
 			<thead>
 				<th>Användare</th>
 				<th>Timmar</th>
+				<th>Intäkt</th>
 			</thead>
 			<tbody>
 				<?php
 				foreach ($a_users as $u) {
-					echo "<tr><td>" . $u['name'] . "</td><td>" . $ua[$u['ID']]['hours'] . "</td></tr>";
+					if ($ua[$u['ID']]['rate']) {
+						echo "<tr><td>" . $u['name'] . "</td><td>" . $ua[$u['ID']]['hours'] . "</td><td>" . $ua[$u['ID']]['rate'] . " kr</td></tr>";
+					} else {
+						echo "<tr><td>" . $u['name'] . "</td><td>" . $ua[$u['ID']]['hours'] . "</td><td></td></tr>";
+					}
+					
+					
 				} ?>
 			</tbody>
 		</table>
 	</div>
-	</body>
+</body>

@@ -1,4 +1,7 @@
 <script>
+
+/* global $ */
+
 $( function() {
 	//$.post("save-to-db.php", { type: 'user_update', username: username.val(), name: name.val(), email: email.val(), company: company.val(), color: color.val() });
 	
@@ -30,7 +33,7 @@ $( function() {
 	}
 	
 	$( '#update-user' ).on( "click", function() {
-		userID = <?php echo $login_id ?>;
+		var userID = "<?php echo $login_id ?>";
 		console.log($('#company').val());
 		$.post("save-to-db.php", { type: 'user_update', user: userID, username: $('#username').val(), password: $('#password').val(), name: $('#name').val(), email: $('#email').val(), company: $('#company').val(), color: $('#color').val(), description: $('#description').val(), image: $('#pImage').attr('src') })
 		.done(function() {
@@ -71,6 +74,7 @@ $( function() {
 								echo "<option value='" . $c['ID'] . "'>" . $c['name'] . "</option>";
 							} 
 							?>
+							<script>/* global $ */ $('#company').val("<?php echo $d['company'] ?>"); </script>
 							</select></td></tr>
 							<tr><td>Roll</td><td><?php echo $d["role"]; ?></td></tr>
 							<tr><td>Färg</td><td><input type='color' id='color' value=<?php echo "'" . trim($d["color"]) . "'"; ?>></td></tr>
@@ -79,7 +83,6 @@ $( function() {
 							<?php //" . $d["profileImage"] . " 
 						}
 					?>
-					<script> $('#company').val(1); </script>
 					</tbody>
 				</table>
 				</form>

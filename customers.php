@@ -1,6 +1,7 @@
 <script>
 $( function() {
-	updateTable();
+	//var showInternal = false;
+	updateTable(false);
 	userID = <?php echo $login_id ?>;
 	
 	$('#create-customer').on( "click", function() {
@@ -67,9 +68,15 @@ $( function() {
 		searchCustomer();
 	});
 	
+	$('[name=checkInternal]').change(function() {
+		//showInternal = $('[name=checkInternal]').prop('checked');
+		updateTable($('[name=checkInternal]').prop('checked'));
+	});
 	
-	function updateTable() {
-		$( '#tableHolder' ).load( 'table.php' );
+	
+	function updateTable(data) {
+		//console.log(data);
+		$( '#tableHolder' ).load( 'table.php', { showInternal:data }); 
 	};
 	
 	function addCustomer() {
@@ -110,6 +117,8 @@ $( function() {
 	
 });
 
+
+
 </script>
 
 <div class="sixteen wide column">
@@ -117,6 +126,12 @@ $( function() {
 		<button class="ui button" id="create-customer">Skapa kund</button>
 		<div class="ui input">
 			<input type="text" placeholder="Sök kund" name="search">
+		</div>
+		<div class="ui input">
+			<div class="ui toggle checkbox">
+				<label>Visa interna kunder</label>
+				<input type="checkbox" tabindex="0" class="hidden" name="checkInternal">
+			</div>
 		</div>
 	</div>
 

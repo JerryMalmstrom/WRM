@@ -186,16 +186,7 @@
 	<div class="eight wide column">
 		<h4>Skapa:</h4>
 		
-		<?php if (ADMIN == true) { ?>
-		<select class="ui search dropdown" name="userAdmin">
-			<option value="">Användare</option>
-			<?php
-				foreach ($gUsers as $ua) {
-					echo "<option data-color='" . $ua['color'] . "' value='" . $ua['ID'] . "'>" . $ua['name'] . "</option>";
-				}
-			?>
-		</select>
-		<?php } ?>
+		
 		<select class="ui search dropdown" name="customer">
 			<option value="">Kund</option>
 			<?php

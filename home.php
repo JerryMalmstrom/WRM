@@ -65,55 +65,6 @@
 			</div>
 		</div>
 		<br/>
-		<div class="ui minimal comments">
-			<h3 class="ui dividing header">Diskussion</h3>
-			<div class="comment">
-				<a class="avatar">
-				<img src="/images/users/og_small.jpg">
-				</a>
-				<div class="content">
-					<a class="author">Oscar</a>
-					<div class="metadata">
-						<span class="date">Idag kl 17:00</span>
-					</div>
-					<div class="text">
-						@Jonas, när kommer du in imorgon?
-					</div>
-					<div class="actions">
-						<a class="reply">Svara</a>
-					</div>
-				</div>
-			
-				<div class="comments">
-					<div class="comment">
-						<a class="avatar">
-						<img src="/images/users/jm_small.jpg">
-						</a>
-						<div class="content">
-							<a class="author">Jonas</a>
-							<div class="metadata">
-								<span class="date">Idag kl 17:43</span>
-							</div>
-							<div class="text">
-								@Oscar, Vid 9-tiden, måste droppa kidsen först.
-							</div>
-							<div class="actions">
-								<a class="reply">Svara</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<br/>
-			<form class="ui reply form">
-				<div class="field">
-				  <textarea></textarea>
-				</div>
-				<div class="ui blue labeled submit icon button">
-				  <i class="icon edit"></i> Skriv
-				</div>
-			</form>
-		</div>
 	</div>
 </div>
 

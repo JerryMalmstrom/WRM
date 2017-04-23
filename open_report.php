@@ -4,8 +4,18 @@
 	require('functions.php');
 	
 	$reportURL = "";
+	
+	
+	if ($_POST["type"]) {
+		$case = $_POST["type"];
+	}
+	else if ($_GET["type"]) {
+		$case = $_GET["type"];
+	}
+	
+	
 
-	switch ($_POST["type"]) {
+	switch ($case) {
 		case "planning":
 			$reportURL = "planning.html";
 			$r_fromdate = $_POST["fromdate"];

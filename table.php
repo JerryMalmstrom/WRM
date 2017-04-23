@@ -33,6 +33,12 @@
 		
 		while ($d = $data->fetch_assoc())
 		{
+			if ($d["contracts"] > 0)	{
+				$link = "<a href='open_report.php?type=contractlist' target='_blank'>" . $d["contracts"] . "</a>";
+			} else {
+				$link = $d["contracts"];
+			}
+			
 			echo "<tr><td id='cID' style='display: none'>" . $d["ID"] . "</td>" .
 				"<td id='name'><a href='#' class='editCustomer'>" . $d["name"] . 
 				"</a></td><td id='address'>" . $d["address"] .
@@ -40,7 +46,7 @@
 				"</td><td id='email'><a href='mailto:" . $d["email"] . "'>" . $d["email"] . "</a>" .
 				"</td><td id='status'>" . $d["status"] .
 				"</td><td>" . $d["contacts"] .
-				"</td><td>" . $d["contracts"] .
+				"</td><td>" . $link .
 				"</td><td id='comment'>" . $d["comment"] .
 				"</td><td id='rate' style='display: none'>" . $d["rate"] .
 				"</td></tr>";

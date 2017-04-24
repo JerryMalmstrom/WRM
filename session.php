@@ -37,10 +37,13 @@
 	$login_image = $s['profileImage'];
 	$login_image = str_replace(".png", "_small.jpg", $login_image);
 	
+	DEFINE ("ROLE", $s['role']);
+	
+	/*
 	if ($s['role'] == 'Admin') {
 		DEFINE ("ADMIN", true);
 	} else {
 		DEFINE ("ADMIN", false);
-	}
+	}*/
 	
 ?>

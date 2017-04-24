@@ -1,8 +1,11 @@
 <script>
+
+/*global $*/
+
 $( function() {
 	//var showInternal = false;
 	updateTable(false);
-	userID = <?php echo $login_id ?>;
+	var userID = '<?php echo $login_id ?>';
 	
 	$('#create-customer').on( "click", function() {
 		$('[name=cID]').val(0);
@@ -26,7 +29,7 @@ $( function() {
 		$( this ).parent().parent().find('td').each(function() {
 			data[$(this).attr('id')] = $(this).text();
 		});
-		console.log(data.rate);
+		//console.log(data.rate);
 		$('#rateI').val(data.rate).change();
 		$('[name=cID]').val(data.cID);
 		$('[name=name]').val(data.name);
@@ -35,6 +38,8 @@ $( function() {
 		$('[name=email]').val(data.email);
 		$('[name=status]').val(data.status);
 		$('[name=comment]').val(data.comment);
+		$('[name=dateStart]').val(data.start);
+		$('[name=dateEnd]').val(data.end);
 		
 		$('#delete').show();
 		
@@ -69,40 +74,65 @@ $( function() {
 	});
 	
 	$('[name=checkInternal]').change(function() {
-		//showInternal = $('[name=checkInternal]').prop('checked');
-		updateTable($('[name=checkInternal]').prop('checked'));
+		updateTable();
 	});
 	
 	
-	function updateTable(data) {
+	function updateTable() {
 		//console.log(data);
+		var data = $('[name=checkInternal]').prop('checked');
 		$( '#tableHolder' ).load( 'table.php', { showInternal:data }); 
-	};
+	}
 	
 	function addCustomer() {
-		$.post("save-to-db.php", { type: 'customer_add', user: userID, name: $('[name=name]').val(), address: $('[name=address]').val(), phone: $('[name=phone]').val(), status: $('[name=status]').val(), comment: $('[name=comment]').val() })
+		$.post("save-to-db.php", {
+			type: 'customer_add',
+			user: userID,
+			name: $('[name=name]').val(),
+			address: $('[name=address]').val(),
+			phone: $('[name=phone]').val(),
+			email: $('[name=email]').val(),
+			status: $('[name=status]').val(),
+			comment: $('[name=comment]').val(),
+			rate: $('[name=rate]').val(),
+			cStart: $('[name=dateStart]').val(),
+			cEnd: $('[name=dateEnd]').val()
+		})
 		.done(function() {
 			$('#cModal').modal('hide');
 			updateTable();
 		});
-	};
+	}
 	
 	function updateCustomer() {
-		$.post("save-to-db.php", { type: 'customer_update', user: userID, cID: $('[name=cID]').val(), name: $('[name=name]').val(), address: $('[name=address]').val(), phone: $('[name=phone]').val(), email: $('[name=email]').val(), status: $('[name=status]').val(), comment: $('[name=comment]').val(), rate: $('[name=rate]').val() })
+		$.post("save-to-db.php", {
+			type: 'customer_update',
+			user: userID,
+			cID: $('[name=cID]').val(),
+			name: $('[name=name]').val(),
+			address: $('[name=address]').val(),
+			phone: $('[name=phone]').val(),
+			email: $('[name=email]').val(),
+			status: $('[name=status]').val(),
+			comment: $('[name=comment]').val(),
+			rate: $('[name=rate]').val(),
+			cStart: $('[name=dateStart]').val(),
+			cEnd: $('[name=dateEnd]').val()
+		})
 		.done(function(result) {
 			$('#cModal').modal('hide');
 			updateTable();
 		});
 			
-	};
+	}
 	
 	function searchCustomer() {
-		filter = $('[name=search]').val().toUpperCase();
-		tr = $('#customers > tbody > tr');
+		var filter = $('[name=search]').val().toUpperCase();
+		var tr = $('#customers > tbody > tr');
 		
 		// Loop through all table rows, and hide those who don't match the search query
-		for (i = 0; i < tr.length; i++) {
-			td = tr[i].getElementsByTagName("td")[1];
+		for (var i = 0; i < tr.length; i++) {
+			var td = tr[i].getElementsByTagName("td")[1];
 			if (td) {
 				if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
 					tr[i].style.display = "";
@@ -111,10 +141,7 @@ $( function() {
 				}
 			} 
 		}
-	};
-	
-	
-	
+	}
 });
 
 
@@ -123,7 +150,10 @@ $( function() {
 
 <div class="sixteen wide column">
 	<div class="eight wide column" style="margin-bottom: 30px;">
-		<button class="ui button" id="create-customer">Skapa kund</button>
+		<?php
+		if (ROLE == 'Admin' OR ROLE == 'Superuser') {
+			echo "<button class='ui button' id='create-customer'>Skapa kund</button>";
+		} ?>
 		<div class="ui input">
 			<input type="text" placeholder="Sök kund" name="search">
 		</div>
@@ -140,7 +170,7 @@ $( function() {
 	</div>
 </div>
 
-﻿<div id="cModal" class="ui modal">
+<div id="cModal" class="ui modal">
 	<i class="close icon"></i>
     <div class="header">
 		Lägg till/ändra en kund
@@ -184,18 +214,31 @@ $( function() {
 						<input type="email" placeholder="Email" name="email">
 					</div>
 					<div class="six wide field">
-						<label>Timpeng</label>
-						<select class="ui fluid dropdown" id="rateI" name="rate">
-							<?php
+						<?php if (ROLE == 'Admin' OR ROLE == 'Superuser') {
+						
+						echo "<label>Timpeng</label>" .
+						"<select class='ui fluid dropdown' id='rateI' name='rate'>";
 								$data = sql_read($db, "SELECT ID, rate FROM rates");
 								while ($d = $data->fetch_assoc() ) {
 									echo "<option value='" . $d['ID'] . "'>" . $d['rate'] . "</option>";
 								}
-							?>
-						</select>
+						echo "</select>";
+						
+						}
+						?>
 					</div>
 					<div class="four wide field">			
 						<input type="hidden" value="0" name="cID">
+					</div>
+				</div>
+				<div class="fields">
+					<div class="eight wide field">
+						<label>Kontrakt start</label>
+						<input type="date" name="dateStart">
+					</div>
+					<div class="eight wide field">
+						<label>Kontrakt slut</label>
+						<input type="date" name="dateEnd">
 					</div>
 				</div>
 			</div>

@@ -20,14 +20,19 @@
 		$internal = $_POST['showInternal'];
 		
 		if ($internal == 'false')	{
-			$data = sql_read($db, "select c.ID AS ID,c.name AS name,c.address AS address,c.phone AS phone,c.email as email,c.status AS status,c.comment AS comment, r.ID as rate,(select count(0) from users where (users.company = c.ID)) AS contacts, (select count(0) from contracts where (contracts.customer = c.ID)) AS contracts from customers c " .
+			$data = sql_read($db, "select c.ID AS ID,c.name AS name,c.address AS address,c.phone AS phone,c.email as email,c.status AS status,c.comment AS comment, " .
+			"r.ID as rate,(select count(0) from users where (users.company = c.ID)) AS contacts, (select count(0) from contracts where (contracts.customer = c.ID)) AS contracts, " .
+			"co.start, co.end from customers c " .
 			"LEFT JOIN rates r ON r.ID = c.rate " .
+			"LEFT JOIN contracts co ON c.ID = co.customer " .
 			"WHERE status <> 'Intern' " .
 			"ORDER BY name");
 		} else {
-			$data = sql_read($db, "select c.ID AS ID,c.name AS name,c.address AS address,c.phone AS phone,c.email as email,c.status AS status,c.comment AS comment, r.ID as rate,(select count(0) from users where (users.company = c.ID)) AS contacts, (select count(0) from contracts where (contracts.customer = c.ID)) AS contracts from customers c " .
+			$data = sql_read($db, "select c.ID AS ID,c.name AS name,c.address AS address,c.phone AS phone,c.email as email,c.status AS status,c.comment AS comment, " .
+			"r.ID as rate,(select count(0) from users where (users.company = c.ID)) AS contacts, (select count(0) from contracts where (contracts.customer = c.ID)) AS contracts, " .
+			"co.start AS start, co.end AS end from customers c " .
 			"LEFT JOIN rates r ON r.ID = c.rate " .
-			"ORDER BY name");
+			"LEFT JOIN contracts co ON c.ID = co.customer ORDER BY name");
 		}
 	
 		
@@ -39,9 +44,15 @@
 				$link = $d["contracts"];
 			}
 			
+			if (ROLE == 'Admin' OR ROLE == 'Superuser') {
+				$customer = "<td id='name'><a href='#' class='editCustomer'>" . $d["name"] . "</a>";
+			} else {
+				$customer = "<td id='name'>" . $d["name"];
+			}
+			
 			echo "<tr><td id='cID' style='display: none'>" . $d["ID"] . "</td>" .
-				"<td id='name'><a href='#' class='editCustomer'>" . $d["name"] . 
-				"</a></td><td id='address'>" . $d["address"] .
+				$customer . 
+				"</td><td id='address'>" . $d["address"] .
 				"</td><td id='phone'><a href='tel:" . $d["phone"] . "'>" . $d["phone"] . "</a>" .
 				"</td><td id='email'><a href='mailto:" . $d["email"] . "'>" . $d["email"] . "</a>" .
 				"</td><td id='status'>" . $d["status"] .
@@ -49,6 +60,8 @@
 				"</td><td>" . $link .
 				"</td><td id='comment'>" . $d["comment"] .
 				"</td><td id='rate' style='display: none'>" . $d["rate"] .
+				"</td><td id='start' style='display: none'>" . $d["start"] .
+				"</td><td id='end' style='display: none'>" . $d["end"] .
 				"</td></tr>";
 		}
 		

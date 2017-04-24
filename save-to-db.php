@@ -110,11 +110,19 @@
 			$q_user = $_POST["user"];
 			$q_id = $_POST["cID"];
 			$q_rate = $_POST["rate"];
+			$cStart = $_POST["cStart"];
+			$cEnd = $_POST["cEnd"];
 			
 			$query = "UPDATE customers SET name = '$q_name', address = '$q_address', phone = '$q_phone', email = '$q_email', status = '$q_status', comment = '$q_comment', rate = '$q_rate' WHERE ID = '$q_id'";
 			
 			$sql = $db->query($query);
-				
+			
+			$last_id = $db->insert_id;
+			
+			$query2 = "INSERT INTO contracts (customer, start, end) VALUES('$last_id', '$cStart', '$cEnd') ON DUPLICATE KEY UPDATE start = '$cStart', end = '$cEnd'";
+			
+			$sql = $db->query($query2);
+
 			feed_log($db, $q_user, "ändrade en kund","Kund: $q_name");
 			
 			break;
@@ -123,13 +131,21 @@
 			$q_name = $_POST["name"];
 			$q_address = $_POST["address"];
 			$q_phone = $_POST["phone"];
+			$q_email = $_POST["email"];
 			$q_status = $_POST["status"];
 			$q_comment = $_POST["comment"];
 			$q_user = $_POST["user"];
+			$q_rate = $_POST["rate"];
+			$cStart = $_POST["cStart"];
+			$cEnd = $_POST["cEnd"];
 			
-			$query = "INSERT INTO customers (name, address, phone, status, comment) VALUES ('$q_name','$q_address','$q_phone','$q_status','$q_comment')";
+			$query = "INSERT INTO customers (name, address, phone, email, status, comment, rate) VALUES ('$q_name','$q_address','$q_phone', '$q_email','$q_status','$q_comment', '$q_rate')";
 			
 			$sql = $db->query($query);
+			
+			$query2 = "INSERT INTO contracts (customer, start, end) VALUES('$q_id', '$cStart', '$cEnd') ON DUPLICATE KEY UPDATE start = '$cStart', end = '$cEnd'";
+			
+			$sql = $db->query($query2);		
 						
 			feed_log($db, $q_user, "lade till en kund","Kund: $q_name");
 			

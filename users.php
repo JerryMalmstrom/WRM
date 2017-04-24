@@ -84,7 +84,9 @@ $( function() {
 
 <div class="ui content">
 	<div class="eight wide column" style="margin-bottom: 30px;">
-		<button class="ui button" id="create-user">Skapa användare</button>
+		<?php if (ROLE == 'Admin' OR ROLE == 'Superuser') {
+		echo "<button class='ui button' id='create-user'>Skapa användare</button>";
+		} ?>
 	</div>
 	
 	<div class="ui five stackable cards">

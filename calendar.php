@@ -3,16 +3,18 @@
 	/* global moment */
 
 	$(document).ready(function() {
-		// page is now ready, initialize the calendar...
+		
+		// Create draggable external events with the help of JQ UI
 		
 		$('.fc-event.external').each(function() {
-			// make the event draggable using jQuery UI
 			$(this).draggable({
 				zIndex: 999,
-				revert: true,      // will cause the event to go back to its
-				revertDuration: 0  //  original position after the drag
+				revert: true,
+				revertDuration: 0
 			});
-		});		
+		});
+		
+		// Initialize calendar
 		
 		$('#calendar').fullCalendar({
 			editable: true,

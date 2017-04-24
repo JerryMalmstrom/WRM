@@ -34,8 +34,7 @@
 	<body>
 	
 	<?php
-		
-		// Test Git
+		// Get users, customers and rates from database and store in global variables.
 		
 		$gUsers = [[]];
 		array_pop($gUsers);
@@ -45,6 +44,8 @@
 		
 		$gRates = [[]];
 		array_pop($gRates);
+	
+		// Need to include functions to be able to run data_read()
 	
 		require('config.php');
 		require('functions.php');

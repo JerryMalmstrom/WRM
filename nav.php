@@ -18,7 +18,9 @@ $(document).ready(function () {
 		<a class="item menuhide" href="?page=calendar"><i class="calendar icon"></i>Kalender</a>
 		<a class="item menuhide" href="?page=users"><i class="user icon"></i>Användare</a>
 		<a class="item menuhide" href="?page=customers"><i class="blind icon"></i>Kunder</a>
-		<a class="item menuhide" href="?page=reporting"><i class="bar chart icon"></i>Rapporter</a>
+		<?php if (ROLE == 'Admin' OR ROLE == 'Superuser') {
+			echo "<a class='item menuhide' href='?page=reporting'><i class='bar chart icon'></i>Rapporter</a>";
+		} ?>
 		<div class="right menu">
 			<div class="ui dropdown item">
 				<?php echo $login_name; ?> <i class="dropdown icon"></i>

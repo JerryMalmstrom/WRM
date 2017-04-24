@@ -16,6 +16,7 @@
 	<?php
 		require('config.php');
 		require('functions.php');
+		require('session.php');
 		
 		$internal = $_POST['showInternal'];
 		

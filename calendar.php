@@ -1,8 +1,27 @@
 <script>
 	/* global $ */
 	/* global moment */
-
+	
+	function Users(id,name) {
+		this.id = id;
+		this.name = name;
+	}
+	
+	
+	var selectedUsers = [];
+	var valueArray = [];
+	var x = 0;
+	
+	<?php
+	foreach ($gUsers as $gu) {
+	?>
+	selectedUsers[x] = new Users(<?php echo $gu['ID'] ?>,"<?php echo $gu['name'] ?>");
+	x=x+1;
+	<?php } ?>
+	
 	$(document).ready(function() {
+		
+		//console.log(selectedUsers);
 		
 		// Create draggable external events with the help of JQ UI
 		
@@ -19,6 +38,7 @@
 		$('#calendar').fullCalendar({
 			editable: true,
 			schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+			refetchResourcesOnNavigate: false,
 			resourceLabelText: 'Konsult',
 			resourceAreaWidth: '20%',
 			slotWidth: '75',
@@ -36,13 +56,24 @@
 					slotDuration: '24:00:00'
 				}
 			},
-			resources: [
-			<?php
-				foreach ($gUsers as $gu) {
-					echo "{id: " . $gu['ID'] . ",title: '" . $gu['name'] . "' },";
+			resources: function(callback) {
+				var res = [];
+				var y = 0;
+				
+				if (valueArray.length > 0 || valueArray[0] != null) {
+					for (var i=0;i<selectedUsers.length;i++) {
+						if ($.inArray(selectedUsers[i].id.toString(), valueArray) !== -1) {
+							res[y] = {id: selectedUsers[i].id.toString(), title: selectedUsers[i].name};
+							y++;
+						}
+					}
+				} else {
+					for (var i=0;i<selectedUsers.length;i++) {
+						res[i] = {id: selectedUsers[i].id.toString(), title: selectedUsers[i].name};
+					}
 				}
-			?>
-			],
+				callback(res);
+			},
 			contentHeight: 'auto',
 			weekNumbers: true,
 			eventLimit: false,
@@ -177,8 +208,14 @@
 		
 		
 		$('[name=users]').change(function () {
-			//$('#calendar').fullCalendar( 'removeEvents' );
-			$('#calendar').fullCalendar( 'refetchEvents');
+			if ($('[name=users]').val() == "") {
+				valueArray = [];
+			} else {
+				valueArray = $('[name=users]').val().split(',');
+			}
+			
+			$('#calendar').fullCalendar( 'refetchEvents' );
+			$('#calendar').fullCalendar( 'refetchResources' );
 		});
 		
 	});

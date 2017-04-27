@@ -60,6 +60,12 @@
 				var res = [];
 				var y = 0;
 				
+				if ($('[name=users]').val() == "") {
+					valueArray = [];
+				} else {
+					valueArray = $('[name=users]').val().split(',');
+				}
+				
 				if (valueArray.length > 0 || valueArray[0] != null) {
 					for (var i=0;i<selectedUsers.length;i++) {
 						if ($.inArray(selectedUsers[i].id.toString(), valueArray) !== -1) {

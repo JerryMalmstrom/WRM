@@ -1,34 +1,18 @@
 <div class="ui centered grid">
 	<div class="eight wide column">
 		<div class="ui container">
-			<div class="ui feed">
-			
-			<?php
-				$sql = sql_read($db, "select f.ID AS ID,f.user AS user,f.date AS date,f.title AS title,f.description AS description,u.name AS name,u.profileImage AS profileImage from (feed f left join users u on((u.ID = f.user))) order by f.date desc limit 0,10");
-
-				while ($row = $sql->fetch_assoc()) {
-					?>
-					<div class="event">
-						<div class="label">
-							<img src="<?php echo str_replace(".png", "_small.jpg", $row['profileImage']); ?>">
-						</div>
-						<div class="content">
-							<div class="summary">
-								<a class="user">
-									<?php echo $row['name']; ?>
-								</a> <?php echo $row['title']; ?>
-								<div class="date">
-									<?php echo $row['date']; ?>
-								</div>
-							</div>
-							<div class="meta">
-								<?php echo $row['description']; ?>
-							</div>
-						</div>
-					</div>
-					<div class="ui fitted divider"></div>
-					<?php } ?>
+			<div class="ui feed" id="feed">
+						
 			</div>
+			<div class="ui pagination menu">
+				<a class="active item" OnClick="setActive(this)">1</a>
+				<a class="item" OnClick="setActive(this)">2</a>
+				<a class="item" OnClick="setActive(this)">3</a>
+				<a class="item" OnClick="setActive(this)">4</a>
+				<a class="item" OnClick="setActive(this)">5</a>
+				<a class="item" OnClick="setActive(this)">6</a>
+			</div>
+			
 		</div>
 	</div>
 	<div class="seven wide column">
@@ -69,12 +53,20 @@
 </div>
 
 <script>
-	$('div.date').each(function() {
-		Ntext = $.fullCalendar.moment($( this ).text().trim());
-		$( this ).text(Ntext.fromNow());
 		
-	});
+	function updateTable(Cpage) {
+		$( '#feed' ).load( 'log.php', { page: Cpage }); 
+		
+	}
+	function setActive(item) {
+		updateTable(item.text);
+		$('.item').removeClass('active');
+		$('.item').filter(function () {
+            return this.text == item.text;
+        }).addClass('active');		
+	}
 	
-	//$.fullCalendar.moment('<?php echo $row['date']; ?>').fromNow();
-
+	$(function() {
+		updateTable("1");
+	});
 </script>

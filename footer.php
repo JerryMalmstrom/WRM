@@ -13,7 +13,7 @@
 	?>
 	</div>
 	<div class="center aligned column">White Red AB 🐵 2017</div>
-	<div class="center aligned column">Version 0.97</div>
+	<div class="center aligned column">Version 0.99</div>
 </div>
 <script>
 

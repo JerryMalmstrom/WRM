@@ -192,12 +192,17 @@
 	<title>White Red Manager - Rapport</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
 	<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans|Roboto' type='text/css'>
-	<link rel="stylesheet" href="//cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css" type="text/css">
 	<link rel="stylesheet" href="theme.css" type="text/css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.12/css/tableexport.min.css" type="text/css">
 	
 	<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script src="//cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
 	<script src="js/tablesort.js"></script>
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/xlsx/0.9.13/xlsx.core.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.12/js/tableexport.min.js"></script>
 	
 	<style>
 		h1 { margin-top: 40px!important;}
@@ -206,12 +211,26 @@
 	
 	<script>
 	$(function() {
-		$('table').tablesort();
+		//$('table').tablesort();
+		
+		/*$('#export').click(function (e) {
+			window.open('data:application/vnd.ms-excel, <table>' + encodeURI($('table').html()) + '</table>');
+			e.preventDefault();
+		});*/
+		
+		$('table').tableExport({
+			formats: ["xlsx", "txt"],
+			fileName: "Rapport",
+		});
+		
+		$('.xlsx').text("Exportera till Excel");
+		$('.txt').text("Exportera till Text");
+		
 	});
 	</script>
 	
 	</head>
 	
 	<?php require($reportURL); ?>
-		
+
 </html>

@@ -28,6 +28,9 @@
     padding-left: 8px;
 }
 
+.bottom {
+	padding-top: 15px;
+}
 
 @media only screen 
   and (min-device-width: 100px) 

@@ -1,13 +1,9 @@
 <script>
 $(document).ready(function () {
     var url = window.location;
-    // Will only work if string in href matches with location
-        //$('.menu a[href="' + url + '"]').parent().addClass('active');
-
-    // Will also work for relative and absolute hrefs
-        $('.menu a').filter(function () {
-            return this.href == url;
-        }).addClass('active');
+    $('.menu a').filter(function () {
+		return this.href == url;
+    }).addClass('active');
 });
 </script>
 
